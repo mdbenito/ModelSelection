@@ -14,20 +14,21 @@ hc.append(PolynomialHypothesis(M=2, variance=3, noiseVariance=sigma**2))
 hc.append(PolynomialHypothesis(M=6, variance=3, noiseVariance=sigma**2))
 hc.append(PolynomialHypothesis(M=8, variance=3, noiseVariance=sigma**2))
 hc.append(TrigonometricHypothesis(halfM=4, variance=2, noiseVariance=sigma**2))
+hc.append(TrigonometricHypothesis(halfM=2, variance=2, noiseVariance=sigma**2))
 # hc.append(TrigonometricHypothesis(halfM=10, variance=2, noiseVariance=sigma**2))
 
 lr = LinearRegression(hc, sigma)
 
 #####
 # Test 1:
-generate_noise_and_fit(lr,
-                       generator=PolynomialHypothesis(M=6, variance=2, noiseVariance=sigma**2),
-                       xmin=-2.0, xmax=2.0, num=100)
+#generate_noise_and_fit(lr,
+#                       generator=PolynomialHypothesis(M=6, variance=5, noiseVariance=sigma**2),
+#                       xmin=-2.0, xmax=5.0, num=100)
 
 # Test 2:
-#generate_noise_and_fit(lr,
-#                       generator=TrigonometricHypothesis(halfM=2, variance=2, noiseVariance=sigma**2),
-#                       xmin=0.0, xmax=100.1, num=100)
+generate_noise_and_fit(lr,
+                       generator=TrigonometricHypothesis(halfM=2, variance=4, noiseVariance=sigma**2),
+                       xmin=-1.0, xmax=3.1, num=20)
 
 
 ##############################################################################
