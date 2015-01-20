@@ -33,7 +33,8 @@
   <abstract-data|<abstract|In this note we introduce linear regression with
   basis functions in order to apply Bayesian model
   selection.<set-this-page-footer|<htab|5mm><small|This document was created
-  using <TeXmacs> (<hlink|www.texmacs.org|http://www.texmacs.org>)><htab|5mm>>>>
+  using <TeXmacs> (<hlink|www.texmacs.org|http://www.texmacs.org>)><htab|5mm>>
+  Also we do things sloppy.>>
 
   <with|ornament-shape|rounded|ornament-color|pastel red|<\ornamented>
     <\warning*>
@@ -548,7 +549,7 @@
     unfamiliar with casinos might use a different prior, e.g.
     <math|\<bbb-P\><around*|(|\<cal-H\><rsub|0>|)>=0.99.> If your beliefs are
     very strong at the beginning, the amount of data you need to change your
-    mind is very big.\ 
+    mind is very large.\ 
 
     The prior on the parameter <math|r> is even more strongly debatable:
     assuming that a coin has been manipulated, we could think that the
@@ -560,9 +561,10 @@
     calculation, we will use a uniform prior on <math|r> but beware that
     Bayesian inference is all about your priors and beliefs about reality.
     Bayesian statistics states that <em|there is no such thing as objective
-    inference>. Luckily, in a lot of cases, different priors only change the
-    speed of convergence of your inference <todo|why is this?> and unless
-    your initial distribution deems ranges of events as impossible (i.e.
+    inference>, just a correct propagation of belief states. Luckily, in a
+    lot of cases, different priors only change the speed of convergence of
+    your inference <todo|why is this?> and unless your initial distribution
+    deems ranges of events as impossible (i.e.
     <math|p<around*|(|r\|\<cal-H\><rsub|1>|)>=0> for some <math|r>),
     collecting more and more data will yield similar conclusions between
     different priors.
@@ -632,7 +634,7 @@
   for the possible values of <math|r> which in turn change the probability
   distribution of <math|t<rprime|'>>.
 
-  <subsection|Correct model selection>
+  <subsection|Correct model selection -- Rough approach>
 
   The way to select the correct model is
 
@@ -672,6 +674,9 @@
     <frac|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>>=<frac|<big|int><rsub|0><rsup|1>r<rsup|h<around*|(|\<b-t\>|)>>*<around*|(|1-r|)><rsup|N-h<around*|(|\<b-t\>|)>>*\<mathd\>r|2<rsup|-N>>*<frac|p<around*|(|\<cal-H\><rsub|1>|)>|p<around*|(|\<cal-H\><rsub|0>|)>>=<frac|p<around*|(|\<cal-H\><rsub|1>|)>*2<rsup|N>|p<around*|(|\<cal-H\><rsub|0>|)>*<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|h<around*|(|\<b-t\>|)>>>>>>>
   </equation*>
 
+  This shows a classic problem of these kinds of methods: The numbers
+  involved grow quickly and exact computation becomes unfeasible.
+
   For the case <math|h<around*|(|\<b-t\>|)>\<simeq\>N/2> use Stirling's
   formula <math|n!\<simeq\><sqrt|2*\<mathpi\>*n>*<around*|(|n/\<mathe\>|)><rsup|n>>
   and see
@@ -683,6 +688,64 @@
   so the hypothesis <math|\<cal-H\><rsub|0>> becomes probable exponentially
   fast if there is no specific evidence for <math|\<cal-H\><rsub|1>>.
   <todo|Insert cool implementation & figures>
+
+  <subsection|Quasi-Iterative model selection>
+
+  We showed why iterative methods cannot work in a strict sense. There is a
+  way which still uses only computationally feasible terms by taking a clever
+  updating approach:
+
+  Let <math|\<b-t\>=<around*|(|0,0,1,0,1,0,0,\<ldots\>|)>> be a data vector
+  with <math|0> being Heads and <math|1> being tails. Assume that the length
+  of <math|\<b-t\>> is <math|N> and the number of <math|0>s is <math|K>. Now
+  a new data point <math|t<rprime|'>> arrives, which is either <math|0> or
+  <math|1>. We write <math|K<rprime|'>> for the number of <math|0s> after
+  arrival of <math|t<rprime|'>>, so <math|K<rprime|'>\<in\><around*|{|K,K+1|}>>.Then
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|<frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>>|<cell|=>|<cell|<label|eq:recursive><frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>><eq-number>>>>>
+  </eqnarray*>
+
+  The last term is the prior version of the left hand side fraction. Thus,
+  the term <math|<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>>
+  is an update term we can use.
+
+  First,
+
+  <\equation>
+    p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>=p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>|)>=<frac|1|2>.
+  </equation>
+
+  Then
+
+  <\equation>
+    <label|eq:update>p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>=<frac|p<around*|(|t<rprime|'>,\<b-t\>\|\<cal-H\><rsub|1>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|1>|)>>
+  </equation>
+
+  We expand to calculate\ 
+
+  <\equation*>
+    p<around*|(|\<b-t\>\|\<cal-H\><rsub|1>|)>=<big|int><rsub|0><rsup|1>p<around*|(|\<b-t\>\|r,\<cal-H\><rsub|1>|)>*p<around*|(|r\|\<cal-H\><rsub|1>|)>*d*r=<big|int><rsub|0><rsup|1>r<rsup|K>*<around*|(|1-r|)><rsup|N-K>*d*r=<frac|1|<around*|(|N+1|)>\<cdot\><matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|K>>>>>>
+  </equation*>
+
+  and
+
+  <\equation*>
+    p<around*|(|t<rprime|'>,\<b-t\>\|\<cal-H\><rsub|1>|)>=<big|int><rsub|0><rsup|1>r<rsup|K<rprime|'>>*<around*|(|1-r|)><rsup|N+1-K<rprime|'>>*d*r=<frac|1|<around*|(|N+2|)>*<matrix|<tformat|<table|<row|<cell|N+1>>|<row|<cell|K<rprime|'>>>>>>>
+  </equation*>
+
+  Combining this with (<reference|eq:update>) in
+  (<reference|eq:recursive>)[FIX link], we get
+
+  <\equation*>
+    <frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<around*|{|<tabular|<tformat|<table|<row|<cell|<frac|N+2|2*K+2>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>|<cell|<text|if
+    <math|t<rprime|'>=0>>>>|<row|<cell|<frac|N+2|2*<around*|(|N+1-K|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>|<cell|<text|if
+    >t<rprime|'>=1>>>>>|}>
+  </equation*>
+
+  This means that we do not need to save the exact data vector but just the
+  number of heads and tails to apply a recursive-type model selection
+  approach. <with|color|red|[INSERT GRAPHS IN FOLDER]>
 
   <section|Racial Imposition on the death penalty>
 
@@ -1197,17 +1260,18 @@
     <associate|auto-10|<tuple|4.2|7>>
     <associate|auto-11|<tuple|4.3|7>>
     <associate|auto-12|<tuple|4.4|7>>
-    <associate|auto-13|<tuple|5|8>>
-    <associate|auto-14|<tuple|6|10>>
-    <associate|auto-15|<tuple|6.1|10>>
-    <associate|auto-16|<tuple|6.2|10>>
-    <associate|auto-17|<tuple|6.3|11>>
-    <associate|auto-18|<tuple|6.4|11>>
-    <associate|auto-19|<tuple|2|11>>
+    <associate|auto-13|<tuple|4.5|8>>
+    <associate|auto-14|<tuple|5|10>>
+    <associate|auto-15|<tuple|6|10>>
+    <associate|auto-16|<tuple|6.1|10>>
+    <associate|auto-17|<tuple|6.2|11>>
+    <associate|auto-18|<tuple|6.3|11>>
+    <associate|auto-19|<tuple|6.4|11>>
     <associate|auto-2|<tuple|2|2>>
-    <associate|auto-20|<tuple|3|11>>
-    <associate|auto-21|<tuple|6.5|12>>
+    <associate|auto-20|<tuple|2|11>>
+    <associate|auto-21|<tuple|3|12>>
     <associate|auto-22|<tuple|6.5|13>>
+    <associate|auto-23|<tuple|6.5|?>>
     <associate|auto-3|<tuple|2.1|3>>
     <associate|auto-4|<tuple|3|4>>
     <associate|auto-5|<tuple|3.1|4>>
@@ -1228,6 +1292,8 @@
     <associate|eq:param-inf|<tuple|2|3>>
     <associate|eq:param-inf-nonrec|<tuple|1|3>>
     <associate|eq:prob-datum-coin|<tuple|12|7>>
+    <associate|eq:recursive|<tuple|4.5|?>>
+    <associate|eq:update|<tuple|15|?>>
     <associate|eq:wmap|<tuple|3|3>>
     <associate|eq:wml|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
     <associate|fig:indep|<tuple|1|5>>
