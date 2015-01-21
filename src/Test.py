@@ -1,3 +1,4 @@
+from datetime import datetime
 from ModelSelection import LinearRegression
 from Hypotheses import Hypothesis
 from Plots import *
@@ -21,9 +22,14 @@ def select_points_and_fit(regression, num=10):
         return
     pl.ioff()
 
+    dt = datetime.now()
     for p in points:
         # print ("Updating with (%f, %f)" % (p[0], p[1]))
         regression.update(p[0], p[1])
+    dt = datetime.now() - dt
+    msec = (dt.days * 24 * 3600 + dt.seconds) * 1000 + dt.microseconds / 1000.0
+    print "Update completed in %d milliseconds." % msec
+
     wmap = [param.mean for param in regression.parameter]
 
     updateMAPFitPlot(ax1, regression.XHist, regression.hypotheses, wmap, 0.05)
@@ -53,10 +59,16 @@ def generate_noise_and_fit(regression, generator, xmin=0.0, xmax=1.0, num=10):
     assert isinstance(generator, Hypothesis)
 
     inputs = np.array(np.arange(xmin, xmax, step=(float(xmax)-float(xmin))/float(num)))
+    dt = datetime.now()
 
     for x, t in zip(inputs, generator.generate(inputs)):
         # print ("Updating with (%f, %f)" % (x, t))
         regression.update(x, t)
+
+    dt = datetime.now() - dt
+    msec = (dt.days * 24 * 3600 + dt.seconds) * 1000 + dt.microseconds / 1000.0
+    print "Update completed in %d milliseconds." % msec
+
     wmap = [param.mean for param in regression.parameter]
 
     # Plot
