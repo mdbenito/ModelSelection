@@ -67,7 +67,7 @@ class RandomVariable(object):
         raise TypeError("Dummy base class")
 
 
-def norm_multivariate(x, mu, sigma, inv_sigma=None, det=None):
+def normal_multivariate(x, mu, sigma, inv_sigma=None, det=None):
     """
     :param x: point
     :param mu: average
@@ -118,7 +118,7 @@ class GaussianRV(RandomVariable):
         if np.isscalar(data):
             raise TypeError("Scalars should be passed as 1x1 numpy.ndarrays")
 
-        l = lambda p: norm_multivariate(p, self._mean, self._variance, self._invVariance, self._det)
+        l = lambda p: normal_multivariate(p, self._mean, self._variance, self._invVariance, self._det)
 
         if data.shape == self._mean.shape:
             return np.array([l(data)])
