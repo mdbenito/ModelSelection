@@ -19,6 +19,10 @@
         <small|<arg|body>>
       </with>
     </macro>>
+
+    <assign|subsection|<macro|title|<assign|subsection-numbered|<compound|subsection-display-numbers>><assign|subsection-prefix|<macro|<compound|the-subsection>.>><compound|next-subsection><compound|subsection-clean><compound|subsection-header|<arg|title>><compound|subsection-toc|<arg|title>><no-page-break><if|<value|subsection-numbered>|<compound|subsection-numbered-title|<arg|title>>|<compound|subsection-title|<arg|title>>>>>
+
+    <assign|section|<macro|title|<assign|section-numbered|<compound|section-display-numbers>><assign|section-prefix|<macro|<compound|the-section>.>><compound|next-section><compound|section-clean><compound|section-header|<arg|title>><compound|section-toc|<arg|title>><no-page-break><if|<value|section-numbered>|<compound|section-numbered-title|<arg|title>>|<compound|section-title|<arg|title>>>>>
   </hide-preamble>
 
   <doc-data|<doc-title|Bayesian model selection for linear
@@ -33,12 +37,11 @@
   <abstract-data|<abstract|In this note we introduce linear regression with
   basis functions in order to apply Bayesian model
   selection.<set-this-page-footer|<htab|5mm><small|This document was created
-  using <TeXmacs> (<hlink|www.texmacs.org|http://www.texmacs.org>)><htab|5mm>>
-  Also we do things sloppy.>>
+  using <TeXmacs> (<hlink|www.texmacs.org|http://www.texmacs.org>)><htab|5mm>>>>
 
   <with|ornament-shape|rounded|ornament-color|pastel red|<\ornamented>
     <\warning*>
-      This is work in progress.
+      This is work in progress. We are also sloppy.
     </warning*>
   </ornamented>>
 
@@ -60,8 +63,8 @@
     selection> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-4><vspace|0.5fn>
 
-    <with|par-left|1tab|3.1.<space|2spc>Why iterative model selection does
-    not work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <with|par-left|1tab|3.1.<space|2spc>Why (naive) iterative model selection
+    does not work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-5>>
 
     <with|par-left|1tab|3.2.<space|2spc>Laplace's method
@@ -69,7 +72,7 @@
     <no-break><pageref|auto-7>>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|4.<space|2spc>An
-    easy example: is this coint bent?> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    easy example: is this coin bent?> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-8><vspace|0.5fn>
 
     <with|par-left|1tab|4.1.<space|2spc>Model
@@ -84,38 +87,47 @@
     cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-11>>
 
-    <with|par-left|1tab|4.4.<space|2spc>Correct model selection
-    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <with|par-left|1tab|4.4.<space|2spc>Correct model selection -- Rough
+    approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-12>>
 
-    <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>An
+    <with|par-left|1tab|4.5.<space|2spc>Quasi-Iterative model selection
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-13>>
+
+    <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>Influence
+    of the race on the imposition of the death penalty>
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-14><vspace|0.5fn>
+
+    <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>An
     example with polynomial basis functions>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-13><vspace|0.5fn>
+    <no-break><pageref|auto-15><vspace|0.5fn>
 
-    <with|par-left|1tab|5.1.<space|2spc>Setting
-    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-14>>
-
-    <with|par-left|1tab|5.2.<space|2spc>Iterative parameter estimation
-    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-15>>
-
-    <with|par-left|1tab|5.3.<space|2spc>Model selection
+    <with|par-left|1tab|6.1.<space|2spc>Setting
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-16>>
 
-    <with|par-left|1tab|5.4.<space|2spc>Simulation results
+    <with|par-left|1tab|6.2.<space|2spc>Iterative parameter estimation
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-17>>
 
-    <with|par-left|1tab|5.5.<space|2spc>Implementation in Octave
+    <with|par-left|1tab|6.3.<space|2spc>Model selection
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-20>>
+    <no-break><pageref|auto-18>>
+
+    <with|par-left|1tab|6.4.<space|2spc>Simulation results
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-19>>
+
+    <with|par-left|1tab|6.5.<space|2spc>Implementation
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-22>>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-21><vspace|0.5fn>
+    <no-break><pageref|auto-23><vspace|0.5fn>
   </table-of-contents>
 
   <section|Introduction: different models for linear
@@ -131,7 +143,7 @@
   questions:
 
   <\enumerate>
-    <item>Is there any trend (monotonicity, asympotics, etc.) in the data as
+    <item>Is there any trend (monotonicity, asymptotics, etc.) in the data as
     a whole?
 
     <item>What's the likeliest value for the target <math|t> given a new
@@ -155,28 +167,28 @@
   in some suitable sense. A particular choice of basis functions is called an
   <dfn|hypothesis> or <strong|model>, which we denote as <math|\<cal-H\>> and
   it is an awesome feature of Bayesian statistics that one may let the data
-  speak for themselves and tell us which out of several hypothesis best fits
-  the data, while at the same time not incurring in <em|overfitting>, i.e.
-  the problem of choosing coefficients providing a perfect fit for a given
-  training set but failing miserably with mostly any other. We will encode
-  our lack of knowledge about which is the right model as a prior on the set
-  of all them (e.g. a uniform over the discrete set
+  speak for themselves and tell us which one out of several hypothesis best
+  fits the data, while at the same time not incurring in <em|overfitting>,
+  i.e. the problem of choosing coefficients providing a perfect fit for a
+  given training set but failing miserably with mostly any other one (this is
+  done by skipping parameter fitting altogether, at least in principle). We
+  will encode our lack of knowledge about what is the right model as a prior
+  distribution on the set of all them (e.g. a uniform over the discrete set
   <math|<around*|{|\<cal-H\><rsub|1>,\<ldots\>,\<cal-H\><rsub|K>|}>>).
 
   So, more generally than above, we start with several hypotheses
-  <math|\<cal-H\><rsub|1>,\<ldots\>,\<cal-H\><rsub|K>> and fit the parameters
-  of each hypothesis to choose the best one. To fix notation, we assume that
-  the target function has the form
+  <math|\<cal-H\><rsub|1>,\<ldots\>,\<cal-H\><rsub|K>> and try to choose the
+  best one. To fix notation, we assume that the target function has the form
 
   <\equation*>
     t=y<around*|(|x,w|)>+\<epsilon\>
   </equation*>
 
-  with <math|\<epsilon\>\<sim\>\<cal-N\><around*|(|0,\<beta\><rsup|-1>|)>> a
-  Gaussian random variable of precision <math|\<beta\>> modelling noise,
-  <math|x\<in\>\<bbb-R\>> a data point and
-  <math|w=<around*|(|w<rsub|0>,\<ldots\>,w<rsub|M-1>|)>\<in\>W> (e.g.
-  <math|W=\<bbb-R\><rsup|M>>), a vector of weights determining the function
+  with <math|\<epsilon\>\<sim\>\<cal-N\><around*|(|0,\<sigma\><rsup|2>|)>> a
+  Gaussian random variable modeling noise, <math|x\<in\>\<bbb-R\>> a data
+  point and <math|w=<around*|(|w<rsub|0>,\<ldots\>,w<rsub|M-1>|)>\<in\>W>
+  (e.g. <math|W=\<bbb-R\><rsup|M>>), a vector of weights determining the
+  function
 
   <\equation*>
     y<around*|(|x,w|)>=<big|sum><rsub|j=0><rsup|M<rsub|k>-1>w<rsub|j>*\<phi\><rsub|j><around*|(|x|)>,
@@ -192,46 +204,41 @@
   <math|\<phi\><rsub|0>\<equiv\>1>. One may use polynomials:
 
   <\equation*>
-    \<cal-H\><rsub|M+1><rsup|\<cal-P\>>=<around*|{|\<phi\><rsub|j><around*|(|x|)>=x<rsup|j>:j=0,\<ldots\>,M-1|}>,<space|1em>M\<in\>\<bbb-N\>,
+    \<cal-H\><rsub|1>=<around*|{|\<phi\><rsub|j><around*|(|x|)>=x<rsup|j>:j=0,\<ldots\>,M-1|}>,<space|1em>M\<in\>\<bbb-N\>,
   </equation*>
 
   or cosine functions
 
   <\equation*>
-    \<cal-H\><rsub|M+1><rsup|\<cal-C\>>=<around*|{|\<phi\><rsub|j><around*|(|x|)>=cos<around*|(|\<mathpi\>*j*x|)>:j=0,\<ldots\>,M-1|}>,<space|1em>M\<in\>\<bbb-N\>,
+    \<cal-H\><rsub|2>=<around*|{|\<phi\><rsub|j><around*|(|x|)>=cos<around*|(|\<mathpi\>*j*x|)>:j=0,\<ldots\>,M-1|}>,<space|1em>M\<in\>\<bbb-N\>,
   </equation*>
 
   or wavelets or whatever, up to some fixed number <math|K> of different
-  models. There are two tasks to perform now:
-
-  <\enumerate>
-    <item>Parameter inference: for any fixed hypothesis
-    <math|\<cal-H\><rsub|k>>, compute the values for the weights which best
-    explain the outputs <math|\<b-t\>> in some suitable sense (which will be
-    the maximization of the <em|a posteriori> distribution).
-
-    <item>Model selection: given any pair of hypothesis
-    <math|\<cal-H\><rsub|k<rsub|1>>,\<cal-H\><rsub|k<rsub|2>>> determine
-    which one is supported by more <em|evidence> in the data.
-  </enumerate>
-
-  Here we won't be addressing a third issue, related to the second question
-  above, namely the computation of the <dfn|predictive distribution>.
+  models. The main task to perform now is <dfn|model selection>: given any
+  pair of hypothesis <math|\<cal-H\><rsub|k<rsub|1>>,\<cal-H\><rsub|k<rsub|2>>>
+  determine which one is supported by more <em|evidence> in the data. In
+  order to do this we will need to compute some integrals, and this we
+  achieve using Laplace's method, which under our assumption of normality in
+  the noise yields exact results. Finally, in order to apply this integration
+  method we need to do <dfn|parameter inference>: for every hypothesis
+  <math|\<cal-H\><rsub|k>>, compute (fit) the values for the weights which
+  best explain the outputs <math|\<b-t\>> in some suitable sense (which will
+  be the maximization of the <em|a posteriori> distribution).
 
   <section|Parameter inference><label|sec:parameter-inference>
 
   <\question>
     Given an hypothesis <math|\<cal-H\>> on how the output <math|\<b-t\>> is
-    generated from <math|\<b-x\>> and some <em|a priori distribution>
-    <math|p<around*|(|w\|\<cal-H\>|)>> on the set of parameters which govern
-    the specific distribution, infer the correct posterior distribution
-    <math|p<around*|(|w\|\<b-t\>,\<b-x\>,\<cal-H\>|)>> of the parameters
-    given the data.
+    generated from the observed data <math|\<b-x\>> and some <em|a priori
+    distribution> <math|p<around*|(|w\|\<cal-H\>|)>> on the set of parameters
+    which govern the specific distribution, infer the correct posterior
+    distribution <math|p<around*|(|w\|\<b-t\>,\<b-x\>,\<cal-H\>|)>> of the
+    parameters given the data.
   </question>
 
   <\notation*>
     Since the observations <math|\<b-x\>> are always given and we will not be
-    doing any inference on the distribution or future values, we will omit
+    doing any inference on their distribution or future values, we will omit
     the vector <math|\<b-x\>> from the conditioning variables in the notation
     from here on. Thus, instead of <math|p<around*|(|w\|\<b-t\>,\<b-x\>,\<cal-H\>|)>>
     we will write <math|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>>, instead of
@@ -258,20 +265,21 @@
   posteriori distribution>, which is a host more information, and thanks to
   the use of a conjugate prior we have an explicit expression.
 
-  Once we have all the data we can compute the posterior in <dfn|batch> mode,
-  i.e. using all of the data. However, it is remarkable that parameter
-  inference can be done iteratively (<dfn|online>), i.e. updated when a new
-  data point <math|t<rprime|'>> arrives. The idea is that given the current
-  dataset <math|\<b-t\>>, the corresponding posterior parameter distribution
+  As we have just seen, once we have all of the data <math|\<b-t\>> we can
+  compute the posterior in <dfn|batch> mode, i.e. using all of the data.
+  However, it is remarkable that parameter inference can be done iteratively
+  (<dfn|online>), i.e. updated when a new data point <math|t<rprime|'>>
+  arrives. The idea is that given the current dataset <math|\<b-t\>>, the
+  corresponding posterior parameter distribution
   <math|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>> is used as the <em|new prior>
   for <math|w>, when a new data point <math|t<rprime|'>> is available. So we
   want to obtain the posterior distribution
-  <math|p<around*|(|w\|<around*|(|t<rprime|'>,\<b-t\>|)>,\<cal-H\>|)>> as a
-  function of <math|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>>, and this is
-  essentially the same computation as above:
+  <math|p<around*|(|w\|t<rprime|'>,\<b-t\>,\<cal-H\>|)>> as a function of
+  <math|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>>, and this is essentially the
+  same computation as above:
 
   <\equation>
-    <label|eq:param-inf>p<around*|(|w\|t<rprime|'>,\<b-t\>,\<cal-H\>|)>=<frac|p<around*|(|t<rprime|'>\|w,\<b-t\>,\<cal-H\>|)>*p<around*|(|w\|\<b-t\>,\<cal-H\>|)>|p<around*|(|t<rprime|'>\|\<b-t\>,\<cal-H\>|)>><above|=|<around*|(|\<ast\>|)>><frac|p<around*|(|t<rprime|'>\|w,\<cal-H\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\>|)>>*p<around*|(|w\|\<b-t\>,\<cal-H\>|)>,
+    <label|eq:param-inf>p<around*|(|w\|t<rprime|'>,\<b-t\>,\<cal-H\>|)>=<frac|p<around*|(|t<rprime|'>\|\<b-t\>,w,\<cal-H\>|)>*p<around*|(|w\|\<b-t\>,\<cal-H\>|)>|p<around*|(|t<rprime|'>\|\<b-t\>,\<cal-H\>|)>><above|=|<around*|(|\<ast\>|)>><frac|p<around*|(|t<rprime|'>\|w,\<cal-H\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\>|)>>*p<around*|(|w\|\<b-t\>,\<cal-H\>|)>,
   </equation>
 
   which again will be normal, and where <math|<around*|(|\<ast\>|)>> is
@@ -299,48 +307,37 @@
   From equations <eqref|eq:param-inf-nonrec> or <eqref|eq:param-inf> we see
   that starting with a prior distribution <math|p<around*|(|w\|\<cal-H\>|)>>
   on the possible parameter values <math|w> we can improve it using the
-  acquired data <math|\<b-t\>>. It will be useful to define the following two
-  values for <math|w>. Let <math|W> be the parameter space corresponding to
-  hypothesis <math|\<cal-H\>> (e.g. <math|W=\<bbb-R\><rsup|M>>).
+  acquired data <math|\<b-t\>>. It will be useful to define the following
+  value for <math|w>. Let <math|W> be the parameter space corresponding to
+  hypothesis <math|\<cal-H\>> (e.g. <math|W=\<bbb-R\><rsup|M>>). The
+  <dfn|maximum a posteriori> parameter <math|w<rsub|MAP>> is
 
-  <\itemize>
-    <item>The <dfn|maximum likelihood> parameter <math|w<rsub|ML>> is defined
-    as
+  <\equation>
+    <label|eq:wmap>w<rsub|MAP>\<assign\><below|argmax|w\<in\>W>
+    p<around*|(|\<b-t\>\|w,\<cal-H\>|)>*p<around*|(|w\|\<cal-H\>|)>=<below|argmax|w\<in\>W>
+    p<around*|(|w\|\<b-t\>,\<cal-H\>|)>.
+  </equation>
 
-    <\equation*>
-      w<rsub|ML>\<assign\><below|argmax|w\<in\>W>
-      p<around*|(|\<b-t\>\|w,\<cal-H\>|)>.
-    </equation*>
-
-    This is the <em|parameter value which best fits the data.>
-
-    <item>The <dfn|maximum a posteriori> parameter <math|w<rsub|MAP>> is
-
-    <\equation>
-      <label|eq:wmap>w<rsub|MAP>\<assign\><below|argmax|w\<in\>W>
-      p<around*|(|\<b-t\>\|w,\<cal-H\>|)>*p<around*|(|w\|\<cal-H\>|)>=<below|argmax|w\<in\>W>
-      p<around*|(|w\|\<b-t\>,\<cal-H\>|)>.
-    </equation>
-
-    This is the <em|parameter value at which the posterior distribution of
-    <math|w> given the data attains its maximum.>
-  </itemize>
-
-  Notice that <math|w<rsub|MAP>\<neq\>w<rsub|ML>> in general, especially when
-  the best fit <math|w<rsub|ML>> is penalized by a small prior probability
-  <math|p<around*|(|w<rsub|ML>\|\<cal-H\>|)>> in the computation of
-  <math|w<rsub|MAP>>.
-
-  Bayesian reasoning uses the full distribution on <math|w> given the data
-  and the MAP value to account for the priors we choose (and priors that
-  arose during past update steps for acquired data)<todo|this sentence is
-  confusing>. It makes sense to take priors into account: if your data
+  This is the <em|parameter value at which the posterior distribution of
+  <math|w> given the data attains its maximum.><\footnote>
+    This is not to be confused with the <dfn|maximum likelihood> parameter
+    <math|w<rsub|ML>>, which is defined as the <em|parameter value which best
+    fits the data>: <math|w<rsub|ML>\<assign\>argmax<rsub|w\<in\>W>
+    p<around*|(|\<b-t\>\|w,\<cal-H\>|)>>. Notice that
+    <math|w<rsub|MAP>\<neq\>w<rsub|ML>> in general, especially when the best
+    fit <math|w<rsub|ML>> is penalized by a small prior probability
+    <math|p<around*|(|w<rsub|ML>\|\<cal-H\>|)>> in the computation of
+    <math|w<rsub|MAP>>.
+  </footnote> Bayesian reasoning uses the full distribution on <math|w> given
+  the data and the MAP value to account for the priors we choose (and priors
+  that arose during past update steps for acquired data) <todo|this sentence
+  is confusing>. It makes sense to take priors into account: if your data
   <math|\<b-t\>> shows you consistent proof for a specific parameter value
   <math|w>, a single outlier <math|t<rprime|'>> should not change your
   estimate much, i.e. we are not looking for the best fit but for the best
   fit according to our prior knowledge.
 
-  Finally note that we do not need to calculate
+  Finally note that we do not need to compute
   <math|p<around*|(|\<b-t\>\|\<cal-H\>|)>> since this is constant on
   <math|w>, as can be seen in the definition of <math|w<rsub|MAP>>. More
   precisely, <math|p<around*|(|\<b-t\>\|\<cal-H\>|)>> is the normalization
@@ -365,14 +362,16 @@
   Therefore the quotient above is roughly <math|0/0> and we have a problem.
   In parameter inference we solved that problem by doing iterative steps and
   renormalizing each time, but as we will see, this can not be done for model
-  selection in general:
+  selection in general, at least in a naive way:
 
-  <subsection|Why iterative model selection does not work><label|sec:why-not>
+  <subsection|Why (naive) iterative model selection does not
+  work><label|sec:why-not>
 
   The naive idea one (for example the authors of this manuscript) could have
-  would be to implement an online version of model selection (as in parameter
-  estimation). Given a dataset <math|\<b-t\>=<around*|(|t<rsub|1>,\<ldots\>,t<rsub|N>|)>>
-  and a new data point <math|t<rprime|'>=t<rsub|N+1>> we compute
+  would be to implement an online version of model selection mimicking what
+  we did in parameter estimation. Given a dataset
+  <math|\<b-t\>=<around*|(|t<rsub|1>,\<ldots\>,t<rsub|N>|)>> and a new data
+  point <math|t<rprime|'>=t<rsub|N+1>> we compute
 
   <\equation>
     <label|eq:model-update>p<around*|(|\<cal-H\><rsub|n>\|\<b-t\>,t<rprime|'>|)>=<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|k>,\<b-t\>|)>*p<around*|(|\<cal-H\><rsub|k>\|\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<b-t\>|)>><above|=|<around*|(|\<ast\>|)>><frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|k>|)>|p<around*|(|t<rprime|'>|)>>*p<around*|(|\<cal-H\><rsub|k>\|\<b-t\>|)>,
@@ -386,11 +385,13 @@
     <label|eq:independence>p<around*|(|t<rprime|'>\|\<cal-H\><rsub|k>,\<b-t\>|)>=<frac|p<around*|(|t<rprime|'>,\<b-t\>\|\<cal-H\><rsub|k>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>>=<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|k>|)>*p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>>=p<around*|(|t<rprime|'>\|\<cal-H\><rsub|k>|)>.
   </equation>
 
-  <\warning*>
-    Formulas <eqref|eq:model-update> and <eqref|eq:independence> are wrong!
-    For a intuitive example on why this is so, see section
-    <reference|sec:modelselec>.
-  </warning*>
+  <with|ornament-shape|rounded|ornament-color|pastel red|<\ornamented>
+    <\warning*>
+      Formulas <eqref|eq:model-update> and <eqref|eq:independence> are wrong!
+      For a intuitive example on why this is so, see section
+      <reference|sec:modelselec>.
+    </warning*>
+  </ornamented>>
 
   The root of all evil is that
 
@@ -437,16 +438,18 @@
     p<around*|(|\<b-t\>|)>=<big|int><rsub|W>p<around*|(|\<b-t\>\|w|)>*p<around*|(|w|)>*\<mathd\>w\<neq\><big|prod><rsub|n=1><rsup|N>p<around*|(|t<rsub|n>|)>.
   </equation*>
 
-  The correct way of doing model selection for a new data point involves
+  <subsection|Correct model selection>
+
+  The proper way of doing model selection for a new data point involves
   considering the whole data <math|<around*|(|\<b-t\>,t<rprime|'>|)>> instead
   of using just the new datum <math|t<rprime|'>> to update the prior. For a
-  feeling of why this is necessary, consider the remarks in section
-  <reference|sec:modelselec> and <todo|model selection for regression>. As we
-  can't do model selection iteratively, we will state the model selection
-  formula as depending on the whole data <math|\<b-t\>>:
+  feeling of why this is necessary see the remarks in section
+  <reference|sec:modelselec>. As we can't do model selection iteratively, we
+  will state the model selection formula as depending on the whole data
+  <math|\<b-t\>>:
 
   <\equation>
-    <label|eq:modelselec>p<around*|(|\<cal-H\><rsub|k>\|\<b-t\>|)>=<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>*p<around*|(|\<cal-H\><rsub|k>|)>|p<around*|(|\<b-t\>|)>>=<frac|<big|int>p<around*|(|\<b-t\>\|w,\<cal-H\><rsub|k>|)>*p<around*|(|w\|\<cal-H\><rsub|k>|)>*\<mathd\>w|p<around*|(|\<b-t\>|)>>*p<around*|(|\<cal-H\><rsub|k>|)>.
+    <label|eq:modelselec>p<around*|(|\<cal-H\><rsub|k>\|\<b-t\>|)>=<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>*p<around*|(|\<cal-H\><rsub|k>|)>|p<around*|(|\<b-t\>|)>>=<frac|<big|int><rsub|W>p<around*|(|\<b-t\>\|w,\<cal-H\><rsub|k>|)>*p<around*|(|w\|\<cal-H\><rsub|k>|)>*\<mathd\>w|p<around*|(|\<b-t\>|)>>*p<around*|(|\<cal-H\><rsub|k>|)>.
   </equation>
 
   We can see in equation <eqref|eq:modelselec> that the a posteriori
@@ -454,7 +457,7 @@
   <math|\<b-t\>> are better explained by the specific hypothesis
   <math|\<cal-H\><rsub|k>> than they would be by just using the prior, i.e.
   if the ratio <math|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>/p<around*|(|\<b-t\>|)>>
-  is greater than one. The quantites in equation <eqref|eq:modelselec> are:
+  is greater than one. The quantities in equation <eqref|eq:modelselec> are:
 
   <\itemize-dot>
     <item><math|p<around*|(|\<cal-H\><rsub|k>|)>> is the prior distribution
@@ -483,15 +486,8 @@
   <\remark>
     The integral <eqref|eq:datum-given-model> is in general hard to compute
     <todo|because...>. Of the methods we've been discussing in the seminar,
-    we could try to use MCMC: sample from
-    <math|p<around*|(|w\|\<cal-H\><rsub|1>|)>> to yield points
-    <math|w<rsub|j>>, then approximate the integral by
-
-    <\equation*>
-      p<around*|(|x\|\<cal-H\><rsub|k>|)>\<simeq\><big|sum><rsub|j=1><rsup|M>p<around*|(|x\|w<rsub|j>|)>.<rsub|>
-    </equation*>
-
-    or alternatively use Laplace's Method discussed below.
+    we could try to use MCMC, but given our assumptions of normality it is
+    best to use Laplace's Method discussed below.
   </remark>
 
   <subsection|Laplace's method><label|sec:laplace-method>
@@ -511,13 +507,13 @@
   parameter defined in <eqref|eq:wmap> and\ 
 
   <\eqnarray*>
-    <tformat|<table|<row|<cell|A>|<cell|\<assign\>>|<cell|-\<nabla\><rsup|2><rsub|w>*ln
+    <tformat|<table|<row|<cell|A<rsub|>>|<cell|\<assign\>>|<cell|-\<nabla\><rsup|2><rsub|w>*ln
     p<around*|(|w\|\<b-t\>,\<cal-H\><rsub|k>|)><move|\|<rsub|w=w<rsub|MAP>>||-1.4spc>>>|<row|<cell|>|<cell|<above|=|<text|<eqref|eq:param-inf>>>>|<cell|<around*|[|-\<nabla\><rsub|w<rsub|>><rsup|2>*ln
     p<around*|(|\<b-t\>\|w,\<cal-H\><rsub|k>|)>-\<nabla\><rsub|w><rsup|2>*ln
     p<around*|(|w\|\<cal-H\><rsub|k>|)>|]><move|\|<rsub|w=w<rsub|MAP>>||-1.4spc>.<eq-number><label|eq:laplace-A>>>>>
   </eqnarray*>
 
-  <section|An easy example: is this coint bent?>
+  <section|An easy example: is this coin bent?>
 
   Consider a coin whose fairness is in doubt. We would like to infer the
   probability of it being fraudulent as well as its ``bentness''.
@@ -554,7 +550,7 @@
     The prior on the parameter <math|r> is even more strongly debatable:
     assuming that a coin has been manipulated, we could think that the
     probability of <math|r> being <math|0.5> should be <math|0>. Also, if the
-    manipulator doesn't want his forgery to be too easily detected, he is
+    manipulator does not want his forgery to be too easily detected, he is
     likely to be more prudent than to set <math|r=0> or <math|r=1>. Perhaps a
     double-peak distribution with maxima in <math|r=0.5\<pm\>0.03> might be a
     better prior (just out of experience and reasoning). For easier
@@ -634,7 +630,7 @@
   for the possible values of <math|r> which in turn change the probability
   distribution of <math|t<rprime|'>>.
 
-  <subsection|Correct model selection -- Rough approach>
+  <subsection|Correct model selection: brute force approach>
 
   The way to select the correct model is
 
@@ -674,8 +670,8 @@
     <frac|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>>=<frac|<big|int><rsub|0><rsup|1>r<rsup|h<around*|(|\<b-t\>|)>>*<around*|(|1-r|)><rsup|N-h<around*|(|\<b-t\>|)>>*\<mathd\>r|2<rsup|-N>>*<frac|p<around*|(|\<cal-H\><rsub|1>|)>|p<around*|(|\<cal-H\><rsub|0>|)>>=<frac|p<around*|(|\<cal-H\><rsub|1>|)>*2<rsup|N>|p<around*|(|\<cal-H\><rsub|0>|)>*<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|h<around*|(|\<b-t\>|)>>>>>>>
   </equation*>
 
-  This shows a classic problem of these kinds of methods: The numbers
-  involved grow quickly and exact computation becomes unfeasible.
+  This shows a classic problem of this kind of methods: the numbers involved
+  grow quickly and exact computation becomes unfeasible.
 
   For the case <math|h<around*|(|\<b-t\>|)>\<simeq\>N/2> use Stirling's
   formula <math|n!\<simeq\><sqrt|2*\<mathpi\>*n>*<around*|(|n/\<mathe\>|)><rsup|n>>
@@ -689,32 +685,31 @@
   fast if there is no specific evidence for <math|\<cal-H\><rsub|1>>.
   <todo|Insert cool implementation & figures>
 
-  <subsection|Quasi-Iterative model selection>
+  <subsection|Quasi-iterative model selection>
 
-  We showed why iterative methods cannot work in a strict sense. There is a
-  way which still uses only computationally feasible terms by taking a clever
-  updating approach:
+  We showed in sections <reference|sec:why-not> and
+  <reference|sec:modelselec> why iterative methods cannot work in a strict
+  sense. There is a way which still uses only computationally feasible terms
+  by taking a clever updating approach possible because one can explicitly
+  compute the integrals involved. Let <math|\<b-t\>=<around*|(|0,0,1,0,1,0,0,\<ldots\>|)>>
+  be a data vector with <math|0> being heads and <math|1> being tails. Assume
+  that the length of <math|\<b-t\>> is <math|N> and the number of <math|0>s
+  is <math|K>. Now a new data point <math|t<rprime|'>> arrives, which is
+  either <math|0> or <math|1>. We write <math|K<rprime|'>> for the number of
+  <math|0s> after arrival of <math|t<rprime|'>>, so
+  <math|K<rprime|'>\<in\><around*|{|K,K+1|}>>. Then
 
-  Let <math|\<b-t\>=<around*|(|0,0,1,0,1,0,0,\<ldots\>|)>> be a data vector
-  with <math|0> being Heads and <math|1> being tails. Assume that the length
-  of <math|\<b-t\>> is <math|N> and the number of <math|0>s is <math|K>. Now
-  a new data point <math|t<rprime|'>> arrives, which is either <math|0> or
-  <math|1>. We write <math|K<rprime|'>> for the number of <math|0s> after
-  arrival of <math|t<rprime|'>>, so <math|K<rprime|'>\<in\><around*|{|K,K+1|}>>.Then
-
-  <\eqnarray*>
-    <tformat|<table|<row|<cell|<frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>>|<cell|=>|<cell|<label|eq:recursive><frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>><eq-number>>>>>
-  </eqnarray*>
+  <\equation>
+    <label|eq:recursive><frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>
+  </equation>
 
   The last term is the prior version of the left hand side fraction. Thus,
   the term <math|<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>>
-  is an update term we can use.
+  is an update term we can use. First,
 
-  First,
-
-  <\equation>
+  <\equation*>
     p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>=p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>|)>=<frac|1|2>.
-  </equation>
+  </equation*>
 
   Then
 
@@ -725,35 +720,30 @@
   We expand to calculate\ 
 
   <\equation*>
-    p<around*|(|\<b-t\>\|\<cal-H\><rsub|1>|)>=<big|int><rsub|0><rsup|1>p<around*|(|\<b-t\>\|r,\<cal-H\><rsub|1>|)>*p<around*|(|r\|\<cal-H\><rsub|1>|)>*d*r=<big|int><rsub|0><rsup|1>r<rsup|K>*<around*|(|1-r|)><rsup|N-K>*d*r=<frac|1|<around*|(|N+1|)>\<cdot\><matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|K>>>>>>
+    p<around*|(|\<b-t\>\|\<cal-H\><rsub|1>|)>=<big|int><rsub|0><rsup|1>p<around*|(|\<b-t\>\|r,\<cal-H\><rsub|1>|)>*p<around*|(|r\|\<cal-H\><rsub|1>|)>*\<mathd\>r=<big|int><rsub|0><rsup|1>r<rsup|K>*<around*|(|1-r|)><rsup|N-K>*\<mathd\>r=<frac|1|<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|K>>>>>>
   </equation*>
 
   and
 
   <\equation*>
-    p<around*|(|t<rprime|'>,\<b-t\>\|\<cal-H\><rsub|1>|)>=<big|int><rsub|0><rsup|1>r<rsup|K<rprime|'>>*<around*|(|1-r|)><rsup|N+1-K<rprime|'>>*d*r=<frac|1|<around*|(|N+2|)>*<matrix|<tformat|<table|<row|<cell|N+1>>|<row|<cell|K<rprime|'>>>>>>>
+    p<around*|(|t<rprime|'>,\<b-t\>\|\<cal-H\><rsub|1>|)>=<big|int><rsub|0><rsup|1>r<rsup|K<rprime|'>>*<around*|(|1-r|)><rsup|N+1-K<rprime|'>>*\<mathd\>r=<frac|1|<around*|(|N+2|)>*<matrix|<tformat|<table|<row|<cell|N+1>>|<row|<cell|K<rprime|'>>>>>>>.
   </equation*>
 
-  Combining this with (<reference|eq:update>) in
-  (<reference|eq:recursive>)[FIX link], we get
+  Combining this with <eqref|eq:update> and <eqref|eq:recursive>, we obtain
 
   <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<around*|{|<tabular|<tformat|<table|<row|<cell|<frac|N+2|2*K+2>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>|<cell|<text|if
-    <math|t<rprime|'>=0>>>>|<row|<cell|<frac|N+2|2*<around*|(|N+1-K|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>|<cell|<text|if
-    >t<rprime|'>=1>>>>>|}>
+    <frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<choice|<tformat|<table|<row|<cell|<with|math-display|true|<frac|N+2|2*K+2>*<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=0,>>|<row|<cell|<with|math-display|true|<frac|N+2|2*<around*|(|N+1-K|)>>*<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=1.>>>>>
   </equation*>
 
   This means that we do not need to save the exact data vector but just the
   number of heads and tails to apply a recursive-type model selection
-  approach. <with|color|red|[INSERT GRAPHS IN FOLDER]>
+  approach. <todo|Insert graphs>
 
-  <section|Racial Imposition on the death penalty>
+  <section|Influence of the race on the imposition of the death penalty>
 
-  Consider exercise 28.4 in <with|color|red|[MacKay - INSERT CITATION]>. Here
-  Occam's razor yields us a tool of analyzing whether there is evidence for
-  racial discrimination in the data given.
-
-  Consider the events\ 
+  Consider exercise 28.4 in <cite|mackay_information_2005>. Here Occam's
+  razor yields a tool of analyzing whether there is evidence for racial
+  discrimination in the data given. Consider the events\ 
 
   <\itemize>
     <item><math|V>: The victim is white (and <math|V<rsup|C>>: The victim is
@@ -770,8 +760,7 @@
   <\itemize>
     <item><math|\<cal-H\><rsub|00>:>Neither the victim's nor the defendant's
     race has influence on the probability of the defendant getting the death
-    penalty, i.e. <with|color|red|[Insert cool graphical model for
-    hypotheses]>
+    penalty, i.e. <todo|Insert cool graphical model for hypotheses>
 
     <\equation*>
       p<around*|(|D|)> = \<tau\>
@@ -899,7 +888,7 @@
     p<around*|(|t<rsub|n>\|\<b-w\>,\<cal-H\><rsub|k>|)>=\<cal-N\><around*|(|\<b-w\><rsup|\<top\>>*\<Phi\><rsub|k><around*|(|x<rsub|n>|)><rsup|\<top\>>,\<sigma\><rsup|2>|)>.
   </equation*>
 
-  We assume the prior model probabilites to be equal, i.e.
+  We assume the prior model probabilities to be equal, i.e.
   <math|p<around*|(|\<cal-H\><rsub|k>|)>=1/K.> The parameters will be
   distributed normally, i.e. the density of the parameter vector
   <math|\<b-w\>> is
@@ -987,7 +976,7 @@
   where <math|<around*|[|\<Phi\><rsub|k><around*|(|x<rsub|n>|)>|]><rsub|l>>
   is the <math|l>-th entry of the vector <math|\<Phi\><rsub|k><around*|(|x<rsub|n>|)>>
   and <math|\<delta\><rsub|j\<nocomma\>l>> is the Kronecker delta function.
-  We see that in this case, <math|A> is independent of the choice
+  We see that in this case <math|A> is independent of the choice
   <math|\<b-w\>=\<b-w\><rsub|MAP>>. We can now use the
   <math|\<b-w\><rsub|MAP>> obtained iteratively to compute the numerator of
   the evidence approximation.
@@ -1257,30 +1246,31 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.2|7>>
-    <associate|auto-11|<tuple|4.3|7>>
-    <associate|auto-12|<tuple|4.4|7>>
-    <associate|auto-13|<tuple|4.5|8>>
-    <associate|auto-14|<tuple|5|10>>
-    <associate|auto-15|<tuple|6|10>>
-    <associate|auto-16|<tuple|6.1|10>>
-    <associate|auto-17|<tuple|6.2|11>>
-    <associate|auto-18|<tuple|6.3|11>>
-    <associate|auto-19|<tuple|6.4|11>>
+    <associate|auto-10|<tuple|4.1|7>>
+    <associate|auto-11|<tuple|4.2|7>>
+    <associate|auto-12|<tuple|4.3|7>>
+    <associate|auto-13|<tuple|4.4|8>>
+    <associate|auto-14|<tuple|4.5|9>>
+    <associate|auto-15|<tuple|5|10>>
+    <associate|auto-16|<tuple|6|10>>
+    <associate|auto-17|<tuple|6.1|11>>
+    <associate|auto-18|<tuple|6.2|11>>
+    <associate|auto-19|<tuple|6.3|12>>
     <associate|auto-2|<tuple|2|2>>
-    <associate|auto-20|<tuple|2|11>>
-    <associate|auto-21|<tuple|3|12>>
-    <associate|auto-22|<tuple|6.5|13>>
-    <associate|auto-23|<tuple|6.5|?>>
+    <associate|auto-20|<tuple|6.4|12>>
+    <associate|auto-21|<tuple|2|12>>
+    <associate|auto-22|<tuple|3|12>>
+    <associate|auto-23|<tuple|6.5|14>>
+    <associate|auto-24|<tuple|6.5|?>>
     <associate|auto-3|<tuple|2.1|3>>
     <associate|auto-4|<tuple|3|4>>
     <associate|auto-5|<tuple|3.1|4>>
     <associate|auto-6|<tuple|1|5>>
     <associate|auto-7|<tuple|3.2|6>>
-    <associate|auto-8|<tuple|4|6>>
-    <associate|auto-9|<tuple|4.1|6>>
-    <associate|bib-bishop_pattern_2006|<tuple|Bis06|13>>
-    <associate|bib-mackay_information_2005|<tuple|Mac05|13>>
+    <associate|auto-8|<tuple|3.3|6>>
+    <associate|auto-9|<tuple|4|6>>
+    <associate|bib-bishop_pattern_2006|<tuple|Bis06|14>>
+    <associate|bib-mackay_information_2005|<tuple|Mac05|14>>
     <associate|eq:datum-given-model|<tuple|9|5>>
     <associate|eq:independence|<tuple|6|4>>
     <associate|eq:joint-data-params|<tuple|7|5>>
@@ -1292,26 +1282,28 @@
     <associate|eq:param-inf|<tuple|2|3>>
     <associate|eq:param-inf-nonrec|<tuple|1|3>>
     <associate|eq:prob-datum-coin|<tuple|12|7>>
-    <associate|eq:recursive|<tuple|4.5|?>>
-    <associate|eq:update|<tuple|15|?>>
+    <associate|eq:recursive|<tuple|13|8>>
+    <associate|eq:update|<tuple|14|8>>
     <associate|eq:wmap|<tuple|3|3>>
     <associate|eq:wml|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
     <associate|fig:indep|<tuple|1|5>>
     <associate|fig:pgm|<tuple|1|?>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|?>>
+    <associate|footnote-2|<tuple|2|4>>
     <associate|footnote-3|<tuple|3|?>>
     <associate|footnote-4|<tuple|4|?>>
     <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|1>>
+    <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|?>>
     <associate|footnr-4|<tuple|4|?>>
     <associate|footnr-5|<tuple|5|?>>
     <associate|sec:introduction|<tuple|1|1>>
-    <associate|sec:laplace-method|<tuple|3.2|6>>
+    <associate|sec:laplace-method|<tuple|3.3|6>>
     <associate|sec:model-selection|<tuple|3|4>>
     <associate|sec:modelselec|<tuple|4.3|7>>
     <associate|sec:parameter-inference|<tuple|2|2>>
+    <associate|sec:quasi-iterative|<tuple|3.2|?>>
     <associate|sec:why-not|<tuple|3.1|4>>
   </collection>
 </references>
@@ -1320,6 +1312,8 @@
   <\collection>
     <\associate|bib>
       bishop_pattern_2006
+
+      mackay_information_2005
 
       mackay_information_2005
 
@@ -1333,7 +1327,7 @@
       between models <with|mode|<quote|math>|\<cal-H\><rsub|0>,\<ldots\>,\<cal-H\><rsub|4>>.
       Observe that finally the ``correct'' hypothesis
       <with|mode|<quote|math>|\<cal-H\><rsub|2>> is
-      chosen.|<pageref|auto-19>>
+      chosen.|<pageref|auto-20>>
 
       <tuple|normal|Simulation of model selection for the dataset in figure
       XXX with high noise <with|mode|<quote|math>|\<sigma\>>. Comparison
@@ -1341,7 +1335,7 @@
       We can see that due to the high noise, the data which was originally
       generated by a quadratic model <with|mode|<quote|math>|\<cal-H\><rsub|2>>,
       can also be fitted well with a constant function in model
-      <with|mode|<quote|math>|\<cal-H\><rsub|0>>.|<pageref|auto-20>>
+      <with|mode|<quote|math>|\<cal-H\><rsub|0>>.|<pageref|auto-21>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1.<space|2spc>Introduction:
@@ -1361,7 +1355,7 @@
       selection> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|3.1.<space|2spc>Why iterative model
+      <with|par-left|<quote|1tab>|3.1.<space|2spc>Why (naive) iterative model
       selection does not work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
@@ -1385,42 +1379,47 @@
       Why it cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11>>
 
-      <with|par-left|<quote|1tab>|4.4.<space|2spc>Correct model selection
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|4.4.<space|2spc>Correct model selection --
+      Rough approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-12>>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Racial
-      Imposition on the death penalty> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13><vspace|0.5fn>
+      <with|par-left|<quote|1tab>|4.5.<space|2spc>Quasi-Iterative model
+      selection <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-13>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Influence
+      of the race on the imposition of the death penalty>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>An
       example with polynomial basis functions>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|6.1.<space|2spc>Setting
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15>>
+      <no-break><pageref|auto-16>>
 
       <with|par-left|<quote|1tab>|6.2.<space|2spc>Iterative parameter
       estimation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|<quote|1tab>|6.3.<space|2spc>Model selection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17>>
+      <no-break><pageref|auto-18>>
 
       <with|par-left|<quote|1tab>|6.4.<space|2spc>Simulation results
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18>>
+      <no-break><pageref|auto-19>>
 
       <with|par-left|<quote|1tab>|6.5.<space|2spc>Implementation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-21>>
+      <no-break><pageref|auto-22>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-22><vspace|0.5fn>
+      <no-break><pageref|auto-23><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
