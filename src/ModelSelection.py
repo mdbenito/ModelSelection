@@ -34,16 +34,14 @@ class LinearRegression:
         # History of past Phi matrices, one per each hypothesis
         self.Phis = [np.ndarray((0,self.hypotheses[i].M)) for i in range(self.numHyp)]
 
-        for k in range(self.numHyp):
+        for k, hyp in enumerate(self.hypotheses):
+            assert isinstance(hyp.parameterPrior, DiagonalGaussianRV)
             # set p(H_k|"nodata") = p(H_k)
-            self.probHyp[k].append(collectionOfHypotheses.prior.evaluate(k))
+            self.probHyp[k].append(self.hypotheses.prior.evaluate(k))
 
-            # set $p(w|"no data", H_k) = p(w|H_k)$ for all k
-            # get first the natural prior of the hypothesis
-            mean = collectionOfHypotheses[k].parameterPrior.mean
-            var = collectionOfHypotheses[k].parameterPrior.variance
-            # now set the prior of the regression to that prior
-            self.parameter.append(GaussianRV(mean, var))
+            # set $p(w|"no data", H_k) = p(w|H_k)$ for all k:
+            # (i.e. set the prior of the regression to the natural prior of the hypothesis)
+            self.parameter.append(GaussianRV(hyp.parameterPrior.mean, hyp.parameterPrior.variance))
 
     def update(self, newX, newT):
         """ Bayesian linear regression update.
@@ -89,7 +87,7 @@ class LinearRegression:
         unnormalizedEvidence = np.zeros((self.numHyp, 1))
         for k, (hyp, currentPara) in enumerate(zip(self.hypotheses, self.parameter)):
             # get sigma_W from hypothesis: SIGMA = sigmaWSQ * Id_M
-            sigmaWSQ = hyp.parameterPrior.varianceMultiplier
+            sigmaWSQ = hyp.parameterPrior.factor
             # Update Phi matrix from all past data with current data
             self.Phis[k] = np.vstack((self.Phis[k], hyp.evaluate(newX)))
             Phi = self.Phis[k]      # alias
@@ -104,7 +102,7 @@ class LinearRegression:
 
             # w^T*Phi (the y-Value according to the fitted model)
             modelMeanOfT = np.dot(Phi, currentPara.mean)
-            randomVariable = GaussianRV(modelMeanOfT, self.sigma ** 2 * np.eye(N, N))
+            randomVariable = DiagonalGaussianRV(modelMeanOfT, self.sigma ** 2)
             temp = self.THist.reshape(N, -1)
             # the probability of t given y (when there is noise)
             num1 = randomVariable.evaluate(temp)
@@ -181,7 +179,7 @@ class LinearRegression:
         unnormalizedEvidence = np.zeros((self.numHyp, 1))
         for k in range(self.numHyp):
             # get sigma_W from hypothesis: SIGMA = sigmaWSQ * Id_M
-            sigmaWSQ = self.hypotheses[k].parameterPrior.varianceMultiplier
+            sigmaWSQ = self.hypotheses[k].parameterPrior.factor
             # build huge Phi matrix from all past data and insert in index k
             # so PhiL is a list of Phi matrices
             PhiL.append(self.hypotheses[k].evaluate(self.XHist))

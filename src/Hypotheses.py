@@ -12,7 +12,7 @@ class Hypothesis(object):
 
         Every hypothesis manages a prior distribution on its parameters, as well as a
         distribution for the noise that is assumed in the model (in our computations always a
-        SymmetricGaussianRV).
+        DiagonalGaussianRV).
 
         An Hypothesis may be used to synthesize data via Hypothesis.generate().
 
@@ -95,8 +95,8 @@ class PolynomialHypothesis(Hypothesis):
     def __init__(self, M=1, variance=3.0, noiseVariance=0.01):
         super(PolynomialHypothesis, self).\
             __init__(M,
-                     prior=SymmetricGaussianRV(np.zeros((M, 1)), variance),
-                     noise=SymmetricGaussianRV(np.array([[0.0]]), noiseVariance))
+                     prior=DiagonalGaussianRV(np.zeros((M, 1)), variance),
+                     noise=DiagonalGaussianRV(np.array([[0.0]]), noiseVariance))
 
     def __str__(self):
         return "Poly%d" % (self._M-1)
@@ -115,8 +115,8 @@ class TrigonometricHypothesis(Hypothesis):
     def __init__(self, halfM=1, variance=3.0, noiseVariance=0.01):
         super(TrigonometricHypothesis, self).\
             __init__(2 * halfM,
-                     prior=SymmetricGaussianRV(np.zeros((2*halfM, 1)), variance),
-                     noise=SymmetricGaussianRV(np.array([[0.0]]), noiseVariance))
+                     prior=DiagonalGaussianRV(np.zeros((2*halfM, 1)), variance),
+                     noise=DiagonalGaussianRV(np.array([[0.0]]), noiseVariance))
 
     def __str__(self):
         return "Trig%d" % (self._M-1)
