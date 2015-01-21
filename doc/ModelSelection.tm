@@ -67,67 +67,71 @@
     does not work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-5>>
 
-    <with|par-left|1tab|3.2.<space|2spc>Laplace's method
+    <with|par-left|1tab|3.2.<space|2spc>Correct model selection
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-7>>
 
+    <with|par-left|1tab|3.3.<space|2spc>Laplace's method
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-8>>
+
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|4.<space|2spc>An
     easy example: is this coin bent?> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-8><vspace|0.5fn>
+    <no-break><pageref|auto-9><vspace|0.5fn>
 
     <with|par-left|1tab|4.1.<space|2spc>Model
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-9>>
+    <no-break><pageref|auto-10>>
 
     <with|par-left|1tab|4.2.<space|2spc>Parameter inference
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-10>>
+    <no-break><pageref|auto-11>>
 
     <with|par-left|1tab|4.3.<space|2spc>Iterative model selection. Why it
     cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-11>>
-
-    <with|par-left|1tab|4.4.<space|2spc>Correct model selection -- Rough
-    approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-12>>
 
-    <with|par-left|1tab|4.5.<space|2spc>Quasi-Iterative model selection
-    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <with|par-left|1tab|4.4.<space|2spc>Correct model selection: brute force
+    approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-13>>
+
+    <with|par-left|1tab|4.5.<space|2spc>Quasi-iterative model selection
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-14>>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>Influence
     of the race on the imposition of the death penalty>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-14><vspace|0.5fn>
+    <no-break><pageref|auto-15><vspace|0.5fn>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>An
     example with polynomial basis functions>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-15><vspace|0.5fn>
+    <no-break><pageref|auto-16><vspace|0.5fn>
 
     <with|par-left|1tab|6.1.<space|2spc>Setting
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-16>>
+    <no-break><pageref|auto-17>>
 
     <with|par-left|1tab|6.2.<space|2spc>Iterative parameter estimation
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-17>>
+    <no-break><pageref|auto-18>>
 
     <with|par-left|1tab|6.3.<space|2spc>Model selection
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-18>>
+    <no-break><pageref|auto-19>>
 
     <with|par-left|1tab|6.4.<space|2spc>Simulation results
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-19>>
+    <no-break><pageref|auto-20>>
 
     <with|par-left|1tab|6.5.<space|2spc>Implementation
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-22>>
+    <no-break><pageref|auto-23>>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-23><vspace|0.5fn>
+    <no-break><pageref|auto-24><vspace|0.5fn>
   </table-of-contents>
 
   <section|Introduction: different models for linear
@@ -945,7 +949,7 @@
   \;
 
   <\equation*>
-    p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>=<big|int><rsub|W>p<around*|(|\<b-t\>\|\<b-w\>,\<cal-H\><rsub|k>|)>*p<around*|(|\<b-w\>\|\<cal-H\><rsub|k>|)>\<nosymbol\>*<math-up|d>\<b-w\>\<approx\><frac|p<around*|(|\<b-t\>\|\<b-w\><rsub|MAP>,\<cal-H\><rsub|k>|)>*p<around*|(|\<b-w\><rsub|MAP>\|\<cal-H\><rsub|k>|)>|<sqrt|det<around*|(|A/2\<pi\>|)>>>,
+    p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>=<big|int><rsub|W<rsub|k>>p<around*|(|\<b-t\>\|\<b-w\>,\<cal-H\><rsub|k>|)>*p<around*|(|\<b-w\>\|\<cal-H\><rsub|k>|)>\<nosymbol\>*<math-up|d>\<b-w\>\<approx\><frac|p<around*|(|\<b-t\>\|\<b-w\><rsub|MAP>,\<cal-H\><rsub|k>|)>*p<around*|(|\<b-w\><rsub|MAP>\|\<cal-H\><rsub|k>|)>|<sqrt|det<around*|(|A/2\<pi\>|)>>>,
   </equation*>
 
   where <math|\<b-w\><rsub|MAP>> is given by <eqref|eq:wmap> and <math|A> is
@@ -970,7 +974,7 @@
   Hence:
 
   <\equation*>
-    A=<frac|\<Phi\><rprime|'>*\<Phi\>|\<sigma\><rsup|2>>+<frac|Id|\<sigma\><rsub|w><rsup|2>>
+    A=<frac|\<Phi\><rsup|\<top\>>*\<Phi\>|\<sigma\><rsup|2>>+<frac|Id|\<sigma\><rsub|w><rsup|2>>
   </equation*>
 
   where <math|<around*|[|\<Phi\><rsub|k><around*|(|x<rsub|n>|)>|]><rsub|l>>
@@ -1246,27 +1250,27 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.1|7>>
+    <associate|auto-10|<tuple|4.1|6>>
     <associate|auto-11|<tuple|4.2|7>>
     <associate|auto-12|<tuple|4.3|7>>
-    <associate|auto-13|<tuple|4.4|8>>
-    <associate|auto-14|<tuple|4.5|9>>
-    <associate|auto-15|<tuple|5|10>>
+    <associate|auto-13|<tuple|4.4|7>>
+    <associate|auto-14|<tuple|4.5|8>>
+    <associate|auto-15|<tuple|5|9>>
     <associate|auto-16|<tuple|6|10>>
-    <associate|auto-17|<tuple|6.1|11>>
+    <associate|auto-17|<tuple|6.1|10>>
     <associate|auto-18|<tuple|6.2|11>>
-    <associate|auto-19|<tuple|6.3|12>>
+    <associate|auto-19|<tuple|6.3|11>>
     <associate|auto-2|<tuple|2|2>>
     <associate|auto-20|<tuple|6.4|12>>
     <associate|auto-21|<tuple|2|12>>
     <associate|auto-22|<tuple|3|12>>
-    <associate|auto-23|<tuple|6.5|14>>
-    <associate|auto-24|<tuple|6.5|?>>
+    <associate|auto-23|<tuple|6.5|12>>
+    <associate|auto-24|<tuple|6.5|14>>
     <associate|auto-3|<tuple|2.1|3>>
     <associate|auto-4|<tuple|3|4>>
     <associate|auto-5|<tuple|3.1|4>>
     <associate|auto-6|<tuple|1|5>>
-    <associate|auto-7|<tuple|3.2|6>>
+    <associate|auto-7|<tuple|3.2|5>>
     <associate|auto-8|<tuple|3.3|6>>
     <associate|auto-9|<tuple|4|6>>
     <associate|bib-bishop_pattern_2006|<tuple|Bis06|14>>
@@ -1294,7 +1298,7 @@
     <associate|footnote-4|<tuple|4|?>>
     <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|3>>
+    <associate|footnr-2|<tuple|2|4>>
     <associate|footnr-3|<tuple|3|?>>
     <associate|footnr-4|<tuple|4|?>>
     <associate|footnr-5|<tuple|5|?>>
@@ -1327,7 +1331,7 @@
       between models <with|mode|<quote|math>|\<cal-H\><rsub|0>,\<ldots\>,\<cal-H\><rsub|4>>.
       Observe that finally the ``correct'' hypothesis
       <with|mode|<quote|math>|\<cal-H\><rsub|2>> is
-      chosen.|<pageref|auto-20>>
+      chosen.|<pageref|auto-21>>
 
       <tuple|normal|Simulation of model selection for the dataset in figure
       XXX with high noise <with|mode|<quote|math>|\<sigma\>>. Comparison
@@ -1335,7 +1339,7 @@
       We can see that due to the high noise, the data which was originally
       generated by a quadratic model <with|mode|<quote|math>|\<cal-H\><rsub|2>>,
       can also be fitted well with a constant function in model
-      <with|mode|<quote|math>|\<cal-H\><rsub|0>>.|<pageref|auto-21>>
+      <with|mode|<quote|math>|\<cal-H\><rsub|0>>.|<pageref|auto-22>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1.<space|2spc>Introduction:
@@ -1359,67 +1363,71 @@
       selection does not work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|3.2.<space|2spc>Laplace's method
+      <with|par-left|<quote|1tab>|3.2.<space|2spc>Correct model selection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
+      <with|par-left|<quote|1tab>|3.3.<space|2spc>Laplace's method
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4.<space|2spc>An
-      easy example: is this coint bent?> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8><vspace|0.5fn>
+      easy example: is this coin bent?> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|4.1.<space|2spc>Model
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <no-break><pageref|auto-10>>
 
       <with|par-left|<quote|1tab>|4.2.<space|2spc>Parameter inference
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
+      <no-break><pageref|auto-11>>
 
       <with|par-left|<quote|1tab>|4.3.<space|2spc>Iterative model selection.
       Why it cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
-
-      <with|par-left|<quote|1tab>|4.4.<space|2spc>Correct model selection --
-      Rough approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-12>>
 
-      <with|par-left|<quote|1tab>|4.5.<space|2spc>Quasi-Iterative model
-      selection <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|4.4.<space|2spc>Correct model selection:
+      brute force approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
+
+      <with|par-left|<quote|1tab>|4.5.<space|2spc>Quasi-iterative model
+      selection <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Influence
       of the race on the imposition of the death penalty>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>An
       example with polynomial basis functions>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15><vspace|0.5fn>
+      <no-break><pageref|auto-16><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|6.1.<space|2spc>Setting
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|<quote|1tab>|6.2.<space|2spc>Iterative parameter
       estimation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17>>
+      <no-break><pageref|auto-18>>
 
       <with|par-left|<quote|1tab>|6.3.<space|2spc>Model selection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18>>
+      <no-break><pageref|auto-19>>
 
       <with|par-left|<quote|1tab>|6.4.<space|2spc>Simulation results
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19>>
+      <no-break><pageref|auto-20>>
 
       <with|par-left|<quote|1tab>|6.5.<space|2spc>Implementation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-22>>
+      <no-break><pageref|auto-23>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-23><vspace|0.5fn>
+      <no-break><pageref|auto-24><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
