@@ -1,18 +1,31 @@
 from numpy import linalg
 from RandomVariables import *
-
+from Hypotheses import HypothesisCollection
 
 class LinearRegression:
-    """
+    """ Use Occam's razor to select among one of several possible hypotheses.
 
+    Each hypothesis models target values using
+
+            \[ t = y (x, w) + \epsilon, \]
+
+    where
+
+            \[ y (x, w) = \sum_{j = 0}^{M-1} w_j \phi_j (x) \]
+
+    is some choice of basis functions $\phi_j$, and $\epsilon$ is Gaussian noise.
     """
     def __init__(self, collectionOfHypotheses, observationNoise):
+        assert isinstance(collectionOfHypotheses, HypothesisCollection)
+        assert np.isreal(observationNoise)
+
         self.hypotheses = collectionOfHypotheses   # list of hypotheses
         self.numHyp = len(collectionOfHypotheses)  # number of hypotheses
         self.XHist = np.array([])                  # list of all past x values: dynamic
         self.THist = np.array([])                  # list of all past t values: dynamic
-        self.sigma = observationNoise  # noise on the observation
+        self.sigma = observationNoise              # Gaussian noise on the target values
         self.parameter = []                        # k-th entry: p(w|data, H_k)
+
         # history of past fitting parameters m and S
         self.mHist = [[] for i in range(self.numHyp)]
         self.SHist = [[] for i in range(self.numHyp)]
@@ -35,7 +48,7 @@ class LinearRegression:
     def update(self, newX, newT):
         """ Bayesian linear regression update.
 
-        For every hypothesis k computes the posterior probability
+        For every hypothesis k this method computes the posterior probability
             p(w|THist, newT, H_k)
 
         This depends strongly on all Gaussian assumptions!
@@ -45,9 +58,9 @@ class LinearRegression:
         :return:
         """
 
-        # ------------------------------------------------
+        #############################################################
         # first: parameter estimation for each hypothesis
-        # ------------------------------------------------
+        #############################################################
 
         self.XHist = np.append(self.XHist, newX)
         self.THist = np.append(self.THist, newT)
@@ -69,11 +82,9 @@ class LinearRegression:
             self.mHist[k].append(mN)
             self.SHist[k].append(currentPara.variance)
 
-        # --------------------------------------------------
+        #############################################################
         # second: model selection
-        # --------------------------------------------------
-
-        PhiL = []  # PhiL is a list of Phi matrices
+        #############################################################
 
         unnormalizedEvidence = np.zeros((self.numHyp, 1))
         for k, (hyp, currentPara) in enumerate(zip(self.hypotheses, self.parameter)):
