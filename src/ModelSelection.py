@@ -7,25 +7,28 @@ class LinearRegression:
 
     """
     def __init__(self, collectionOfHypotheses, observationNoise):
-        self.hypotheses = collectionOfHypotheses  # list of hypotheses
+        self.hypotheses = collectionOfHypotheses   # list of hypotheses
         self.numHyp = len(collectionOfHypotheses)  # number of hypotheses
-        self.XHist = np.array([])  # list of all past x values: dynamic
-        self.THist = np.array([])  # list of all past t values: dynamic
+        self.XHist = np.array([])                  # list of all past x values: dynamic
+        self.THist = np.array([])                  # list of all past t values: dynamic
         self.sigma = observationNoise  # noise on the observation
-        self.parameter = []  # k-th entry: p(w|data, H_k)
+        self.parameter = []                        # k-th entry: p(w|data, H_k)
         # history of past fitting parameters m and S
         self.mHist = [[] for i in range(self.numHyp)]
         self.SHist = [[] for i in range(self.numHyp)]
         self.probHyp = [[] for i in range(self.numHyp)]
+
+        # History of past Phi matrices, one per each hypothesis
+        self.Phis = [np.ndarray((0,self.hypotheses[i].M)) for i in range(self.numHyp)]
+
         for k in range(self.numHyp):
             # set p(H_k|"nodata") = p(H_k)
             self.probHyp[k].append(collectionOfHypotheses.prior.evaluate(k))
 
-            # set p(w|"no data", H_k) = p(w|H_k) for all k
+            # set $p(w|"no data", H_k) = p(w|H_k)$ for all k
             # get first the natural prior of the hypothesis
-            hypoPrior = collectionOfHypotheses[k].parameterPrior
-            mean = hypoPrior.mean
-            var = hypoPrior.variance
+            mean = collectionOfHypotheses[k].parameterPrior.mean
+            var = collectionOfHypotheses[k].parameterPrior.variance
             # now set the prior of the regression to that prior
             self.parameter.append(GaussianRV(mean, var))
 
@@ -36,8 +39,6 @@ class LinearRegression:
             p(w|THist, newT, H_k)
 
         This depends strongly on all Gaussian assumptions!
-
-        TODO: reuse Phi from previous computations
 
         :param newX: New value of the input variable (transposed)
         :param newT: New value of the target variable (transposed)
@@ -78,21 +79,20 @@ class LinearRegression:
         for k, (hyp, currentPara) in enumerate(zip(self.hypotheses, self.parameter)):
             # get sigma_W from hypothesis: SIGMA = sigmaWSQ * Id_M
             sigmaWSQ = hyp.parameterPrior.varianceMultiplier
-            # build huge Phi matrix from all past data and insert in index k
-            PhiCurrent = hyp.evaluate(self.XHist) # matrix Phi for the current hypothesis
-            PhiL.append(PhiCurrent)
-            N = PhiCurrent.shape[0]  # number of data points
-            M = PhiCurrent.shape[1]  # number of parameters w
+            # Update Phi matrix from all past data with current data
+            self.Phis[k] = np.vstack((self.Phis[k], hyp.evaluate(newX)))
+            Phi = self.Phis[k]      # alias
+            N   = Phi.shape[0]      # number of data points
+            M   = Phi.shape[1]      # number of parameters w
 
             # model selection:
 
-            A = (np.dot(np.transpose(PhiCurrent), PhiCurrent) / self.sigma ** 2 +
-                 np.eye(M, M) / sigmaWSQ)
+            A = (np.dot(np.transpose(Phi), Phi) / self.sigma ** 2 + np.eye(M, M) / sigmaWSQ)
 
             # numerator 1 of model selection formula
 
             # w^T*Phi (the y-Value according to the fitted model)
-            modelMeanOfT = np.dot(PhiCurrent, currentPara.mean)
+            modelMeanOfT = np.dot(Phi, currentPara.mean)
             randomVariable = GaussianRV(modelMeanOfT, self.sigma ** 2 * np.eye(N, N))
             temp = self.THist.reshape(N, -1)
             # the probability of t given y (when there is noise)
@@ -174,13 +174,13 @@ class LinearRegression:
             # build huge Phi matrix from all past data and insert in index k
             # so PhiL is a list of Phi matrices
             PhiL.append(self.hypotheses[k].evaluate(self.XHist))
-            PhiCurrent = PhiL[k] # matrix Phi for the current hypothesis
-            N = PhiCurrent.shape[0] # number of data points
-            M = PhiCurrent.shape[1] # number of parameters w
+            Phi = PhiL[k] # matrix Phi for the current hypothesis
+            N = Phi.shape[0] # number of data points
+            M = Phi.shape[1] # number of parameters w
 
             # model selection:
 
-            A = (np.dot(np.transpose(PhiCurrent), PhiCurrent)/self.sigma**2 +
+            A = (np.dot(np.transpose(Phi), Phi)/self.sigma**2 +
                 np.eye(M, M)/sigmaWSQ)
 
             currentPara = self.parameter[k]
@@ -188,7 +188,7 @@ class LinearRegression:
             # numerator 1 of model selection formula
 
             # w^T*Phi (the y-Value according to the fitted model)
-            modelMeanOfT = np.dot(PhiCurrent, currentPara.mean)
+            modelMeanOfT = np.dot(Phi, currentPara.mean)
             randomVariable = GaussianRV(modelMeanOfT,
                                         self.sigma**2*np.eye(N, N))
             temp = self.THist.reshape(N, -1)
@@ -212,4 +212,3 @@ class LinearRegression:
             normed = unnormalizedEvidence[k]/normalization
             #print(normed)
             self.probHyp[k].append(normed)
-
