@@ -8,57 +8,6 @@ class RandomVariable(object):
 
     def __init__(self, dimension=1):
         self._dimension = dimension
-        self._mean = np.zeros((dimension, 1))
-        self._variance = np.zeros((dimension, dimension))
-        self._invVariance = np.inf
-        self._det = 0.0
-
-    @property
-    def mean(self):
-        return self._mean
-
-    @mean.setter
-    def mean(self, value):
-        if not isinstance(value, np.ndarray):
-            raise TypeError('Need np.ndarray')
-        if value.shape != self._mean.shape:
-            log.debug(value.shape)
-            log.debug(self._mean.shape)
-            raise ValueError('Dimension mismatch')
-        self._mean = value
-
-    @property
-    def variance(self):
-        return self._variance
-
-    @variance.setter
-    def variance(self, value):
-        """ Set variance and compute inverse variance"""
-        if not isinstance(value, np.ndarray):
-            raise TypeError('Need np.ndarray')
-        if value.shape != self._variance.shape:
-            log.debug(value.shape)
-            log.debug(self._variance.shape)
-            raise ValueError('Dimension mismatch')
-        self._variance = value
-        try:
-            self._invVariance = np.linalg.inv(value)
-            self._det = np.linalg.det(value)
-        except np.linalg.LinAlgError:
-            self._invVariance = np.empty_like(value)
-            self._invVariance.fill(np.inf)
-            self._det = 0
-
-
-    @property
-    def invVariance(self):
-        return self._invVariance
-
-    @invVariance.setter
-    def invVariance(self, value):
-        """ Set inverse variance and compute variance"""
-        self._invVariance = value
-        self._variance = np.linalg.inv(value)
 
     def evaluate(self, x):
         raise TypeError("Dummy base class")
@@ -106,9 +55,59 @@ class GaussianRV(RandomVariable):
 
     def __init__(self, m, cov):
         super(GaussianRV, self).__init__(m.shape[0])
+        self._mean = np.zeros((self._dimension, 1))
+        self._variance = np.zeros((self._dimension, self._dimension))
+        self._invVariance = np.inf
+        self._det = 0.0
         self.mean = m
         self.variance = cov
 
+    @property
+    def mean(self):
+        return self._mean
+
+    @mean.setter
+    def mean(self, value):
+        if not isinstance(value, np.ndarray):
+            raise TypeError('Need np.ndarray')
+        if value.shape != self._mean.shape:
+            log.debug(value.shape)
+            log.debug(self._mean.shape)
+            raise ValueError('Dimension mismatch')
+        self._mean = value
+
+    @property
+    def variance(self):
+        return self._variance
+
+    @variance.setter
+    def variance(self, value):
+        """ Set variance and compute inverse variance"""
+        if not isinstance(value, np.ndarray):
+            raise TypeError('Need np.ndarray')
+        if value.shape != self._variance.shape:
+            log.debug(value.shape)
+            log.debug(self._variance.shape)
+            raise ValueError('Dimension mismatch')
+        self._variance = value
+        try:
+            self._invVariance = np.linalg.inv(value)
+            self._det = np.linalg.det(value)
+        except np.linalg.LinAlgError:
+            self._invVariance = np.empty_like(value)
+            self._invVariance.fill(np.inf)
+            self._det = 0
+
+
+    @property
+    def invVariance(self):
+        return self._invVariance
+
+    @invVariance.setter
+    def invVariance(self, value):
+        """ Set inverse variance and compute variance"""
+        self._invVariance = value
+        self._variance = np.linalg.inv(value)
     def evaluate(self, data):
         """Evaluation should be at points with the same shape as the mean,
            i.e. column vectors of shape=(d,1)
