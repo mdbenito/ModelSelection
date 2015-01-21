@@ -70,10 +70,10 @@ class LinearRegression:
             Phi = hyp.evaluate(newX)
 
             # new covariance matrix
-            SNInv = currentPara.invVariance + np.dot(np.transpose(Phi), Phi) / self.sigma ** 2
-            temp = np.dot(currentPara.invVariance, currentPara.mean) + \
+            SNInv = currentPara.inv_variance + np.dot(np.transpose(Phi), Phi) / self.sigma ** 2
+            temp = np.dot(currentPara.inv_variance, currentPara.mean) + \
                    np.transpose(Phi) * newT / self.sigma ** 2
-            currentPara.invVariance = SNInv  # update inverse variance and variance
+            currentPara.inv_variance = SNInv  # update inverse variance and variance
             # SN = linalg.inv(SNInv) is not needed, as setter of GaussianDistribution calculates it
             mN = np.dot(currentPara.variance, temp)
 
@@ -145,7 +145,7 @@ class LinearRegression:
 
             # get priors
             m = self.parameter[k].mean
-            SInv = self.parameter[k].invVariance
+            SInv = self.parameter[k].inv_variance
 
             # get Phi (depends on newX) from hypothesis k
             Phi = self.hypotheses[k].evaluate([newX])
@@ -162,7 +162,7 @@ class LinearRegression:
 
             # update all variables
             self.parameter[k].mean = mN
-            self.parameter[k].invVariance = SNInv
+            self.parameter[k].inv_variance = SNInv
             # variance gets calculated inside class automatically
             self.mHist[k].append(mN)
             self.SHist[k].append(self.parameter[k].variance)

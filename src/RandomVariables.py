@@ -57,7 +57,7 @@ class GaussianRV(RandomVariable):
         super(GaussianRV, self).__init__(m.shape[0])
         self._mean = np.zeros((self._dimension, 1))
         self._variance = np.zeros((self._dimension, self._dimension))
-        self._invVariance = np.inf
+        self._inv_variance = np.inf
         self._det = 0.0
         self.mean = m
         self.variance = cov
@@ -91,22 +91,22 @@ class GaussianRV(RandomVariable):
             raise ValueError('Dimension mismatch')
         self._variance = value
         try:
-            self._invVariance = np.linalg.inv(value)
+            self._inv_variance = np.linalg.inv(value)
             self._det = np.linalg.det(value)
         except np.linalg.LinAlgError:
-            self._invVariance = np.empty_like(value)
-            self._invVariance.fill(np.inf)
+            self._inv_variance = np.empty_like(value)
+            self._inv_variance.fill(np.inf)
             self._det = 0
 
 
     @property
-    def invVariance(self):
-        return self._invVariance
+    def inv_variance(self):
+        return self._inv_variance
 
-    @invVariance.setter
-    def invVariance(self, value):
+    @inv_variance.setter
+    def inv_variance(self, value):
         """ Set inverse variance and compute variance"""
-        self._invVariance = value
+        self._inv_variance = value
         self._variance = np.linalg.inv(value)
     def evaluate(self, data):
         """Evaluation should be at points with the same shape as the mean,
@@ -117,7 +117,7 @@ class GaussianRV(RandomVariable):
         if np.isscalar(data):
             raise TypeError("Scalars should be passed as 1x1 numpy.ndarrays")
 
-        l = lambda p: normal_multivariate(p, self._mean, self._variance, self._invVariance, self._det)
+        l = lambda p: normal_multivariate(p, self._mean, self._variance, self._inv_variance, self._det)
 
         if data.shape == self._mean.shape:
             return np.array([l(data)])
