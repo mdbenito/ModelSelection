@@ -22,7 +22,7 @@
 
     <assign|subsection|<macro|title|<assign|subsection-numbered|<compound|subsection-display-numbers>><assign|subsection-prefix|<macro|<compound|the-subsection>.>><compound|next-subsection><compound|subsection-clean><compound|subsection-header|<arg|title>><compound|subsection-toc|<arg|title>><no-page-break><if|<value|subsection-numbered>|<compound|subsection-numbered-title|<arg|title>>|<compound|subsection-title|<arg|title>>>>>
 
-    <assign|section|<macro|title|<assign|section-numbered|<compound|section-display-numbers>><assign|section-prefix|<macro|<compound|the-section>.>><compound|next-section><compound|section-clean><compound|section-header|<arg|title>><compound|section-toc|<arg|title>><no-page-break><if|<value|section-numbered>|<compound|section-numbered-title|<arg|title>>|<compound|section-title|<arg|title>>>>>
+    <assign|section|<macro|title|<assign|section-numbered|<compound|section-display-numbers>><assign|section-prefix|<macro|<compound|the-section>.>><compound|next-section><compound|section-clean><compound|section-header|<arg|title>><compound|section-toc|<arg|title>><no-page-break><large|<if|<value|section-numbered>|<compound|section-numbered-title|<arg|title>>|<compound|section-title|<arg|title>>>>>>
   </hide-preamble>
 
   <doc-data|<doc-title|Bayesian model selection for linear
@@ -704,7 +704,7 @@
   <math|K<rprime|'>\<in\><around*|{|K,K+1|}>>. Then
 
   <\equation>
-    <label|eq:recursive><frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>
+    <label|eq:recursive><frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>\<cdot\><frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>
   </equation>
 
   The last term is the prior version of the left hand side fraction. Thus,
@@ -736,7 +736,7 @@
   Combining this with <eqref|eq:update> and <eqref|eq:recursive>, we obtain
 
   <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<choice|<tformat|<table|<row|<cell|<with|math-display|true|<frac|N+2|2*K+2>*<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=0,>>|<row|<cell|<with|math-display|true|<frac|N+2|2*<around*|(|N+1-K|)>>*<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=1.>>>>>
+    <frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<choice|<tformat|<table|<row|<cell|<with|math-display|true|<frac|N+2|2*K+2>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=0,>>|<row|<cell|<with|math-display|true|<frac|N+2|2*<around*|(|N+1-K|)>>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=1.>>>>>
   </equation*>
 
   This means that we do not need to save the exact data vector but just the
