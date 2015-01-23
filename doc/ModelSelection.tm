@@ -249,8 +249,7 @@
     <math|p<around*|(|\<b-t\>\|\<b-x\>,w,\<cal-H\>|)>> we will write
     <math|p<around*|(|\<b-t\>\|w,\<cal-H\>|)>> and so on. In a similar manner
     we will often refer to the outputs <math|\<b-t\>> as the <dfn|data>, even
-    though the whole data set includes <math|\<b-x\>> as well. <todo|there
-    are quite a few inconsistencies in the use of this word>.
+    though the whole data set includes <math|\<b-x\>> as well.
   </notation*>
 
   Solving this first question is a simple application of Bayes' rule:
@@ -262,12 +261,12 @@
   Because the normal is conjugate to itself, a convenient choice is
   <math|p<around*|(|w\|\<cal-H\>|)>=p<around*|(|w\|<text|no
   data>|)>\<sim\>\<cal-N\><around*|(|\<mu\><rsub|w>,\<sigma\><rsub|w><rsup|2>*Id|)>>
-  and the new distribution will again be normal <todo|insert this computation
-  in an appendix>. We will be doing this later on, but other choices are
-  possible! Notice that instead of just some numerical value for <math|w>,
-  what we obtain using <eqref|eq:param-inf-nonrec> is <em|the full a
-  posteriori distribution>, which is a host more information, and thanks to
-  the use of a conjugate prior we have an explicit expression.
+  and the new distribution will again be normal. We will be doing this later
+  on, but other choices are possible! Notice that instead of just some
+  numerical value for <math|w>, what we obtain using
+  <eqref|eq:param-inf-nonrec> is <em|the full a posteriori distribution>,
+  which is a host more information, and thanks to the use of a conjugate
+  prior we have an explicit expression.
 
   As we have just seen, once we have all of the data <math|\<b-t\>> we can
   compute the posterior in <dfn|batch> mode, i.e. using all of the data.
@@ -334,12 +333,21 @@
     <math|w<rsub|MAP>>.
   </footnote> Bayesian reasoning uses the full distribution on <math|w> given
   the data and the MAP value to account for the priors we choose (and priors
-  that arose during past update steps for acquired data) <todo|this sentence
-  is confusing>. It makes sense to take priors into account: if your data
-  <math|\<b-t\>> shows you consistent proof for a specific parameter value
-  <math|w>, a single outlier <math|t<rprime|'>> should not change your
-  estimate much, i.e. we are not looking for the best fit but for the best
-  fit according to our prior knowledge.
+  that were posteriors of past updates, see figure
+  <reference|fig:priorSucc>).
+
+  <big-figure|<with|gr-mode|<tuple|edit|math-at>|gr-frame|<tuple|scale|1cm|<tuple|0.5gw|0.5gh>>|gr-geometry|<tuple|geometry|14cm|5cm|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-arrow-end|\|\<gtr\>|gr-color|red|<graphics||<text-at|current
+  posterior = (normalization) <math|\<cdot\>> likelihood <math|\<cdot\>>
+  prior|<point|-3.5636162190766|0.985249371610001>>|<math-at|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>=C\<cdot\>p<around*|(|\<b-t\>\|w,\<cal-H\>|)>\<cdot\>p<around*|(|w\|\<cal-H\>|)>|<point|-2.30595009105324|1.40291374520439>>|<math-at|p<around*|(|w\|\<cal-H\>|)>|<point|-6.3|1.4>>|<text-at|initial
+  prior|<point|-6.6|1.0>>|<with|arrow-end|\|\<gtr\>|<line|<point|-4.7|1.5>|<point|-4.0|1.5>|<point|-2.8|1.5>>>|<math-at|<with|color|red|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>>|<point|-6.42806588173039|-0.615078052652467>>|<math-at|new
+  prior|<point|-6.4|-1.0>>|<with|arrow-end|\|\<gtr\>|<line|<point|-4.6995|-0.518058>|<point|-2.8|-0.5>>>|<math-at|p<around*|(|w\|\<b-t\>,t<rprime|'>,\<cal-H\>|)>=C<rprime|'>\<cdot\>p<around*|(|t<rprime|'>\|w,\<cal-H\>|)>\<cdot\><with|color|red|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>>|<point|-2.3|-0.6>>|<text-at|current
+  posterior = (normalization) <math|\<cdot\>> likelihood <math|\<cdot\>>
+  prior|<point|-3.2|-1.0>>>>|<label|fig:priorSucc>Bayesian updating:
+  Posteriors becom new priors> It makes sense to take priors into account: if
+  your data <math|\<b-t\>> shows you consistent proof for a specific
+  parameter value <math|w>, a single outlier <math|t<rprime|'>> should not
+  change your estimate much, i.e. we are not looking for the best fit but for
+  the best fit consistent with our prior knowledge.
 
   Finally note that we do not need to compute
   <math|p<around*|(|\<b-t\>\|\<cal-H\>|)>> since this is constant on
@@ -561,13 +569,12 @@
     calculation, we will use a uniform prior on <math|r> but beware that
     Bayesian inference is all about your priors and beliefs about reality.
     Bayesian statistics states that <em|there is no such thing as objective
-    inference>, just a correct propagation of belief states. Luckily, in a
-    lot of cases, different priors only change the speed of convergence of
-    your inference <todo|why is this?> and unless your initial distribution
-    deems ranges of events as impossible (i.e.
-    <math|p<around*|(|r\|\<cal-H\><rsub|1>|)>=0> for some <math|r>),
-    collecting more and more data will yield similar conclusions between
-    different priors.
+    inference>, just a correct propagation of belief states. In practice, in
+    a lot of cases, different priors only change the speed of convergence of
+    your inference and unless your initial distribution deems ranges of
+    events as impossible (i.e. <math|p<around*|(|r\|\<cal-H\><rsub|1>|)>=0>
+    for some <math|r>), collecting more and more data will yield similar
+    conclusions between different priors.
 
     Also note that <math|\<cal-H\><rsub|1>> is a perfect super-hypothesis of
     <math|\<cal-H\><rsub|0>> in the sense that <math|\<cal-H\><rsub|0>> is
@@ -634,7 +641,7 @@
   for the possible values of <math|r> which in turn change the probability
   distribution of <math|t<rprime|'>>.
 
-  <subsection|Correct model selection: brute force approach>
+  <subsection|Model selection: ``batch'' approach>
 
   The way to select the correct model is
 
@@ -670,15 +677,16 @@
 
   we get
 
-  <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>>=<frac|<big|int><rsub|0><rsup|1>r<rsup|h<around*|(|\<b-t\>|)>>*<around*|(|1-r|)><rsup|N-h<around*|(|\<b-t\>|)>>*\<mathd\>r|2<rsup|-N>>*<frac|p<around*|(|\<cal-H\><rsub|1>|)>|p<around*|(|\<cal-H\><rsub|0>|)>>=<frac|p<around*|(|\<cal-H\><rsub|1>|)>*2<rsup|N>|p<around*|(|\<cal-H\><rsub|0>|)>*<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|h<around*|(|\<b-t\>|)>>>>>>>
-  </equation*>
+  <\equation>
+    <label|eq:batchcoin><frac|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>>=<frac|<big|int><rsub|0><rsup|1>r<rsup|h<around*|(|\<b-t\>|)>>*<around*|(|1-r|)><rsup|N-h<around*|(|\<b-t\>|)>>*\<mathd\>r|2<rsup|-N>>*<frac|p<around*|(|\<cal-H\><rsub|1>|)>|p<around*|(|\<cal-H\><rsub|0>|)>>=<frac|p<around*|(|\<cal-H\><rsub|1>|)>*2<rsup|N>|p<around*|(|\<cal-H\><rsub|0>|)>*<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|h<around*|(|\<b-t\>|)>>>>>>>
+  </equation>
 
   This shows a classic problem of this kind of methods: the numbers involved
   grow quickly and exact computation becomes unfeasible.
 
-  For the case <math|h<around*|(|\<b-t\>|)>\<simeq\>N/2> use Stirling's
-  formula <math|n!\<simeq\><sqrt|2*\<mathpi\>*n>*<around*|(|n/\<mathe\>|)><rsup|n>>
+  Consider the example of a fair coin: For the case
+  <math|h<around*|(|\<b-t\>|)>\<simeq\>N/2> use Stirling's formula
+  <math|n!\<simeq\><sqrt|2*\<mathpi\>*n>*<around*|(|n/\<mathe\>|)><rsup|n>>
   and see
 
   <\eqnarray*>
@@ -687,9 +695,15 @@
 
   so the hypothesis <math|\<cal-H\><rsub|0>> becomes probable exponentially
   fast if there is no specific evidence for <math|\<cal-H\><rsub|1>>.
-  <todo|Insert cool implementation & figures>
 
-  <subsection|Quasi-iterative model selection>
+  <big-figure|<image|../coins/coins1000dot55.eps||||>|Model selection for a
+  bent coin (<math|p<around*|(|<rprime|'>Heads<rprime|'>|)>=0.55>) for 1000
+  tosses. Initially, the slight imbalance between the number of heads and
+  tails can be explained perfectly by a fair coin, so this hypothesis is
+  supported strongly. After <math|600> tosses, the probability that the coin
+  is in fact bent gets more and more support.>
+
+  <subsection|Model selection: Quasi-iterative approach>
 
   We showed in sections <reference|sec:why-not> and
   <reference|sec:modelselec> why iterative methods cannot work in a strict
@@ -736,12 +750,14 @@
   Combining this with <eqref|eq:update> and <eqref|eq:recursive>, we obtain
 
   <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<choice|<tformat|<table|<row|<cell|<with|math-display|true|<frac|N+2|2*K+2>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=0,>>|<row|<cell|<with|math-display|true|<frac|N+2|2*<around*|(|N+1-K|)>>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=1.>>>>>
+    <label|eq:iterativecoin><frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<choice|<tformat|<table|<row|<cell|<with|math-display|true|<frac|N+2|2*K+2>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=0,>>|<row|<cell|<with|math-display|true|<frac|N+2|2*<around*|(|N+1-K|)>>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=1.>>>>>
   </equation*>
 
   This means that we do not need to save the exact data vector but just the
   number of heads and tails to apply a recursive-type model selection
-  approach. <todo|Insert graphs>
+  approach. Also, in comparison with formula (<reference|eq:batchcoin>), we
+  will not run into computational overflow as there are no exponentially
+  growing terms.
 
   <section|Influence of the race on the imposition of the death penalty>
 
@@ -855,26 +871,44 @@
     </eqnarray*>
   </itemize>
 
+  As <math|<big|sum><rsub|i,j=0><rsup|1>p<around*|(|\<cal-H\><rsub|i,j>\|\<b-t\>|)>=1,>and
+  assuming non-committal priors <math|p<around*|(|\<cal-H\><rsub|i,j>|)>=<frac|1|4>>
+  for <math|i,j=0,1>, we get
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|p<around*|(|\<cal-H\><rsub|00>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.24>>|<row|<cell|p<around*|(|\<cal-H\><rsub|10>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.40>>|<row|<cell|p<around*|(|\<cal-H\><rsub|01>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.23>>|<row|<cell|p<around*|(|\<cal-H\><rsub|11>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.13>>>>
+  </eqnarray*>
+
   Hence, the hypothesis <math|\<cal-H\><rsub|10>> stating that the race of
   the victim is contributing to the probability of a murderer getting
-  sentenced to death is the most probable from a Bayesian viewpoint, as
+  sentenced to death is the most probable from a Bayesian viewpoint<em| given
+  the priors we had.>
 
-  <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|10>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|k>\|\<b-t\>|)>>=<frac|p<around*|(|\<cal-H\><rsub|10>|)>|p<around*|(|\<cal-H\><rsub|k>|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|10>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>>
-  </equation*>
-
-  <section|An example with polynomial basis functions>
+  <section|Bayesian Model Selection for Linear Regression>
 
   <subsection|Setting>
 
   We will consider the following polynomial hypotheses:\ 
 
   <\equation*>
-    \<cal-H\><rsub|k>:<space|1em>t<rsub|n>=w<rsub|0>+w<rsub|1>*x<rsub|n>+\<cdots\>+w<rsub|k-1>*x<rsub|n><rsup|k-1>+\<varepsilon\><rsub|n>,<space|1em>n=1,\<ldots\>,N,k=1,\<ldots\>,K
+    \<cal-H\><rsub|k><rsup|P>:<space|1em>t<rsub|n>=w<rsub|0>+w<rsub|1>*x<rsub|n>+\<cdots\>+w<rsub|k-1>*x<rsub|n><rsup|k-1>+\<varepsilon\><rsub|n>,<space|1em>n=1,\<ldots\>,N,k=1,\<ldots\>,K
   </equation*>
 
-  and <math|\<varepsilon\><rsub|n>\<sim\>\<cal-N\><around*|(|0,\<sigma\><rsup|2>|)>>
-  i.i.d. For brevity we denote
+  For the following we can just as well use different hypothesis spaces as
+  for example trigonometric functions:
+
+  <\equation*>
+    \<cal-H\><rsub|k><rsup|T>:<space|1em>t<rsub|n>=<big|sum><rsub|j=1><rsup|k>cos<around*|(|j*\<pi\>*x<rsub|n>|)>+sin<around*|(|j*\<pi\>*x<rsub|n>|)>+\<varepsilon\><rsub|n>,<space|1em>n=1,\<ldots\>,N,k=1,\<ldots\>,K
+  </equation*>
+
+  For the sake of concretization, we will state everything for the example of
+  polynomial functions, but everything can be generalized to generic function
+  spaces.
+
+  Let <math|\<varepsilon\><rsub|n>\<sim\>\<cal-N\><around*|(|0,\<sigma\><rsup|2>|)>>
+  i.i.d. where <math|\<sigma\>> is a known noise parameter (for this
+  application we will not infer the noise from the data although this can be
+  done). For brevity we denote
 
   <\equation*>
     \<Phi\><rsub|k><around*|(|x<rsub|n>|)>=<around*|(|1,x,x<rsup|2>,\<ldots\>,x<rsup|k-1>|)>
@@ -1250,33 +1284,37 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.1|6>>
-    <associate|auto-11|<tuple|4.2|7>>
-    <associate|auto-12|<tuple|4.3|7>>
-    <associate|auto-13|<tuple|4.4|7>>
-    <associate|auto-14|<tuple|4.5|8>>
-    <associate|auto-15|<tuple|5|9>>
-    <associate|auto-16|<tuple|6|10>>
-    <associate|auto-17|<tuple|6.1|10>>
-    <associate|auto-18|<tuple|6.2|11>>
-    <associate|auto-19|<tuple|6.3|11>>
+    <associate|auto-10|<tuple|4|6>>
+    <associate|auto-11|<tuple|4.1|7>>
+    <associate|auto-12|<tuple|4.2|7>>
+    <associate|auto-13|<tuple|4.3|7>>
+    <associate|auto-14|<tuple|4.4|8>>
+    <associate|auto-15|<tuple|3|9>>
+    <associate|auto-16|<tuple|4.5|10>>
+    <associate|auto-17|<tuple|5|10>>
+    <associate|auto-18|<tuple|6|11>>
+    <associate|auto-19|<tuple|6.1|11>>
     <associate|auto-2|<tuple|2|2>>
-    <associate|auto-20|<tuple|6.4|12>>
-    <associate|auto-21|<tuple|2|12>>
-    <associate|auto-22|<tuple|3|12>>
-    <associate|auto-23|<tuple|6.5|12>>
-    <associate|auto-24|<tuple|6.5|14>>
+    <associate|auto-20|<tuple|6.2|12>>
+    <associate|auto-21|<tuple|6.3|12>>
+    <associate|auto-22|<tuple|6.4|12>>
+    <associate|auto-23|<tuple|4|12>>
+    <associate|auto-24|<tuple|5|14>>
+    <associate|auto-25|<tuple|6.5|?>>
+    <associate|auto-26|<tuple|6.5|?>>
     <associate|auto-3|<tuple|2.1|3>>
-    <associate|auto-4|<tuple|3|4>>
-    <associate|auto-5|<tuple|3.1|4>>
-    <associate|auto-6|<tuple|1|5>>
-    <associate|auto-7|<tuple|3.2|5>>
-    <associate|auto-8|<tuple|3.3|6>>
-    <associate|auto-9|<tuple|4|6>>
+    <associate|auto-4|<tuple|1|4>>
+    <associate|auto-5|<tuple|3|4>>
+    <associate|auto-6|<tuple|3.1|5>>
+    <associate|auto-7|<tuple|2|5>>
+    <associate|auto-8|<tuple|3.2|6>>
+    <associate|auto-9|<tuple|3.3|6>>
     <associate|bib-bishop_pattern_2006|<tuple|Bis06|14>>
     <associate|bib-mackay_information_2005|<tuple|Mac05|14>>
+    <associate|eq:batchcoin|<tuple|13|?>>
     <associate|eq:datum-given-model|<tuple|9|5>>
     <associate|eq:independence|<tuple|6|4>>
+    <associate|eq:iterativecoin|<tuple|15|?>>
     <associate|eq:joint-data-params|<tuple|7|5>>
     <associate|eq:laplace-A|<tuple|11|6>>
     <associate|eq:laplace-method|<tuple|10|6>>
@@ -1286,12 +1324,13 @@
     <associate|eq:param-inf|<tuple|2|3>>
     <associate|eq:param-inf-nonrec|<tuple|1|3>>
     <associate|eq:prob-datum-coin|<tuple|12|7>>
-    <associate|eq:recursive|<tuple|13|8>>
-    <associate|eq:update|<tuple|14|8>>
+    <associate|eq:recursive|<tuple|14|8>>
+    <associate|eq:update|<tuple|15|8>>
     <associate|eq:wmap|<tuple|3|3>>
     <associate|eq:wml|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
-    <associate|fig:indep|<tuple|1|5>>
+    <associate|fig:indep|<tuple|2|5>>
     <associate|fig:pgm|<tuple|1|?>>
+    <associate|fig:priorSucc|<tuple|1|?>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|4>>
     <associate|footnote-3|<tuple|3|?>>
