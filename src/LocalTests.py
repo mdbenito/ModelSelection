@@ -1,5 +1,6 @@
 from Hypotheses import *
 from ModelSelection import LinearRegression
+from Test import *
 
 sigma = 5  # observation noise sigma
 
@@ -19,16 +20,13 @@ hc.append(TrigonometricHypothesis(halfM=2, variance=2, noiseVariance=sigma**2))
 
 lr = LinearRegression(hc, sigma)
 
-#####
-# Test 1:
-#generate_noise_and_fit(lr,
-#                       generator=PolynomialHypothesis(M=6, variance=5, noiseVariance=sigma**2),
-#                       xmin=-2.0, xmax=5.0, num=100)
+# Two tests:
+generator = PolynomialHypothesis(M=6, variance=5, noiseVariance=sigma**2)
+# generator=TrigonometricHypothesis(halfM=2, variance=4, noiseVariance=sigma**2)
 
-# Test 2:
-generate_noise_and_fit(lr,
-                       generator=TrigonometricHypothesis(halfM=2, variance=4, noiseVariance=sigma**2),
-                       xmin=-1.0, xmax=3.1, num=20)
+# test_generator(generator)  # Plot generator results
+
+generate_noise_and_fit(lr, generator, xmin=-1.0, xmax=4.0, num=100)
 
 
 ##############################################################################

@@ -5,6 +5,18 @@ from Plots import *
 import matplotlib.pyplot as pl
 
 
+def test_generator(generator):
+    """ Plot randomly generated data.
+    :param generator: Hypothesis to use.
+    """
+    assert isinstance(generator, Hypothesis)
+    xx = np.array(np.arange(-1.0, 3.0, step=0.04))
+    tt = generator.generate(xx)
+
+    pl.plot(xx, tt, 'ro')
+    pl.show()
+
+
 def select_points_and_fit(regression, num=10):
     """ Opens an interactive window to draw points
 
