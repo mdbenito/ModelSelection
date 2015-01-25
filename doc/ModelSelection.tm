@@ -4,46 +4,46 @@
 
 <\body>
   <\hide-preamble>
-    \;
-
     <assign|dfn|<macro|body|<strong|<arg|body>>>>
-
-    <assign|table-of-contents|<\macro|aux|body>
-      <small|<render-table-of-contents|<table-of-contents-text>|<arg|body>>>
-    </macro>>
 
     <assign|render-bibliography|<\macro|name|body>
       <\with|par-left|<plus|<value|par-left>|3fn>|par-right|<plus|<value|par-right>|3fn>|par-first|0fn|par-par-sep|0fn>
-        <principal-section*|<arg|name>>
+        <vspace*|2fn><wide-std-underlined|<principal-section*|<arg|name>>>
 
         <small|<arg|body>>
       </with>
     </macro>>
 
-    <assign|subsection|<macro|title|<assign|subsection-numbered|<compound|subsection-display-numbers>><assign|subsection-prefix|<macro|<compound|the-subsection>.>><compound|next-subsection><compound|subsection-clean><compound|subsection-header|<arg|title>><compound|subsection-toc|<arg|title>><no-page-break><if|<value|subsection-numbered>|<compound|subsection-numbered-title|<arg|title>>|<compound|subsection-title|<arg|title>>>>>
+    <assign|subsection|<macro|title|<assign|subsection-numbered|<compound|subsection-display-numbers>><assign|subsection-prefix|<macro|<compound|the-subsection>.>><compound|next-subsection><compound|subsection-clean><compound|subsection-header|<arg|title>><compound|subsection-toc|<arg|title>><no-page-break><vspace*|1.5fn><if|<value|subsection-numbered>|<compound|subsection-numbered-title|<arg|title>>|<compound|subsection-title|<arg|title>>>>>
 
-    <assign|section|<macro|title|<assign|section-numbered|<compound|section-display-numbers>><assign|section-prefix|<macro|<compound|the-section>.>><compound|next-section><compound|section-clean><compound|section-header|<arg|title>><compound|section-toc|<arg|title>><no-page-break><if|<value|section-numbered>|<compound|section-numbered-title|<arg|title>>|<compound|section-title|<arg|title>>>>>
+    <assign|section|<macro|title|<assign|section-numbered|<compound|section-display-numbers>><assign|section-prefix|<macro|<compound|the-section>.>><compound|next-section><compound|section-clean><compound|section-header|<arg|title>><compound|section-toc|<arg|title>><no-page-break><vspace*|2fn><large|<if|<value|section-numbered>|<compound|section-numbered-title|<arg|title>>|<compound|section-title|<arg|title>>>>>>
+
+    <assign|table-of-contents|<\macro|aux|body>
+      <tabular|<tformat|<twith|table-width|1par>|<twith|table-hmode|exact>|<cwith|1|1|1|1|cell-block|yes>|<cwith|1|1|1|1|cell-hyphen|t>|<cwith|1|1|1|1|cell-lsep|4em>|<cwith|1|1|1|1|cell-rsep|4em>|<table|<row|<\cell>
+        <\small>
+          <render-table-of-contents|<table-of-contents-text>|<arg|body>>
+        </small>
+      </cell>>>>>
+    </macro>>
   </hide-preamble>
 
   <doc-data|<doc-title|Bayesian model selection for linear
-  regression>|<doc-author|<author-data|<author-name|Miguel de
-  Benito>|<\author-affiliation>
-    Universität Augsburg
-  </author-affiliation>>>|<doc-author|<author-data|<author-name|Philipp
-  Düren>|<\author-affiliation>
-    Universität Augsburg
-  </author-affiliation>>>|<doc-date|Last update: <date|>>>
+  regression>|<\doc-author>
+    <author-data|<author-name|Miguel de Benito>|<\author-affiliation>
+      Universität Augsburg
+    </author-affiliation>|<author-email|m.debenito.d@gmail.com>>
+  </doc-author>|<\doc-author>
+    <author-data|<author-name|Philipp Düren>|<\author-affiliation>
+      Universität Augsburg
+    </author-affiliation>|<author-email|philipp.dueren@gmail.com>>
+  </doc-author>|<doc-date|Last update: <date|>>>
 
   <abstract-data|<abstract|In this note we introduce linear regression with
-  basis functions in order to apply Bayesian model
-  selection.<set-this-page-footer|<htab|5mm><small|This document was created
-  using <TeXmacs> (<hlink|www.texmacs.org|http://www.texmacs.org>)><htab|5mm>>>>
-
-  <with|ornament-shape|rounded|ornament-color|pastel red|<\ornamented>
-    <\warning*>
-      This is work in progress. We are also sloppy.
-    </warning*>
-  </ornamented>>
+  basis functions in order to apply Bayesian model selection. The goal is to
+  incorporate Occam's razor as provided by Bayes analysis in order to
+  automatically pick the model optimally able to explain the data without
+  overfitting.<set-this-page-footer|<htab|5mm><small|This document was
+  created using <TeXmacs> (<hlink|www.texmacs.org|http://www.texmacs.org>)><htab|5mm>>>>
 
   <\table-of-contents|toc>
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|1.<space|2spc>Introduction:
@@ -61,77 +61,85 @@
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|3.<space|2spc>Model
     selection> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-4><vspace|0.5fn>
+    <no-break><pageref|auto-5><vspace|0.5fn>
 
     <with|par-left|1tab|3.1.<space|2spc>Why (naive) iterative model selection
     does not work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-5>>
+    <no-break><pageref|auto-6>>
 
     <with|par-left|1tab|3.2.<space|2spc>Correct model selection
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-7>>
+    <no-break><pageref|auto-8>>
 
     <with|par-left|1tab|3.3.<space|2spc>Laplace's method
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-8>>
+    <no-break><pageref|auto-9>>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|4.<space|2spc>An
     easy example: is this coin bent?> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-9><vspace|0.5fn>
+    <no-break><pageref|auto-10><vspace|0.5fn>
 
     <with|par-left|1tab|4.1.<space|2spc>Model
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-10>>
+    <no-break><pageref|auto-11>>
 
     <with|par-left|1tab|4.2.<space|2spc>Parameter inference
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-11>>
+    <no-break><pageref|auto-12>>
 
     <with|par-left|1tab|4.3.<space|2spc>Iterative model selection. Why it
     cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-12>>
-
-    <with|par-left|1tab|4.4.<space|2spc>Correct model selection: brute force
-    approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-13>>
 
-    <with|par-left|1tab|4.5.<space|2spc>Quasi-iterative model selection
+    <with|par-left|1tab|4.4.<space|2spc>Model selection: ``batch'' approach
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-14>>
+
+    <with|par-left|1tab|4.5.<space|2spc>Model selection: Quasi-iterative
+    approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-16>>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>Influence
     of the race on the imposition of the death penalty>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-15><vspace|0.5fn>
+    <no-break><pageref|auto-17><vspace|0.5fn>
 
-    <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>An
-    example with polynomial basis functions>
+    <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>Bayesian
+    Model Selection for Linear Regression>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-16><vspace|0.5fn>
+    <no-break><pageref|auto-18><vspace|0.5fn>
 
     <with|par-left|1tab|6.1.<space|2spc>Setting
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-17>>
+    <no-break><pageref|auto-19>>
 
     <with|par-left|1tab|6.2.<space|2spc>Iterative parameter estimation
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-18>>
+    <no-break><pageref|auto-20>>
 
     <with|par-left|1tab|6.3.<space|2spc>Model selection
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-19>>
+    <no-break><pageref|auto-21>>
 
-    <with|par-left|1tab|6.4.<space|2spc>Simulation results
-    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-20>>
+    <vspace*|1fn><with|font-series|bold|math-font-series|bold|7.<space|2spc>Simulation
+    results> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-22><vspace|0.5fn>
 
-    <with|par-left|1tab|6.5.<space|2spc>Implementation
+    <with|par-left|1tab|7.1.<space|2spc>Low noise, quadratic growth data
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-23>>
 
+    <with|par-left|1tab|7.2.<space|2spc>High noise, long range oscillating
+    data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-25>>
+
+    <with|par-left|1tab|7.3.<space|2spc>Low noise, short range oscillatory
+    data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-28>>
+
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-24><vspace|0.5fn>
+    <no-break><pageref|auto-29><vspace|0.5fn>
   </table-of-contents>
 
   <section|Introduction: different models for linear
@@ -249,8 +257,7 @@
     <math|p<around*|(|\<b-t\>\|\<b-x\>,w,\<cal-H\>|)>> we will write
     <math|p<around*|(|\<b-t\>\|w,\<cal-H\>|)>> and so on. In a similar manner
     we will often refer to the outputs <math|\<b-t\>> as the <dfn|data>, even
-    though the whole data set includes <math|\<b-x\>> as well. <todo|there
-    are quite a few inconsistencies in the use of this word>.
+    though the whole data set includes <math|\<b-x\>> as well.
   </notation*>
 
   Solving this first question is a simple application of Bayes' rule:
@@ -262,12 +269,12 @@
   Because the normal is conjugate to itself, a convenient choice is
   <math|p<around*|(|w\|\<cal-H\>|)>=p<around*|(|w\|<text|no
   data>|)>\<sim\>\<cal-N\><around*|(|\<mu\><rsub|w>,\<sigma\><rsub|w><rsup|2>*Id|)>>
-  and the new distribution will again be normal <todo|insert this computation
-  in an appendix>. We will be doing this later on, but other choices are
-  possible! Notice that instead of just some numerical value for <math|w>,
-  what we obtain using <eqref|eq:param-inf-nonrec> is <em|the full a
-  posteriori distribution>, which is a host more information, and thanks to
-  the use of a conjugate prior we have an explicit expression.
+  and the new distribution will again be normal. We will be doing this later
+  on, but other choices are possible! Notice that instead of just some
+  numerical value for <math|w>, what we obtain using
+  <eqref|eq:param-inf-nonrec> is <em|the full a posteriori distribution>,
+  which is a host more information, and thanks to the use of a conjugate
+  prior we have an explicit expression.
 
   As we have just seen, once we have all of the data <math|\<b-t\>> we can
   compute the posterior in <dfn|batch> mode, i.e. using all of the data.
@@ -334,12 +341,23 @@
     <math|w<rsub|MAP>>.
   </footnote> Bayesian reasoning uses the full distribution on <math|w> given
   the data and the MAP value to account for the priors we choose (and priors
-  that arose during past update steps for acquired data) <todo|this sentence
-  is confusing>. It makes sense to take priors into account: if your data
-  <math|\<b-t\>> shows you consistent proof for a specific parameter value
-  <math|w>, a single outlier <math|t<rprime|'>> should not change your
-  estimate much, i.e. we are not looking for the best fit but for the best
-  fit according to our prior knowledge.
+  that were posteriors of past updates, see figure
+  <reference|fig:priorSucc>).
+
+  <big-figure|<with|gr-mode|<tuple|group-edit|move>|gr-frame|<tuple|scale|1cm|<tuple|0.519998gw|0.330016gh>>|gr-geometry|<tuple|geometry|13.0048cm|2.8011cm|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-arrow-end|\|\<gtr\>|gr-color|red|<graphics||<text-at|current
+  posterior = (normalization) <math|\<cdot\>> likelihood <math|\<cdot\>>
+  prior|<point|-3.5636162190766|0.985249371610001>>|<math-at|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>=C\<cdot\>p<around*|(|\<b-t\>\|w,\<cal-H\>|)>\<cdot\>p<around*|(|w\|\<cal-H\>|)>|<point|-2.30595009105324|1.40291374520439>>|<math-at|p<around*|(|w\|\<cal-H\>|)>|<point|-6.3|1.4>>|<text-at|initial
+  prior|<point|-6.6|1.0>>|<with|arrow-end|\|\<gtr\>|<line|<point|-4.7|1.5>|<point|-4.0|1.5>|<point|-2.8|1.5>>>|<math-at|p<around*|(|w\|\<b-t\>,t<rprime|'>,\<cal-H\>|)>=C<rprime|'>\<cdot\>p<around*|(|t<rprime|'>\|w,\<cal-H\>|)>\<cdot\><with|color|red|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>>|<point|-2.29999786611986|-0.12176261238259>>|<text-at|current
+  posterior = (normalization) <math|\<cdot\>> likelihood <math|\<cdot\>>
+  prior|<point|-3.19999786611986|-0.52176261238259>>|<with|arrow-end|\|\<gtr\>|<line|<point|-4.69949786611986|-0.03982061238259>|<point|-2.79999786611986|-0.02176261238259>>>|<math-at|<with|color|red|p<around*|(|w\|\<b-t\>,\<cal-H\>|)>>|<point|-6.42806374785025|-0.136840665035057>>|<math-at|new
+  prior|<point|-6.39999786611986|-0.52176261238259>>>>|<label|fig:priorSucc>Bayesian
+  updating: posteriors become new priors>
+
+  It makes sense to take priors into account: if your data <math|\<b-t\>>
+  shows you consistent proof for a specific parameter value <math|w>, a
+  single outlier <math|t<rprime|'>> should not change your estimate much,
+  i.e. we are not looking for the best fit but for the best fit consistent
+  with our prior knowledge.
 
   Finally note that we do not need to compute
   <math|p<around*|(|\<b-t\>\|\<cal-H\>|)>> since this is constant on
@@ -488,9 +506,8 @@
   Then we can normalize by <math|p<around*|(|\<b-t\>|)>=<big|sum><rsub|k>p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>*p<around*|(|\<cal-H\><rsub|k>|)>>.
 
   <\remark>
-    The integral <eqref|eq:datum-given-model> is in general hard to compute
-    <todo|because...>. Of the methods we've been discussing in the seminar,
-    we could try to use MCMC, but given our assumptions of normality it is
+    The integral <eqref|eq:datum-given-model> is in general hard to compute.
+    We could try to use MCMC, but given our assumptions of normality it is
     best to use Laplace's Method discussed below.
   </remark>
 
@@ -561,13 +578,12 @@
     calculation, we will use a uniform prior on <math|r> but beware that
     Bayesian inference is all about your priors and beliefs about reality.
     Bayesian statistics states that <em|there is no such thing as objective
-    inference>, just a correct propagation of belief states. Luckily, in a
-    lot of cases, different priors only change the speed of convergence of
-    your inference <todo|why is this?> and unless your initial distribution
-    deems ranges of events as impossible (i.e.
-    <math|p<around*|(|r\|\<cal-H\><rsub|1>|)>=0> for some <math|r>),
-    collecting more and more data will yield similar conclusions between
-    different priors.
+    inference>, just a correct propagation of belief states. In practice, in
+    a lot of cases, different priors only change the speed of convergence of
+    your inference and unless your initial distribution deems ranges of
+    events as impossible (i.e. <math|p<around*|(|r\|\<cal-H\><rsub|1>|)>=0>
+    for some <math|r>), collecting more and more data will yield similar
+    conclusions between different priors.
 
     Also note that <math|\<cal-H\><rsub|1>> is a perfect super-hypothesis of
     <math|\<cal-H\><rsub|0>> in the sense that <math|\<cal-H\><rsub|0>> is
@@ -634,7 +650,7 @@
   for the possible values of <math|r> which in turn change the probability
   distribution of <math|t<rprime|'>>.
 
-  <subsection|Correct model selection: brute force approach>
+  <subsection|Model selection: ``batch'' approach>
 
   The way to select the correct model is
 
@@ -670,15 +686,16 @@
 
   we get
 
-  <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>>=<frac|<big|int><rsub|0><rsup|1>r<rsup|h<around*|(|\<b-t\>|)>>*<around*|(|1-r|)><rsup|N-h<around*|(|\<b-t\>|)>>*\<mathd\>r|2<rsup|-N>>*<frac|p<around*|(|\<cal-H\><rsub|1>|)>|p<around*|(|\<cal-H\><rsub|0>|)>>=<frac|p<around*|(|\<cal-H\><rsub|1>|)>*2<rsup|N>|p<around*|(|\<cal-H\><rsub|0>|)>*<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|h<around*|(|\<b-t\>|)>>>>>>>
-  </equation*>
+  <\equation>
+    <label|eq:batchcoin><frac|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>>=<frac|<big|int><rsub|0><rsup|1>r<rsup|h<around*|(|\<b-t\>|)>>*<around*|(|1-r|)><rsup|N-h<around*|(|\<b-t\>|)>>*\<mathd\>r|2<rsup|-N>>*<frac|p<around*|(|\<cal-H\><rsub|1>|)>|p<around*|(|\<cal-H\><rsub|0>|)>>=<frac|p<around*|(|\<cal-H\><rsub|1>|)>*2<rsup|N>|p<around*|(|\<cal-H\><rsub|0>|)>*<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|h<around*|(|\<b-t\>|)>>>>>>>
+  </equation>
 
   This shows a classic problem of this kind of methods: the numbers involved
   grow quickly and exact computation becomes unfeasible.
 
-  For the case <math|h<around*|(|\<b-t\>|)>\<simeq\>N/2> use Stirling's
-  formula <math|n!\<simeq\><sqrt|2*\<mathpi\>*n>*<around*|(|n/\<mathe\>|)><rsup|n>>
+  Consider the example of a fair coin: For the case
+  <math|h<around*|(|\<b-t\>|)>\<simeq\>N/2> use Stirling's formula
+  <math|n!\<simeq\><sqrt|2*\<mathpi\>*n>*<around*|(|n/\<mathe\>|)><rsup|n>>
   and see
 
   <\eqnarray*>
@@ -687,9 +704,15 @@
 
   so the hypothesis <math|\<cal-H\><rsub|0>> becomes probable exponentially
   fast if there is no specific evidence for <math|\<cal-H\><rsub|1>>.
-  <todo|Insert cool implementation & figures>
 
-  <subsection|Quasi-iterative model selection>
+  <big-figure|<image|../coins/coins1000dot55.eps||||>|Model selection for a
+  bent coin (<math|p<around*|(|<text|``Heads''>|)>=0.55>) for 1000 tosses.
+  Initially, the slight imbalance between the number of heads and tails can
+  be explained perfectly by a fair coin, so this hypothesis is strongly
+  supported. After <math|600> tosses, the probability that the coin is in
+  fact bent gets more and more support.>
+
+  <subsection|Model selection: Quasi-iterative approach>
 
   We showed in sections <reference|sec:why-not> and
   <reference|sec:modelselec> why iterative methods cannot work in a strict
@@ -704,7 +727,7 @@
   <math|K<rprime|'>\<in\><around*|{|K,K+1|}>>. Then
 
   <\equation>
-    <label|eq:recursive><frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>
+    <label|eq:recursive><frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<frac|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|0>,\<b-t\>|)>|p<around*|(|t<rprime|'>\|\<cal-H\><rsub|1>,\<b-t\>|)>>\<cdot\><frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>
   </equation>
 
   The last term is the prior version of the left hand side fraction. Thus,
@@ -736,12 +759,14 @@
   Combining this with <eqref|eq:update> and <eqref|eq:recursive>, we obtain
 
   <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<choice|<tformat|<table|<row|<cell|<with|math-display|true|<frac|N+2|2*K+2>*<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=0,>>|<row|<cell|<with|math-display|true|<frac|N+2|2*<around*|(|N+1-K|)>>*<frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|0>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=1.>>>>>
+    <label|eq:iterativecoin><frac|p<around*|(|\<cal-H\><rsub|0><around*|\||\<b-t\>,t<rprime|'>|\<nobracket\>>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>,t<rprime|'>|)>>=<choice|<tformat|<table|<row|<cell|<with|math-display|true|<frac|N+2|2*K+2>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=0,>>|<row|<cell|<with|math-display|true|<frac|N+2|2*<around*|(|N+1-K|)>>*<frac|p<around*|(|\<cal-H\><rsub|0>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|1>\|\<b-t\>|)>>>>|<cell|<text|if>>|<cell|t<rprime|'>=1.>>>>>
   </equation*>
 
   This means that we do not need to save the exact data vector but just the
   number of heads and tails to apply a recursive-type model selection
-  approach. <todo|Insert graphs>
+  approach. Also, in comparison with formula (<reference|eq:batchcoin>), we
+  will not run into computational overflow as there are no exponentially
+  growing terms.
 
   <section|Influence of the race on the imposition of the death penalty>
 
@@ -764,31 +789,31 @@
   <\itemize>
     <item><math|\<cal-H\><rsub|00>:>Neither the victim's nor the defendant's
     race has influence on the probability of the defendant getting the death
-    penalty, i.e. <todo|Insert cool graphical model for hypotheses>
+    penalty, i.e.
 
     <\equation*>
-      p<around*|(|D|)> = \<tau\>
+      p<around*|(|D|)> = \<tau\>.
     </equation*>
 
     <item><math|\<cal-H\><rsub|10>>: Only the victim's race influences the
     death penalty probability:
 
     <\equation*>
-      p<around*|(|D\|V|)>=\<tau\>\<comma\><space|1em>p<around*|(|D\|V<rsup|C>|)>=\<chi\>
+      p<around*|(|D\|V|)>=\<tau\>\<comma\><space|1em>p<around*|(|D\|V<rsup|C>|)>=\<chi\>.
     </equation*>
 
     <item><math|\<cal-H\><rsub|01>>: Only the defendant's race influences the
     death penalty probability:
 
     <\equation*>
-      p<around*|(|D\|M|)>=\<tau\>\<nocomma\>,<separating-space|1em>p<around*|(|D\|M<rsup|C>|)>=\<chi\>
+      p<around*|(|D\|M|)>=\<tau\>\<nocomma\>,<separating-space|1em>p<around*|(|D\|M<rsup|C>|)>=\<chi\>.
     </equation*>
 
     <item><math|\<cal-H\><rsub|11>>: Both victim's and defendant's race
     influence the death penalty probability:
 
     <\equation*>
-      p<around*|(|D\|V,M|)>=\<tau\>\<nocomma\>\<comma\><space|1em>p<around*|(|D\|V<rsup|C>,M|)>=\<chi\>,<space|1em>p<around*|(|D\|V,M<rsup|C>|)>=\<rho\>,<space|1em>p<around*|(|D\|V<rsup|C>,M<rsup|C>|)>=\<sigma\>
+      p<around*|(|D\|V,M|)>=\<tau\>\<nocomma\>\<comma\><space|1em>p<around*|(|D\|V<rsup|C>,M|)>=\<chi\>,<space|1em>p<around*|(|D\|V,M<rsup|C>|)>=\<rho\>,<space|1em>p<around*|(|D\|V<rsup|C>,M<rsup|C>|)>=\<sigma\>.
     </equation*>
   </itemize>
 
@@ -803,32 +828,33 @@
     <tformat|<table|<row|<cell|ln p<around*|(|\<b-t\>\|\<tau\>,\<cal-H\><rsub|00>|)>>|<cell|=>|<cell|<around*|(|19+11+6|)>*ln<around*|(|\<tau\>|)>+<around*|(|132+9+52+97|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|ln
     p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<cal-H\><rsub|10>|)>>|<cell|=>|<cell|<around*|(|19+11|)>*ln<around*|(|\<tau\>|)>+<around*|(|132+52|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|+>|<cell|6*ln<around*|(|\<chi\>|)>+<around*|(|9+97|)>*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|ln
     p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<cal-H\><rsub|01>|)>>|<cell|=>|<cell|19*ln<around*|(|\<tau\>|)>+<around*|(|132+9|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|+>|<cell|<around*|(|11+6|)>*ln<around*|(|\<chi\>|)>+<around*|(|52+97|)>*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|ln
-    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<rho\>,\<sigma\>,\<cal-H\><rsub|11>|)>>|<cell|=>|<cell|19*ln<around*|(|\<tau\>|)>+132*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|+>|<cell|0*ln<around*|(|\<chi\>|)>+9*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|>|<cell|+>|<cell|11*ln<around*|(|\<rho\>|)>+52*ln<around*|(|1-\<rho\>|)>>>|<row|<cell|>|<cell|+>|<cell|6*ln<around*|(|\<sigma\>|)>+97*ln<around*|(|1-\<sigma\>|)>>>>>
+    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<rho\>,\<sigma\>,\<cal-H\><rsub|11>|)>>|<cell|=>|<cell|19*ln<around*|(|\<tau\>|)>+132*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|+>|<cell|0*ln<around*|(|\<chi\>|)>+9*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|>|<cell|+>|<cell|11*ln<around*|(|\<rho\>|)>+52*ln<around*|(|1-\<rho\>|)>>>|<row|<cell|>|<cell|+>|<cell|6*ln<around*|(|\<sigma\>|)>+97*ln<around*|(|1-\<sigma\>|)>.>>>>
   </eqnarray*>
 
   As our priors are uniform, the MAP parameters are the ML parameters which
   in turn are
 
   <\itemize>
-    <item><math|\<cal-H\><rsub|00>>: <math|\<tau\><rsub|MAP>=<frac|19+11+6|19+11+6+132+9+52+97>\<approx\>0.1104>
+    <item><math|\<cal-H\><rsub|00>>: <math|\<tau\><rsub|MAP>=<frac|19+11+6|19+11+6+132+9+52+97>\<approx\>0.1104>.
 
     <item><math|\<cal-H\><rsub|10>>: <math|\<tau\><rsub|MAP>=
     <frac|19+11|19+11+132+52>\<approx\>0.1402> and
-    <math|\<chi\><rsub|MAP>=<frac|6|6+9+97>\<approx\>0.0536>
+    <math|\<chi\><rsub|MAP>=<frac|6|6+9+97>\<approx\>0.0536>.
 
     <item><math|\<cal-H\><rsub|01>>: <math|\<tau\><rsub|MAP>=<frac|19|19+132+9>\<approx\>0.1187>
-    and <math|\<chi\><rsub|MAP>=<frac|11+6|11+6+52+97>\<approx\>0.1024>
+    and <math|\<chi\><rsub|MAP>=<frac|11+6|11+6+52+97>\<approx\>0.1024>.
 
     <item><math|\<cal-H\><rsub|11>>: <math|\<tau\><rsub|MAP>=<frac|19|19+132>\<approx\>0.1258>,
-    <math|\<chi\><rsub|MAP>=0>, <math|\<rho\><rsub|MAP>=<frac|11|11+52>\<approx\>0.1746>\ 
+    <math|\<chi\><rsub|MAP>=0>, <math|\<rho\><rsub|MAP>=<frac|11|11+52>\<approx\>0.1746>
+    and
 
-    \ \ \ and <math|\<sigma\><rsub|MAP>=<frac|6|6+97>\<approx\>0.0583>
+    <math|\<sigma\><rsub|MAP>=<frac|6|6+97>\<approx\>0.0583>.
   </itemize>
 
-  One can observe that the victim was white and the murderer black, there was
-  a <math|17.46> percent probability of the defendant getting sentenced to
-  death where the ``reverse combination'' did not lead to any single death
-  penalty sentence.
+  One can observe that when the victim was white and the murderer black,
+  there was a <math|17.46> percent probability of the defendant being
+  sentenced to death whereas the opposite combination did not lead to any
+  single death penalty sentence.
 
   Recall (<math|w> being the abstract parameter variable)
 
@@ -843,7 +869,7 @@
   case as we have uniform priors. The individual matrices <math|A> are:
 
   <\eqnarray*>
-    <tformat|<table|<row|<cell|A<rsub|00>>|<cell|=>|<cell|<frac|36|\<tau\><rsup|2>>+<frac|290|<around*|(|1-\<tau\>|)><rsup|2>>>>|<row|<cell|A<rsub|10>>|<cell|=>|<cell|diag<around*|(|<frac|30|\<tau\><rsup|2>>+<frac|184|<around*|(|1-\<tau\>|)><rsup|2>>,<frac|6|\<chi\><rsup|2>>+<frac|106|<around*|(|1-\<chi\>|)><rsup|2>>|)>>>|<row|<cell|A<rsub|01>>|<cell|=>|<cell|diag<around*|(|<frac|19|\<tau\><rsup|2>>+<frac|141|<around*|(|1-\<tau\>|)><rsup|2>>,<frac|17|\<chi\><rsup|2>>+<frac|149|<around*|(|1-\<chi\>|)><rsup|2>>|)>>>|<row|<cell|A<rsub|11>>|<cell|=>|<cell|diag<around*|(|<frac|19|\<tau\><rsup|2>>+<frac|132|<around*|(|1-\<tau\><rsup|2>|)>>,<frac|9|<around*|(|1-<rsup|>\<chi\>|)><rsup|2>>,<frac|11|\<rho\><rsup|2>>+<frac|52|<around*|(|1-\<rho\>|)><rsup|2>>,<frac|6|\<sigma\><rsup|2>>+<frac|97|<around*|(|1-\<sigma\>|)><rsup|2>>|)>>>>>
+    <tformat|<table|<row|<cell|A<rsub|00>>|<cell|=>|<cell|<frac|36|\<tau\><rsup|2>>+<frac|290|<around*|(|1-\<tau\>|)><rsup|2>>>>|<row|<cell|A<rsub|10>>|<cell|=>|<cell|diag<around*|(|<frac|30|\<tau\><rsup|2>>+<frac|184|<around*|(|1-\<tau\>|)><rsup|2>>,<frac|6|\<chi\><rsup|2>>+<frac|106|<around*|(|1-\<chi\>|)><rsup|2>>|)>>>|<row|<cell|A<rsub|01>>|<cell|=>|<cell|diag<around*|(|<frac|19|\<tau\><rsup|2>>+<frac|141|<around*|(|1-\<tau\>|)><rsup|2>>,<frac|17|\<chi\><rsup|2>>+<frac|149|<around*|(|1-\<chi\>|)><rsup|2>>|)>>>|<row|<cell|A<rsub|11>>|<cell|=>|<cell|diag<around*|(|<frac|19|\<tau\><rsup|2>>+<frac|132|<around*|(|1-\<tau\><rsup|2>|)>>,<frac|9|<around*|(|1-<rsup|>\<chi\>|)><rsup|2>>,<frac|11|\<rho\><rsup|2>>+<frac|52|<around*|(|1-\<rho\>|)><rsup|2>>,<frac|6|\<sigma\><rsup|2>>+<frac|97|<around*|(|1-\<sigma\>|)><rsup|2>>|)>.>>>>
   </eqnarray*>
 
   Then the evidence for each model is (read subscript ``MAP'' for each
@@ -851,30 +877,48 @@
 
   <\itemize>
     <\eqnarray*>
-      <tformat|<table|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|00>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|36>*<around*|(|1-\<tau\>|)><rsup|290>|<sqrt|det<around*|(|A<rsub|00>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|2.8313\<cdot\>10<rsup|-51>>>|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|10>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|30>*<around*|(|1-\<tau\>|)><rsup|184>*\<chi\><rsup|6>*<around*|(|1-\<chi\>|)><rsup|106>|<sqrt|det<around*|(|A<rsub|10>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|4.698\<cdot\>10<rsup|-51>>>|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|01>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|19>*<around*|(|1-\<tau\>|)><rsup|141>*\<chi\><rsup|17>*<around*|(|1-\<chi\>|)><rsup|149>|<sqrt|det<around*|(|A<rsub|01>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|2.7485\<cdot\>10<rsup|-51>>>|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|11>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|19>*<around*|(|1-\<tau\>|)><rsup|132>*\<chi\><rsup|0>*<around*|(|1-\<chi\>|)><rsup|9>*\<rho\><rsup|11>*<around*|(|1-\<rho\>|)><rsup|52>*\<sigma\><rsup|6>*<around*|(|1-\<sigma\>|)><rsup|97>|<sqrt|det<around*|(|A<rsub|11>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|1.4875\<cdot\>10<rsup|-51>>>>>
+      <tformat|<table|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|00>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|36>*<around*|(|1-\<tau\>|)><rsup|290>|<sqrt|det<around*|(|A<rsub|00>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|2.8313\<cdot\>10<rsup|-51>>>|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|10>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|30>*<around*|(|1-\<tau\>|)><rsup|184>*\<chi\><rsup|6>*<around*|(|1-\<chi\>|)><rsup|106>|<sqrt|det<around*|(|A<rsub|10>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|4.698\<cdot\>10<rsup|-51>>>|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|01>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|19>*<around*|(|1-\<tau\>|)><rsup|141>*\<chi\><rsup|17>*<around*|(|1-\<chi\>|)><rsup|149>|<sqrt|det<around*|(|A<rsub|01>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|2.7485\<cdot\>10<rsup|-51>>>|<row|<cell|p<around*|(|\<b-t\>\|\<cal-H\><rsub|11>|)>>|<cell|\<approx\>>|<cell|<frac|\<tau\><rsup|19>*<around*|(|1-\<tau\>|)><rsup|132>*\<chi\><rsup|0>*<around*|(|1-\<chi\>|)><rsup|9>*\<rho\><rsup|11>*<around*|(|1-\<rho\>|)><rsup|52>*\<sigma\><rsup|6>*<around*|(|1-\<sigma\>|)><rsup|97>|<sqrt|det<around*|(|A<rsub|11>/2*\<pi\>|)>>>>>|<row|<cell|>|<cell|\<approx\>>|<cell|1.4875\<cdot\>10<rsup|-51>.>>>>
     </eqnarray*>
   </itemize>
 
+  As <math|<big|sum><rsub|i,j=0><rsup|1>p<around*|(|\<cal-H\><rsub|i,j>\|\<b-t\>|)>=1,>and
+  assuming non-committal priors <math|p<around*|(|\<cal-H\><rsub|i,j>|)>=<frac|1|4>>
+  for <math|i,j=0,1>, we obtain
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|p<around*|(|\<cal-H\><rsub|00>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.24,>>|<row|<cell|p<around*|(|\<cal-H\><rsub|10>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.40,>>|<row|<cell|p<around*|(|\<cal-H\><rsub|01>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.23,>>|<row|<cell|p<around*|(|\<cal-H\><rsub|11>\|\<b-t\>|)>>|<cell|\<approx\>>|<cell|0.13.>>>>
+  </eqnarray*>
+
   Hence, the hypothesis <math|\<cal-H\><rsub|10>> stating that the race of
   the victim is contributing to the probability of a murderer getting
-  sentenced to death is the most probable from a Bayesian viewpoint, as
+  sentenced to death is the most probable from a Bayesian point of view
+  <em|given the priors we had.>
 
-  <\equation*>
-    <frac|p<around*|(|\<cal-H\><rsub|10>\|\<b-t\>|)>|p<around*|(|\<cal-H\><rsub|k>\|\<b-t\>|)>>=<frac|p<around*|(|\<cal-H\><rsub|10>|)>|p<around*|(|\<cal-H\><rsub|k>|)>>\<cdot\><frac|p<around*|(|\<b-t\>\|\<cal-H\><rsub|10>|)>|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>>
-  </equation*>
-
-  <section|An example with polynomial basis functions>
+  <section|Bayesian Model Selection for Linear Regression>
 
   <subsection|Setting>
 
   We will consider the following polynomial hypotheses:\ 
 
   <\equation*>
-    \<cal-H\><rsub|k>:<space|1em>t<rsub|n>=w<rsub|0>+w<rsub|1>*x<rsub|n>+\<cdots\>+w<rsub|k-1>*x<rsub|n><rsup|k-1>+\<varepsilon\><rsub|n>,<space|1em>n=1,\<ldots\>,N,k=1,\<ldots\>,K
+    \<cal-H\><rsub|k><rsup|P>:<space|1em>t<rsub|n>=w<rsub|0>+w<rsub|1>*x<rsub|n>+\<cdots\>+w<rsub|k-1>*x<rsub|n><rsup|k-1>+\<varepsilon\><rsub|n>,<space|1em>n=1,\<ldots\>,N,k=1,\<ldots\>,K.
   </equation*>
 
-  and <math|\<varepsilon\><rsub|n>\<sim\>\<cal-N\><around*|(|0,\<sigma\><rsup|2>|)>>
-  i.i.d. For brevity we denote
+  For the following we can just as well use different hypothesis spaces as
+  for example trigonometric functions:
+
+  <\equation*>
+    \<cal-H\><rsub|k><rsup|T>:<space|1em>t<rsub|n>=<big|sum><rsub|j=1><rsup|k>cos<around*|(|j*\<pi\>*x<rsub|n>|)>+sin<around*|(|j*\<pi\>*x<rsub|n>|)>+\<varepsilon\><rsub|n>,<space|1em>n=1,\<ldots\>,N,k=1,\<ldots\>,K
+  </equation*>
+
+  For the sake of concretization, we will state everything for the example of
+  polynomial functions, but everything can be generalized to generic function
+  spaces.
+
+  Let <math|\<varepsilon\><rsub|n>\<sim\>\<cal-N\><around*|(|0,\<sigma\><rsup|2>|)>>
+  i.i.d. where <math|\<sigma\>> is a known noise parameter (for this
+  application we will not infer the noise from the data although this can be
+  done). For brevity we denote
 
   <\equation*>
     \<Phi\><rsub|k><around*|(|x<rsub|n>|)>=<around*|(|1,x,x<rsup|2>,\<ldots\>,x<rsup|k-1>|)>
@@ -990,238 +1034,75 @@
   <math|A<rsub|j\<nocomma\>l>> can be easily obtained from a smaller dataset
   (for example <math|N-1> instead of <math|N>).
 
-  <subsection|Simulation results>
-
-  <\big-figure>
-    <inactive|<image|../MachineLearning/LinearRegression/BayesianLR/out.eps|0.9par|||>>
-  </big-figure|Simulation of model selection for the dataset in figure XXX
-  with low noise <math|\<sigma\>>. Comparison between models
-  <math|\<cal-H\><rsub|0>,\<ldots\>,\<cal-H\><rsub|4>>. Observe that finally
-  the ``correct'' hypothesis <math|\<cal-H\><rsub|2>> is chosen.>
-
-  <big-figure|<inactive|<image|../MachineLearning/LinearRegression/BayesianLR/out2.eps|0.9par|||>>|Simulation
-  of model selection for the dataset in figure XXX with high noise
-  <math|\<sigma\>>. Comparison between models
-  <math|\<cal-H\><rsub|0>,\<ldots\>,\<cal-H\><rsub|4>>. We can see that due
-  to the high noise, the data which was originally generated by a quadratic
-  model <math|\<cal-H\><rsub|2>>, can also be fitted well with a constant
-  function in model <math|\<cal-H\><rsub|0>>.>
-
-  <subsection|Implementation>
-
-  <\named-specified-algorithm>
-    (Bayesian linear regression)
-  <|named-specified-algorithm>
-    At step <math|n=1,\<ldots\>,N>, compute the posterior distribution
-    <math|p<around*|(|w\|t<rsub|1>,\<ldots\>,t<rsub|n-1>,t<rsub|n>,\<cal-H\><rsub|k>|)>>
-    from <math|p<around*|(|w\|t<rsub|1>,\<ldots\>,t<rsub|n-1>,\<cal-H\><rsub|k>|)>>.
-    As all distributions are normal, we only need to keep track of means and
-    covariances (<verbatim|m> and <verbatim|S> in our code).
-  <|named-specified-algorithm>
-    <\small>
-      <\verbatim-code>
-        function [mN, SN, XHist, THist] = updateStep(m, S, sigma, xNew, tNew,
-        XHist, THist)
-
-        \ \ % does a linear regression step:
-
-        \ \ % given the old data XHist, THist,
-
-        \ \ % given the new data xNew, tNew,
-
-        \ \ % given the priors by m and S (expectation and covariance of the
-        Gaussian)
-
-        \ \ % given the data's noise std sigma,
-
-        \ \ % calculate the posteriori distribution by getting the new
-
-        \ \ % expectation mN and covariance SN and update the history XHist,
-        THist
-
-        \ \ XHist = [XHist, xNew];
-
-        \ \ THist = [THist, tNew];
-
-        \ \ M = size(m, 1);
-
-        \ \ Phi = xNew.^(0:M-1);
-
-        \ \ SInv = inv(S);
-
-        \ \ SNInv = (SInv+Phi'*Phi/(sigma^2));
-
-        \ \ SN = inv(SNInv);
-
-        \ \ mN = SN*(SInv*m+Phi'*tNew/sigma^2);
-
-        end
-      </verbatim-code>
-    </small>
-  </named-specified-algorithm>
-
-  <\named-algorithm|(Model selection)>
-    <\small>
-      <\code>
-        clear();
-
-        sigmaPrior = 3;
-
-        sigma = 0.1;
-
-        f = @(x) 1/2*x.^2-3*x+2;
-
-        xx = (2:0.01:4)';
-
-        % optional: shuffle input\ 
-
-        % xx = xx(randperm(size(xx, 1)));
-
-        tt = f(xx)+ normrnd(0, sigma, size(xx, 1), 1);
-
-        N = size(xx, 1);
-
-        \;
-
-        % maximal interpolation degree (1 = const, 2 = linear, 3 = parabola
-        etc.)
-
-        maxIndex = 5;\ 
-
-        \;
-
-        for ind = 1:maxIndex % initialization\ 
-
-        \ \ Phi{ind} = @(x) repmat(x, 1, ind).^repmat((0:ind-1), size(x, 1),
-        1);\ 
-
-        \ \ % x must be a column vector
-
-        \ \ mN{ind} = zeros(ind, 1);
-
-        \ \ SN{ind} = sigmaPrior^2*eye(ind, ind);
-
-        \ \ XHist{ind} = []; \ \ \ \ \ \ \ \ \ \ \ \ \ \ % The history of
-        inputs \ <todo|need not be cell array?>
-
-        \ \ THist{ind} = []; \ \ \ \ \ \ \ \ \ \ \ \ \ \ % The history of
-        outputs <todo|need not be cell array?>
-
-        \ \ ev(ind, :) = zeros(1, N);\ 
-
-        \ \ pref(ind) = 1; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ % preferred model
-        number
-
-        \ \ mNHist{ind} = zeros(ind, N); \ \ % the history of all calculated
-        MAPs
-
-        end
-
-        \;
-
-        ev(:, 1) = ones(maxIndex, 1);
-
-        for k=1:N \ \ \ \ \ \ % for every data point
-
-        \ \ for ind = 1:maxIndex \ \ \ % for every hypothesis
-
-        \ \ \ \ % update every regression and compute evidence
-
-        \ \ \ \ [mN{ind}, SN{ind}, XHist{ind}, THist{ind}] = ...
-
-        \ \ \ \ \ \ updateStep(mN{ind}, SN{ind}, sigma, xx(k), tt(k), ...
-
-        \ \ \ \ \ \ XHist{ind}, THist{ind});
-
-        \ \ \ \ mNHist{ind}(:, k) = mN{ind};
-
-        \ \ \ \ PhiMat = Phi{ind}(xx(1:k)); \ \ \ \ % this is the data matrix
-        we consider
-
-        \ \ \ \ A = PhiMat'*PhiMat/(sigma^2) + eye(ind, ind)/(sigmaPrior^2);
-
-        \ \ \ \ % numerator 1 (likelihood)
-
-        \ \ \ \ num1 = prod(normpdf(tt(1:k)', mN{ind}'*PhiMat', sigma));
-
-        \ \ \ \ % numerator 2 (probability of chosen parameter)
-
-        \ \ \ \ num2 = prod(normpdf(mN{ind}, zeros(ind, 1), sigmaPrior));
-
-        \ \ \ \ % denominator (normalization)
-
-        \ \ \ \ denom = sqrt(det(A/(2*pi)));
-
-        \ \ \ \ % calculate evidence
-
-        \ \ \ \ ev(ind, k+1) = num1*num2/denom;
-
-        \ \ end
-
-        \ \ % renormalize evidence so it sums to 1
-
-        \ \ ev(:, k+1) = ev(:, k+1)./(sum(ev(:, k+1)));
-
-        \ \ % contains preferred model at step k
-
-        \ \ pref(k) = find(ev(:, k+1) == max(ev(:, k+1)));
-
-        end
-
-        \;
-
-        % plot of MAP fit for each hypothesis
-
-        figure(2);
-
-        hold off;
-
-        plot(xx, tt, 's', 'MarkerSize', 15);
-
-        hold on;
-
-        for ind=1:maxIndex
-
-        \ \ f = @(x) mN{ind}'*Phi{ind}(x)';
-
-        \ \ 
-
-        \ \ for k=1:N
-
-        \ \ \ \ yy(k) = f(xx(k));
-
-        \ \ \ \ 
-
-        \ \ end
-
-        \ \ plot(xx, yy, 'r');
-
-        end
-
-        \;
-
-        % plot of all p(H_k\|data) during stepwise acquisition of data
-
-        figure(1);
-
-        clf();
-
-        hold on;
-
-        cmap = hsv(6);\ 
-
-        for ind=1:maxIndex
-
-        \ \ plot(1:N, ev(ind, 2:end), 'Color', cmap(ind, :));
-
-        \ \ str{ind} = sprintf('Polynomial order %d', ind-1);
-
-        end
-
-        legend(str);
-      </code>
-    </small>
-  </named-algorithm>
+  <section|Simulation results>
+
+  We now discuss three examples of the results shown by our code.<\footnote>
+    We implemented the algorithms discussed in <name|Python> using
+    <name|numpy> and <name|matplotlib>. The code as well as the source for
+    this document are freely available at
+    <hlink|github.com/mdbenito/ModelSelection|https://github.com/mdbenito/ModelSelection>.
+  </footnote> To this purpose we always use two plots: the top one displays
+  the whole data as red dots and the fitted model functions in lines of
+  various colors. We can already see that some models fit better than others.
+  However, to avoid overfitting we will not always use the best-fitting model
+  but instead rely on Bayesian model selection.
+
+  The bottom plot shows the probability for each of the models given the data
+  up to the time given on the <math|x>-axis. The red dots appear in exactly
+  the order in which they go from left to right. This means that a specific
+  point in the bottom plot corresponds to the whole range of intermediate
+  data up to that position.
+
+  <subsection|Low noise, quadratic growth data>
+
+  Figure <reference|im:fig1> shows an example of a slight quadratic growth.
+  The first 10 data points could be attributed to a constant model and some
+  noise, so Bayesian model selection picks that (the blue curve is on top).
+  After another 10 data points, the constant model cannot hold anymore so
+  there is a fight between order 1 and order 2 polynomials. Order 1
+  polynomials are ``simpler'' but order 2 polynomials fit the slight
+  convexity better, hence the algorithm is indifferent for some time until
+  the convexity becomes too big (around datapoint no. 25) to ignore and model
+  Poly2 wins finally.
+
+  <big-figure|<image|../src/ex1.png|812px|612px||>| <label|im:fig1>Data
+  generated by a order-<math|2>-polynomial.>
+
+  <subsection|High noise, long range oscillating data>
+
+  In the dataset of figure <reference|im:fig2> we see a sinusoidal function
+  generating the data (Trig3). The optical match is best for Trig3 and Trig7
+  although the latter is not preferred by the algorithm as it is too
+  complicated and gets penalized by the Occam factor. In the bottom plot we
+  see the algorithm choosing first a constant model which is very simple and
+  explains the data well enough. As soon as the data shows consistent
+  oscillation with some particular frequency (this is actually even hard to
+  see with the naked eye due to the noise disturbing the result!), the
+  \ algorithm correctly classifies the data as being generated by a lower
+  order trigonometric function.
+
+  <big-figure|<image|../src/ex2.png|812px|612px||>|<label|im:fig2>Trigonometric
+  data generator, high noise and long time-scale>
+
+  \;
+
+  \;
+
+  <big-figure|<image|../src/ex3.png|812px|612px||>|<label|im:fig3>>
+
+  <subsection|Low noise, short range oscillatory data>
+
+  In figure <reference|im:fig3> we see another Trig3 model generating data
+  but with a lot less noise. This leads to another interesting phenomenon:
+  After a short timespan where the constant model is deemed plausible, the
+  linear polynomial Poly1 becomes popular as it explains the linear growth in
+  the first quarter of the sinusoidal function's cycle well. As soon as the
+  oscillation moves back down the quadratic Polynomial Poly2 is better suited
+  for the data, but the next change of direction strengthens the Trig3
+  hypothesis. Due to a particular strange noise event around the 45th data
+  point, Trig3, Poly2 and Poly3 are all seen as approximately similarly
+  likely until the full cycle of the sinusoidal conclusively elects Trig3 as
+  the most probable hypothesis.
 
   <\bibliography|bib|tm-alpha|Model selection.bib>
     <\bib-list|2>
@@ -1244,39 +1125,50 @@
     <associate|font-base-size|11>
     <associate|info-flag|detailed>
     <associate|page-medium|paper>
+    <associate|preamble|false>
   </collection>
 </initial>
 
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.1|6>>
-    <associate|auto-11|<tuple|4.2|7>>
-    <associate|auto-12|<tuple|4.3|7>>
-    <associate|auto-13|<tuple|4.4|7>>
-    <associate|auto-14|<tuple|4.5|8>>
-    <associate|auto-15|<tuple|5|9>>
-    <associate|auto-16|<tuple|6|10>>
-    <associate|auto-17|<tuple|6.1|10>>
-    <associate|auto-18|<tuple|6.2|11>>
-    <associate|auto-19|<tuple|6.3|11>>
+    <associate|auto-10|<tuple|4|6>>
+    <associate|auto-11|<tuple|4.1|6>>
+    <associate|auto-12|<tuple|4.2|7>>
+    <associate|auto-13|<tuple|4.3|7>>
+    <associate|auto-14|<tuple|4.4|7>>
+    <associate|auto-15|<tuple|3|8>>
+    <associate|auto-16|<tuple|4.5|8>>
+    <associate|auto-17|<tuple|5|9>>
+    <associate|auto-18|<tuple|6|11>>
+    <associate|auto-19|<tuple|6.1|11>>
     <associate|auto-2|<tuple|2|2>>
-    <associate|auto-20|<tuple|6.4|12>>
-    <associate|auto-21|<tuple|2|12>>
-    <associate|auto-22|<tuple|3|12>>
-    <associate|auto-23|<tuple|6.5|12>>
-    <associate|auto-24|<tuple|6.5|14>>
+    <associate|auto-20|<tuple|6.2|12>>
+    <associate|auto-21|<tuple|6.3|12>>
+    <associate|auto-22|<tuple|7|13>>
+    <associate|auto-23|<tuple|7.1|13>>
+    <associate|auto-24|<tuple|4|13>>
+    <associate|auto-25|<tuple|7.2|13>>
+    <associate|auto-26|<tuple|5|14>>
+    <associate|auto-27|<tuple|6|14>>
+    <associate|auto-28|<tuple|7.3|15>>
+    <associate|auto-29|<tuple|7.3|15>>
     <associate|auto-3|<tuple|2.1|3>>
-    <associate|auto-4|<tuple|3|4>>
-    <associate|auto-5|<tuple|3.1|4>>
-    <associate|auto-6|<tuple|1|5>>
-    <associate|auto-7|<tuple|3.2|5>>
-    <associate|auto-8|<tuple|3.3|6>>
-    <associate|auto-9|<tuple|4|6>>
-    <associate|bib-bishop_pattern_2006|<tuple|Bis06|14>>
-    <associate|bib-mackay_information_2005|<tuple|Mac05|14>>
+    <associate|auto-30|<tuple|7.3|17>>
+    <associate|auto-31|<tuple|6.7|17>>
+    <associate|auto-32|<tuple|6.8|?>>
+    <associate|auto-4|<tuple|1|4>>
+    <associate|auto-5|<tuple|3|4>>
+    <associate|auto-6|<tuple|3.1|4>>
+    <associate|auto-7|<tuple|2|5>>
+    <associate|auto-8|<tuple|3.2|5>>
+    <associate|auto-9|<tuple|3.3|6>>
+    <associate|bib-bishop_pattern_2006|<tuple|Bis06|15>>
+    <associate|bib-mackay_information_2005|<tuple|Mac05|15>>
+    <associate|eq:batchcoin|<tuple|13|8>>
     <associate|eq:datum-given-model|<tuple|9|5>>
     <associate|eq:independence|<tuple|6|4>>
+    <associate|eq:iterativecoin|<tuple|15|9>>
     <associate|eq:joint-data-params|<tuple|7|5>>
     <associate|eq:laplace-A|<tuple|11|6>>
     <associate|eq:laplace-method|<tuple|10|6>>
@@ -1286,22 +1178,26 @@
     <associate|eq:param-inf|<tuple|2|3>>
     <associate|eq:param-inf-nonrec|<tuple|1|3>>
     <associate|eq:prob-datum-coin|<tuple|12|7>>
-    <associate|eq:recursive|<tuple|13|8>>
-    <associate|eq:update|<tuple|14|8>>
+    <associate|eq:recursive|<tuple|14|8>>
+    <associate|eq:update|<tuple|15|8>>
     <associate|eq:wmap|<tuple|3|3>>
     <associate|eq:wml|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
-    <associate|fig:indep|<tuple|1|5>>
+    <associate|fig:indep|<tuple|2|5>>
     <associate|fig:pgm|<tuple|1|?>>
+    <associate|fig:priorSucc|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|4>>
-    <associate|footnote-3|<tuple|3|?>>
+    <associate|footnote-2|<tuple|2|3>>
+    <associate|footnote-3|<tuple|3|13>>
     <associate|footnote-4|<tuple|4|?>>
     <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|4>>
-    <associate|footnr-3|<tuple|3|?>>
+    <associate|footnr-2|<tuple|2|3>>
+    <associate|footnr-3|<tuple|3|13>>
     <associate|footnr-4|<tuple|4|?>>
     <associate|footnr-5|<tuple|5|?>>
+    <associate|im:fig1|<tuple|4|13>>
+    <associate|im:fig2|<tuple|5|14>>
+    <associate|im:fig3|<tuple|6|14>>
     <associate|sec:introduction|<tuple|1|1>>
     <associate|sec:laplace-method|<tuple|3.3|6>>
     <associate|sec:model-selection|<tuple|3|4>>
@@ -1324,22 +1220,25 @@
       bishop_pattern_2006
     </associate>
     <\associate|figure>
-      <tuple|normal|Bayesian net for i.i.d. data|<pageref|auto-6>>
+      <tuple|normal|Bayesian updating: posteriors become new
+      priors|<pageref|auto-4>>
 
-      <tuple|normal|Simulation of model selection for the dataset in figure
-      XXX with low noise <with|mode|<quote|math>|\<sigma\>>. Comparison
-      between models <with|mode|<quote|math>|\<cal-H\><rsub|0>,\<ldots\>,\<cal-H\><rsub|4>>.
-      Observe that finally the ``correct'' hypothesis
-      <with|mode|<quote|math>|\<cal-H\><rsub|2>> is
-      chosen.|<pageref|auto-21>>
+      <tuple|normal|Bayesian net for i.i.d. data|<pageref|auto-7>>
 
-      <tuple|normal|Simulation of model selection for the dataset in figure
-      XXX with high noise <with|mode|<quote|math>|\<sigma\>>. Comparison
-      between models <with|mode|<quote|math>|\<cal-H\><rsub|0>,\<ldots\>,\<cal-H\><rsub|4>>.
-      We can see that due to the high noise, the data which was originally
-      generated by a quadratic model <with|mode|<quote|math>|\<cal-H\><rsub|2>>,
-      can also be fitted well with a constant function in model
-      <with|mode|<quote|math>|\<cal-H\><rsub|0>>.|<pageref|auto-22>>
+      <tuple|normal|Model selection for a bent coin
+      (<with|mode|<quote|math>|p<around*|(|<with|mode|<quote|text>|``Heads''>|)>=0.55>)
+      for 1000 tosses. Initially, the slight imbalance between the number of
+      heads and tails can be explained perfectly by a fair coin, so this
+      hypothesis is strongly supported. After <with|mode|<quote|math>|600>
+      tosses, the probability that the coin is in fact bent gets more and
+      more support.|<pageref|auto-15>>
+
+      <tuple|normal| Data generated by a order-<with|mode|<quote|math>|2>-polynomial.|<pageref|auto-24>>
+
+      <tuple|normal|Trigonometric data generator, high noise and long
+      time-scale|<pageref|auto-26>>
+
+      <tuple|normal||<pageref|auto-27>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1.<space|2spc>Introduction:
@@ -1357,77 +1256,85 @@
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3.<space|2spc>Model
       selection> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-4><vspace|0.5fn>
+      <no-break><pageref|auto-5><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|3.1.<space|2spc>Why (naive) iterative model
       selection does not work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>>
+      <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|3.2.<space|2spc>Correct model selection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
+      <no-break><pageref|auto-8>>
 
       <with|par-left|<quote|1tab>|3.3.<space|2spc>Laplace's method
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <no-break><pageref|auto-9>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4.<space|2spc>An
       easy example: is this coin bent?> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9><vspace|0.5fn>
+      <no-break><pageref|auto-10><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|4.1.<space|2spc>Model
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
+      <no-break><pageref|auto-11>>
 
       <with|par-left|<quote|1tab>|4.2.<space|2spc>Parameter inference
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <no-break><pageref|auto-12>>
 
       <with|par-left|<quote|1tab>|4.3.<space|2spc>Iterative model selection.
       Why it cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
-
-      <with|par-left|<quote|1tab>|4.4.<space|2spc>Correct model selection:
-      brute force approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
 
-      <with|par-left|<quote|1tab>|4.5.<space|2spc>Quasi-iterative model
-      selection <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|4.4.<space|2spc>Model selection: ``batch''
+      approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14>>
+
+      <with|par-left|<quote|1tab>|4.5.<space|2spc>Model selection:
+      Quasi-iterative approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-16>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Influence
       of the race on the imposition of the death penalty>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15><vspace|0.5fn>
+      <no-break><pageref|auto-17><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>An
-      example with polynomial basis functions>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>Bayesian
+      Model Selection for Linear Regression>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16><vspace|0.5fn>
+      <no-break><pageref|auto-18><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|6.1.<space|2spc>Setting
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17>>
+      <no-break><pageref|auto-19>>
 
       <with|par-left|<quote|1tab>|6.2.<space|2spc>Iterative parameter
       estimation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18>>
+      <no-break><pageref|auto-20>>
 
       <with|par-left|<quote|1tab>|6.3.<space|2spc>Model selection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19>>
+      <no-break><pageref|auto-21>>
 
-      <with|par-left|<quote|1tab>|6.4.<space|2spc>Simulation results
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|7.<space|2spc>Simulation
+      results> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-22><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|6.5.<space|2spc>Implementation
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|7.1.<space|2spc>Low noise, quadratic growth
+      data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-23>>
+
+      <with|par-left|<quote|1tab>|7.2.<space|2spc>High noise, long range
+      oscillating data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-25>>
+
+      <with|par-left|<quote|1tab>|7.3.<space|2spc>Low noise, short range
+      oscillatory data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-28>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-24><vspace|0.5fn>
+      <no-break><pageref|auto-29><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
