@@ -702,8 +702,9 @@
     <tformat|<table|<row|<cell|<frac|2<rsup|N>|<around*|(|N+1|)>*<matrix|<tformat|<table|<row|<cell|N>>|<row|<cell|h<around*|(|\<b-t\>|)>>>>>>>>|<cell|\<simeq\>>|<cell|<frac|2<rsup|N>*<around*|(|N/2|)>!<rsup|2>|<around*|(|N+1|)>!>>>|<row|<cell|>|<cell|\<simeq\>>|<cell|<frac|2<rsup|N>*<around*|(|<sqrt|2*\<mathpi\>*N/2>*N<rsup|N>/<around*|(|2*\<mathe\>|)><rsup|N>|)><rsup|2>|<sqrt|2*\<mathpi\>*<around*|(|N+1|)>*><around*|[|<around*|(|N+1|)>/\<mathe\>|]><rsup|N+1>>>>|<row|<cell|>|<cell|=>|<cell|<frac|2<rsup|N>*\<mathpi\>*N<rsup|N+1>*\<mathe\><rsup|N+1>|<around*|(|2*\<mathe\>|)><rsup|2N>*<sqrt|2*\<mathpi\>*<around*|(|N+1|)>>*<around*|(|N+1|)><rsup|N+1>>>>|<row|<cell|>|<cell|=>|<cell|<frac|<around*|(|2*\<mathe\>|)><rsup|-N+1>|2>*<frac|<sqrt|\<pi\>>|<sqrt|2*<around*|(|N+1|)>>>*<around*|(|<frac|N|N+1>|)><rsup|N+1>>>|<row|<cell|>|<cell|\<simeq\>>|<cell|O<around*|(|<frac|1|<sqrt|N>>|)>,>>>>
   </eqnarray*>
 
-  so the hypothesis <math|\<cal-H\><rsub|0>> becomes probable exponentially
-  fast if there is no specific evidence for <math|\<cal-H\><rsub|1>>.
+  so the hypothesis <math|\<cal-H\><rsub|0>> becomes probable with speed
+  <math|N<rsup|-1/2>> if there is no specific evidence for
+  <math|\<cal-H\><rsub|1>>.
 
   <big-figure|<image|coins1000dot55.eps|0.8par|||>|Model selection for a bent
   coin (<math|p<around*|(|<text|``Heads''>|)>=0.55>) for 1000 tosses.
