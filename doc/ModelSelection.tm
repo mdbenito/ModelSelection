@@ -1,4 +1,4 @@
-<TeXmacs|1.99.2>
+<TeXmacs|1.99.3>
 
 <style|amsart>
 
@@ -16,7 +16,7 @@
 
     <assign|subsection|<macro|title|<assign|subsection-numbered|<compound|subsection-display-numbers>><assign|subsection-prefix|<macro|<compound|the-subsection>.>><compound|next-subsection><compound|subsection-clean><compound|subsection-header|<arg|title>><compound|subsection-toc|<arg|title>><no-page-break><vspace*|1.5fn><if|<value|subsection-numbered>|<compound|subsection-numbered-title|<arg|title>>|<compound|subsection-title|<arg|title>>>>>
 
-    <assign|section|<macro|title|<assign|section-numbered|<compound|section-display-numbers>><assign|section-prefix|<macro|<compound|the-section>.>><compound|next-section><compound|section-clean><compound|section-header|<arg|title>><compound|section-toc|<arg|title>><no-page-break><vspace*|2fn><large|<if|<value|section-numbered>|<compound|section-numbered-title|<arg|title>>|<compound|section-title|<arg|title>>>>>>
+    <assign|section|<macro|title|<assign|section-numbered|<compound|section-display-numbers>><assign|section-prefix|<macro|<compound|the-section>.>><compound|next-section><compound|section-clean><compound|section-header|<arg|title>><compound|section-toc|<arg|title>><no-page-break><vspace*|2fn><with|font|concrete|font-family|ss|<large|<if|<value|section-numbered>|<compound|section-numbered-title|<arg|title>>|<compound|section-title|<arg|title>>>>>>>
 
     <assign|table-of-contents|<\macro|aux|body>
       <tabular|<tformat|<twith|table-width|1par>|<twith|table-hmode|exact>|<cwith|1|1|1|1|cell-block|yes>|<cwith|1|1|1|1|cell-hyphen|t>|<cwith|1|1|1|1|cell-lsep|4em>|<cwith|1|1|1|1|cell-rsep|4em>|<table|<row|<\cell>
@@ -33,10 +33,10 @@
       Universität Augsburg
     </author-affiliation>|<author-email|m.debenito.d@gmail.com>>
   </doc-author>|<\doc-author>
-    <author-data|<author-name|Philipp Düren>|<\author-affiliation>
+    <author-data|<author-name|Philipp Wacker>|<\author-affiliation>
       Universität Augsburg
-    </author-affiliation>|<author-email|philipp.dueren@gmail.com>>
-  </doc-author>|<doc-date|Last update: <date|>>>
+    </author-affiliation>|<author-email|phkwacker@gmail.com>>
+  </doc-author>>
 
   <abstract-data|<abstract|In this note we introduce linear regression with
   basis functions in order to apply Bayesian model selection. The goal is to
@@ -91,7 +91,7 @@
     cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-13>>
 
-    <with|par-left|1tab|4.4.<space|2spc>Model selection: ``batch'' approach
+    <with|par-left|1tab|4.4.<space|2spc>Model selection: \Pbatch\Q approach
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-14>>
 
@@ -146,7 +146,8 @@
   regression><label|sec:introduction>
 
   <\footnote>
-    All this is explained in <cite-detail|bishop_pattern_2006|Chapter 3>.
+    For a thorough treatment we refer to <cite-detail|bishop_pattern_2006|Chapter
+    3>.
   </footnote>Assume we have some collection of points
   <math|<around*|{|<around*|(|x<rsub|n>,t<rsub|n>|)>\<in\>\<bbb-R\><rsup|2><mid|\|>n=1,\<ldots\>,N|}>>.
   The <math|\<b-x\>=<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>|)>> are called
@@ -475,7 +476,7 @@
   </equation>
 
   We can see in equation <eqref|eq:modelselec> that the a posteriori
-  probability for <math|\<cal-H\><rsub|k>> only ``improves'' if the data
+  probability for <math|\<cal-H\><rsub|k>> only \Pimproves\Q if the data
   <math|\<b-t\>> are better explained by the specific hypothesis
   <math|\<cal-H\><rsub|k>> than they would be by just using the prior, i.e.
   if the ratio <math|p<around*|(|\<b-t\>\|\<cal-H\><rsub|k>|)>/p<around*|(|\<b-t\>|)>>
@@ -517,7 +518,7 @@
   <eqref|eq:datum-given-model> and the denominator in the update term of
   parameter estimation in equation (<reference|eq:param-inf>). You can read
   the details in <cite|mackay_information_2005> (especially the great section
-  about the interpretation of the ``Occam factor''!), we will only collect
+  about the interpretation of the \POccam factor\Q!), we will only collect
   the results:
 
   <\equation>
@@ -537,7 +538,7 @@
   <section|An easy example: is this coin bent?>
 
   Consider a coin whose fairness is in doubt. We would like to infer the
-  probability of it being fraudulent as well as its ``bentness''.
+  probability of it being fraudulent as well as its \Pbentness\Q.
 
   <subsection|Model>
 
@@ -650,7 +651,7 @@
   for the possible values of <math|r> which in turn change the probability
   distribution of <math|t<rprime|'>>.
 
-  <subsection|Model selection: ``batch'' approach>
+  <subsection|Model selection: \Pbatch\Q approach>
 
   The way to select the correct model is
 
@@ -827,9 +828,9 @@
 
   <\eqnarray*>
     <tformat|<table|<row|<cell|ln p<around*|(|\<b-t\>\|\<tau\>,\<cal-H\><rsub|00>|)>>|<cell|=>|<cell|<around*|(|19+11+6|)>*ln<around*|(|\<tau\>|)>+<around*|(|132+9+52+97|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|ln
-    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<cal-H\><rsub|10>|)>>|<cell|=>|<cell|<around*|(|19+11|)>*ln<around*|(|\<tau\>|)>+<around*|(|132+52|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|+>|<cell|6*ln<around*|(|\<chi\>|)>+<around*|(|9+97|)>*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|ln
-    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<cal-H\><rsub|01>|)>>|<cell|=>|<cell|19*ln<around*|(|\<tau\>|)>+<around*|(|132+9|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|+>|<cell|<around*|(|11+6|)>*ln<around*|(|\<chi\>|)>+<around*|(|52+97|)>*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|ln
-    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<rho\>,\<sigma\>,\<cal-H\><rsub|11>|)>>|<cell|=>|<cell|19*ln<around*|(|\<tau\>|)>+132*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|+>|<cell|0*ln<around*|(|\<chi\>|)>+9*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|>|<cell|+>|<cell|11*ln<around*|(|\<rho\>|)>+52*ln<around*|(|1-\<rho\>|)>>>|<row|<cell|>|<cell|+>|<cell|6*ln<around*|(|\<sigma\>|)>+97*ln<around*|(|1-\<sigma\>|)>.>>>>
+    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<cal-H\><rsub|10>|)>>|<cell|=>|<cell|<around*|(|19+11|)>*ln<around*|(|\<tau\>|)>+<around*|(|132+52|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|>|<cell|+6*ln<around*|(|\<chi\>|)>+<around*|(|9+97|)>*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|ln
+    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<cal-H\><rsub|01>|)>>|<cell|=>|<cell|19*ln<around*|(|\<tau\>|)>+<around*|(|132+9|)>*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|>|<cell|+<around*|(|11+6|)>*ln<around*|(|\<chi\>|)>+<around*|(|52+97|)>*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|ln
+    p<around*|(|\<b-t\>\|\<tau\>,\<chi\>,\<rho\>,\<sigma\>,\<cal-H\><rsub|11>|)>>|<cell|=>|<cell|19*ln<around*|(|\<tau\>|)>+132*ln<around*|(|1-\<tau\>|)>>>|<row|<cell|>|<cell|>|<cell|+0*ln<around*|(|\<chi\>|)>+9*ln<around*|(|1-\<chi\>|)>>>|<row|<cell|>|<cell|>|<cell|+11*ln<around*|(|\<rho\>|)>+52*ln<around*|(|1-\<rho\>|)>>>|<row|<cell|>|<cell|>|<cell|+6*ln<around*|(|\<sigma\>|)>+97*ln<around*|(|1-\<sigma\>|)>.>>>>
   </eqnarray*>
 
   As our priors are uniform, the MAP parameters are the ML parameters which
@@ -873,7 +874,7 @@
     <tformat|<table|<row|<cell|A<rsub|00>>|<cell|=>|<cell|<frac|36|\<tau\><rsup|2>>+<frac|290|<around*|(|1-\<tau\>|)><rsup|2>>>>|<row|<cell|A<rsub|10>>|<cell|=>|<cell|diag<around*|(|<frac|30|\<tau\><rsup|2>>+<frac|184|<around*|(|1-\<tau\>|)><rsup|2>>,<frac|6|\<chi\><rsup|2>>+<frac|106|<around*|(|1-\<chi\>|)><rsup|2>>|)>>>|<row|<cell|A<rsub|01>>|<cell|=>|<cell|diag<around*|(|<frac|19|\<tau\><rsup|2>>+<frac|141|<around*|(|1-\<tau\>|)><rsup|2>>,<frac|17|\<chi\><rsup|2>>+<frac|149|<around*|(|1-\<chi\>|)><rsup|2>>|)>>>|<row|<cell|A<rsub|11>>|<cell|=>|<cell|diag<around*|(|<frac|19|\<tau\><rsup|2>>+<frac|132|<around*|(|1-\<tau\><rsup|2>|)>>,<frac|9|<around*|(|1-<rsup|>\<chi\>|)><rsup|2>>,<frac|11|\<rho\><rsup|2>>+<frac|52|<around*|(|1-\<rho\>|)><rsup|2>>,<frac|6|\<sigma\><rsup|2>>+<frac|97|<around*|(|1-\<sigma\>|)><rsup|2>>|)>.>>>>
   </eqnarray*>
 
-  Then the evidence for each model is (read subscript ``MAP'' for each
+  Then the evidence for each model is (read subscript \PMAP\Q for each
   parameter)
 
   <\itemize>
@@ -912,7 +913,7 @@
     \<cal-H\><rsub|k><rsup|T>:<space|1em>t<rsub|n>=<big|sum><rsub|j=1><rsup|k>cos<around*|(|j*\<pi\>*x<rsub|n>|)>+sin<around*|(|j*\<pi\>*x<rsub|n>|)>+\<varepsilon\><rsub|n>,<space|1em>n=1,\<ldots\>,N,k=1,\<ldots\>,K
   </equation*>
 
-  For the sake of concretization, we will state everything for the example of
+  For the sake of concreteness, we will state everything for the example of
   polynomial functions, but everything can be generalized to generic function
   spaces.
 
@@ -1061,7 +1062,7 @@
   noise, so Bayesian model selection picks that (the blue curve is on top).
   After another 10 data points, the constant model cannot hold anymore so
   there is a fight between order 1 and order 2 polynomials. Order 1
-  polynomials are ``simpler'' but order 2 polynomials fit the slight
+  polynomials are \Psimpler\Q but order 2 polynomials fit the slight
   convexity better, hence the algorithm is indifferent for some time until
   the convexity becomes too big (around datapoint no. 25) to ignore and model
   Poly2 wins finally.
@@ -1102,23 +1103,27 @@
   <big-figure|<image|ex3.png|1par|||>|<label|im:fig3>Trigonometric data
   generator, low noise and long time-scale>
 
-  <bibliography|bib|tm-alpha|Model selection.bib|<\bib-list|2>
-    <bibitem*|Bis06><label|bib-bishop_pattern_2006>Christopher
-    M.<nbsp>Bishop.<newblock> <with|font-shape|italic|Pattern recognition and
-    machine learning>.<newblock> Information science and statistics.
-    Springer, 1<localize| edition>, aug 2006.<newblock>
+  <\bibliography|bib|tm-alpha|Model selection.bib>
+    <\bib-list|2>
+      <bibitem*|Bis06><label|bib-bishop_pattern_2006>Christopher<nbsp>M.<nbsp>Bishop.<newblock>
+      <with|font-shape|italic|Pattern recognition and machine
+      learning>.<newblock> Information science and statistics. Springer,
+      1<localize| edition>, aug 2006.<newblock>
 
-    <bibitem*|Mac05><label|bib-mackay_information_2005>David
-    J.C.<nbsp>MacKay.<newblock> <with|font-shape|italic|Information theory,
-    inference, and learning algorithms>.<newblock> Cambridge University
-    Press, Version 7.2 (4th printing)<localize| edition>, mar 2005.<newblock>
-  </bib-list>>
+      <bibitem*|Mac05><label|bib-mackay_information_2005>David<nbsp>J.C.<nbsp>MacKay.<newblock>
+      <with|font-shape|italic|Information theory, inference, and learning
+      algorithms>.<newblock> Cambridge University Press, Version 7.2 (4th
+      printing)<localize| edition>, mar 2005.<newblock>
+    </bib-list>
+  </bibliography>
 </body>
 
 <\initial>
   <\collection>
-    <associate|font-base-size|11>
+    <associate|font|stix>
+    <associate|font-base-size|12>
     <associate|info-flag|detailed>
+    <associate|math-font|math-stix>
     <associate|page-medium|paper>
     <associate|preamble|false>
   </collection>
@@ -1127,79 +1132,79 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4|6>>
-    <associate|auto-11|<tuple|4.1|6>>
-    <associate|auto-12|<tuple|4.2|7>>
-    <associate|auto-13|<tuple|4.3|7>>
-    <associate|auto-14|<tuple|4.4|7>>
-    <associate|auto-15|<tuple|3|8>>
-    <associate|auto-16|<tuple|4.5|9>>
-    <associate|auto-17|<tuple|5|9>>
-    <associate|auto-18|<tuple|6|12>>
-    <associate|auto-19|<tuple|6.1|12>>
-    <associate|auto-2|<tuple|2|2>>
-    <associate|auto-20|<tuple|6.2|12>>
-    <associate|auto-21|<tuple|6.3|13>>
-    <associate|auto-22|<tuple|7|14>>
-    <associate|auto-23|<tuple|7.1|14>>
-    <associate|auto-24|<tuple|4|14>>
-    <associate|auto-25|<tuple|7.2|15>>
-    <associate|auto-26|<tuple|5|15>>
-    <associate|auto-27|<tuple|7.3|15>>
-    <associate|auto-28|<tuple|6|16>>
-    <associate|auto-29|<tuple|6|16>>
-    <associate|auto-3|<tuple|2.1|3>>
+    <associate|auto-10|<tuple|4|7>>
+    <associate|auto-11|<tuple|4.1|7>>
+    <associate|auto-12|<tuple|4.2|8>>
+    <associate|auto-13|<tuple|4.3|8>>
+    <associate|auto-14|<tuple|4.4|9>>
+    <associate|auto-15|<tuple|3|10>>
+    <associate|auto-16|<tuple|4.5|10>>
+    <associate|auto-17|<tuple|5|11>>
+    <associate|auto-18|<tuple|6|13>>
+    <associate|auto-19|<tuple|6.1|13>>
+    <associate|auto-2|<tuple|2|3>>
+    <associate|auto-20|<tuple|6.2|14>>
+    <associate|auto-21|<tuple|6.3|14>>
+    <associate|auto-22|<tuple|7|15>>
+    <associate|auto-23|<tuple|7.1|15>>
+    <associate|auto-24|<tuple|4|15>>
+    <associate|auto-25|<tuple|7.2|16>>
+    <associate|auto-26|<tuple|5|16>>
+    <associate|auto-27|<tuple|7.3|16>>
+    <associate|auto-28|<tuple|6|17>>
+    <associate|auto-29|<tuple|6|17>>
+    <associate|auto-3|<tuple|2.1|4>>
     <associate|auto-30|<tuple|7.3|17>>
     <associate|auto-31|<tuple|6.7|17>>
     <associate|auto-32|<tuple|6.8|?>>
     <associate|auto-4|<tuple|1|4>>
-    <associate|auto-5|<tuple|3|4>>
-    <associate|auto-6|<tuple|3.1|4>>
-    <associate|auto-7|<tuple|2|5>>
-    <associate|auto-8|<tuple|3.2|5>>
-    <associate|auto-9|<tuple|3.3|6>>
-    <associate|bib-bishop_pattern_2006|<tuple|Bis06|16>>
-    <associate|bib-mackay_information_2005|<tuple|Mac05|16>>
-    <associate|eq:batchcoin|<tuple|13|8>>
-    <associate|eq:datum-given-model|<tuple|9|5>>
-    <associate|eq:independence|<tuple|6|4>>
-    <associate|eq:iterativecoin|<tuple|15|9>>
-    <associate|eq:joint-data-params|<tuple|7|5>>
-    <associate|eq:laplace-A|<tuple|11|6>>
-    <associate|eq:laplace-method|<tuple|10|6>>
-    <associate|eq:model-quotient|<tuple|4|4>>
-    <associate|eq:model-update|<tuple|5|4>>
-    <associate|eq:modelselec|<tuple|8|5>>
+    <associate|auto-5|<tuple|3|5>>
+    <associate|auto-6|<tuple|3.1|5>>
+    <associate|auto-7|<tuple|2|6>>
+    <associate|auto-8|<tuple|3.2|6>>
+    <associate|auto-9|<tuple|3.3|7>>
+    <associate|bib-bishop_pattern_2006|<tuple|Bis06|17>>
+    <associate|bib-mackay_information_2005|<tuple|Mac05|17>>
+    <associate|eq:batchcoin|<tuple|13|9>>
+    <associate|eq:datum-given-model|<tuple|9|6>>
+    <associate|eq:independence|<tuple|6|5>>
+    <associate|eq:iterativecoin|<tuple|15|11>>
+    <associate|eq:joint-data-params|<tuple|7|6>>
+    <associate|eq:laplace-A|<tuple|11|7>>
+    <associate|eq:laplace-method|<tuple|10|7>>
+    <associate|eq:model-quotient|<tuple|4|5>>
+    <associate|eq:model-update|<tuple|5|5>>
+    <associate|eq:modelselec|<tuple|8|6>>
     <associate|eq:param-inf|<tuple|2|3>>
     <associate|eq:param-inf-nonrec|<tuple|1|3>>
-    <associate|eq:prob-datum-coin|<tuple|12|7>>
-    <associate|eq:recursive|<tuple|14|9>>
-    <associate|eq:update|<tuple|15|9>>
-    <associate|eq:wmap|<tuple|3|3>>
+    <associate|eq:prob-datum-coin|<tuple|12|8>>
+    <associate|eq:recursive|<tuple|14|10>>
+    <associate|eq:update|<tuple|15|10>>
+    <associate|eq:wmap|<tuple|3|4>>
     <associate|eq:wml|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
-    <associate|fig:indep|<tuple|2|5>>
+    <associate|fig:indep|<tuple|2|6>>
     <associate|fig:pgm|<tuple|1|?>>
     <associate|fig:priorSucc|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|14>>
+    <associate|footnote-2|<tuple|2|4>>
+    <associate|footnote-3|<tuple|3|15>>
     <associate|footnote-4|<tuple|4|?>>
     <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|14>>
+    <associate|footnr-2|<tuple|2|4>>
+    <associate|footnr-3|<tuple|3|15>>
     <associate|footnr-4|<tuple|4|?>>
     <associate|footnr-5|<tuple|5|?>>
-    <associate|im:fig1|<tuple|4|14>>
-    <associate|im:fig2|<tuple|5|15>>
-    <associate|im:fig3|<tuple|6|16>>
+    <associate|im:fig1|<tuple|4|15>>
+    <associate|im:fig2|<tuple|5|16>>
+    <associate|im:fig3|<tuple|6|17>>
     <associate|sec:introduction|<tuple|1|1>>
-    <associate|sec:laplace-method|<tuple|3.3|6>>
-    <associate|sec:model-selection|<tuple|3|4>>
-    <associate|sec:modelselec|<tuple|4.3|7>>
-    <associate|sec:parameter-inference|<tuple|2|2>>
+    <associate|sec:laplace-method|<tuple|3.3|7>>
+    <associate|sec:model-selection|<tuple|3|5>>
+    <associate|sec:modelselec|<tuple|4.3|8>>
+    <associate|sec:parameter-inference|<tuple|2|3>>
     <associate|sec:quasi-iterative|<tuple|3.2|?>>
-    <associate|sec:why-not|<tuple|3.1|4>>
+    <associate|sec:why-not|<tuple|3.1|5>>
   </collection>
 </references>
 
@@ -1283,7 +1288,7 @@
       Why it cannot work <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
 
-      <with|par-left|<quote|1tab>|4.4.<space|2spc>Model selection: ``batch''
+      <with|par-left|<quote|1tab>|4.4.<space|2spc>Model selection: \Pbatch\Q
       approach <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14>>
 
