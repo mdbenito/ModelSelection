@@ -21,7 +21,7 @@ def getMAPFitPlot(inputVec, hypotheses, wmaps, deltaH):
             outs[i] = np.dot(np.transpose(temp), hh)
 
         pl.plot(xValues, outs, label=str(h))
-    pl.legend(title='MAP fit')
+    pl.legend(title='MAP fit', loc=2)
     return pl.gcf()
 
 
@@ -40,13 +40,13 @@ def updateMAPFitPlot(ax, inputVec, hypotheses, wmaps, deltaH):
             outs[i] = np.dot(np.transpose(temp), hh)
 
         ax.plot(xValues, outs, label=str(h))
-    ax.legend(title='MAP fit')
+    #ax.legend(title='MAP fit', loc = 2)
 
 def getProbabilitiesPlot(regression):
     x = range(len(regression.probHyp[0]))
     for i, prob in enumerate(regression.probHyp):
         pl.plot(x, prob, label=str(regression.hypotheses[i]))
-    pl.legend(title='p(H_k)')
+    pl.legend(title='p(H_k)', loc=2)
     return pl.gcf()
 
 
