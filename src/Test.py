@@ -189,20 +189,20 @@ def generate_noise_and_fit(regression, generator, xmin=0.0, xmax=1.0, num=10):
 ##############################################################################
 
 hc = HypothesisCollection()
-hc.append(PolynomialHypothesis(M=2, variance=3))
-hc.append(PolynomialHypothesis(M=3, variance=3))
-hc.append(PolynomialHypothesis(M=4, variance=3))
-hc.append(TrigonometricHypothesis(halfM=6, variance=2))
-hc.append(TrigonometricHypothesis(halfM=10, variance=2))
+hc.append(PolynomialHypothesis(M=2, variance=1000))
+hc.append(PolynomialHypothesis(M=3, variance=1000))
+hc.append(PolynomialHypothesis(M=4, variance=1000))
+hc.append(TrigonometricHypothesis(halfM=6, variance=1000))
+hc.append(TrigonometricHypothesis(halfM=10, variance=1000))
 
-obsNoiseSigma = 3 #try 0.2 for Polynomials
+obsNoiseSigma = 1 #try 0.2 for Polynomials
 lr = LinearRegression(hc, obsNoiseSigma)
-#select_points_and_fit_interactive(lr)
+select_points_and_fit_interactive(lr)
 #select_points_and_fit(lr, num=2)
 #generate_noise_and_fit(lr, generator=PolynomialHypothesis(M=3, variance=obsNoiseSigma**2), xmin=0, xmax=3, num=50)
 #generate_noise_and_fit_iterative(lr, generator=PolynomialHypothesis(M=4, variance=0.2), xmin=0, xmax=4, num=30)
 
-generate_noise_and_fit_iterative(lr, generator=TrigonometricHypothesis(halfM=6, variance=1), xmin=0, xmax=3*math.pi, num=30)
+#generate_noise_and_fit_iterative(lr, generator=TrigonometricHypothesis(halfM=6, variance=1), xmin=0, xmax=3*math.pi, num=30)
 input()
 
 """
