@@ -1,6 +1,6 @@
 from datetime import datetime
 from ModelSelection import LinearRegression
-from Hypotheses import Hypothesis
+from Hypotheses import *
 from Plots import *
 import matplotlib.pyplot as pl
 
