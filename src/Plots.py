@@ -42,7 +42,6 @@ def updateMAPFitPlot(ax, inputVec, hypotheses, wmaps, deltaH):
         ax.plot(xValues, outs, label=str(h))
     ax.legend(title='MAP fit')
 
-
 def getProbabilitiesPlot(regression):
     x = range(len(regression.probHyp[0]))
     for i, prob in enumerate(regression.probHyp):
@@ -55,4 +54,4 @@ def updateProbabilitiesPlot(ax, regression):
     x = range(len(regression.probHyp[0]))
     for i, prob in enumerate(regression.probHyp):
         ax.plot(x, prob, label=str(regression.hypotheses[i]))
-    ax.legend(title='p(H_k)')
+    ax.legend(title='p(H_k)', loc=2)

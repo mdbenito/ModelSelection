@@ -52,6 +52,46 @@ def select_points_and_fit(regression, num=10):
     pl.draw()
     pl.show(block=True)
 
+def select_points_and_fit_interactive(regression):
+    """ Opens an interactive window to draw points
+
+    :param num: expected number of points
+    :type regression: LinearRegression
+    """
+    assert isinstance(regression, LinearRegression)
+
+    fig, (ax1, ax2) = pl.subplots(2)
+    ax1.set_xlim((0, 3))  # FIXME!!! ranges in (-1,1) won't work???
+    ax1.set_ylim((-4, 4))
+    pid = []
+    for n in range(1, 40):
+        pl.ion()
+        points = fig.ginput(n=1, timeout=0)
+        p = points[0]
+        if len(points) == 0:
+            return
+        pl.ioff()
+
+        dt = datetime.now()
+        # print ("Updating with (%f, %f)" % (p[0], p[1]))
+        regression.update(p[0], p[1])
+        dt = datetime.now() - dt
+        msec = (dt.days * 24 * 3600 + dt.seconds) * 1000 + dt.microseconds / 1000.0
+        print "Update completed in %d milliseconds." % msec
+
+        wmap = [param.mean for param in regression.parameter]
+        ax1.cla()
+        ax1.set_xlim((0, 3))  # FIXME!!! ranges in (-1,1) won't work???
+        ax1.set_ylim((-4, 4))
+        updateMAPFitPlot(ax1, regression.XHist, regression.hypotheses, wmap, 0.005)
+        ax1.plot(regression.XHist, regression.THist, 'ro')
+        pl.draw()
+        ax2.cla()
+        updateProbabilitiesPlot(ax2, regression)
+        pl.draw()
+        continue
+        pl.show()
+
 
 def generate_noise_and_fit(regression, generator, xmin=0.0, xmax=1.0, num=10):
     """
@@ -97,17 +137,19 @@ def generate_noise_and_fit(regression, generator, xmin=0.0, xmax=1.0, num=10):
 ##############################################################################
 # FIXME: cannot use multiple windows / figures
 ##############################################################################
-"""
+
 hc = HypothesisCollection()
 hc.append(PolynomialHypothesis(M=2, variance=3))
+hc.append(PolynomialHypothesis(M=3, variance=3))
 hc.append(PolynomialHypothesis(M=4, variance=3))
-hc.append(TrigonometricHypothesis(halfM=2, variance=2))
+hc.append(TrigonometricHypothesis(halfM=6, variance=2))
 hc.append(TrigonometricHypothesis(halfM=10, variance=2))
 
-lr = LinearRegression(hc, 0.5)
+lr = LinearRegression(hc, 2)
+select_points_and_fit_interactive(lr)
 #select_points_and_fit(lr, num=2)
-generate_noise_and_fit(lr, generator=PolynomialHypothesis(M=6, variance=5), xmin=0, xmax=2, num=50)
-"""
+#generate_noise_and_fit(lr, generator=PolynomialHypothesis(M=6, variance=5), xmin=0, xmax=2, num=50)
+
 
 """
 lr.update(0, 1.5)
