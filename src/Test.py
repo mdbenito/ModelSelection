@@ -195,7 +195,7 @@ hc.append(PolynomialHypothesis(M=4, variance=1000))
 hc.append(TrigonometricHypothesis(halfM=6, variance=1000))
 hc.append(TrigonometricHypothesis(halfM=10, variance=1000))
 
-obsNoiseSigma = 1 #try 0.2 for Polynomials
+obsNoiseSigma = 0.2 #try 0.2 for Polynomials
 lr = LinearRegression(hc, obsNoiseSigma)
 select_points_and_fit_interactive(lr)
 #select_points_and_fit(lr, num=2)

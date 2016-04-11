@@ -199,9 +199,9 @@ obsNoiseSigma = 0.2 #try 0.2 for Polynomials
 lr = LinearRegression(hc, obsNoiseSigma)
 #select_points_and_fit_interactive(lr)
 #select_points_and_fit(lr, num=2)
-#generate_noise_and_fit(lr, generator=PolynomialHypothesis(M=3, variance=1), xmin=0, xmax=3, num=50)
+generate_noise_and_fit(lr, generator=PolynomialHypothesis(M=3, variance=1), xmin=0, xmax=3, num=50)
 #generate_noise_and_fit_iterative(lr, generator=PolynomialHypothesis(M=4, variance=0.2), xmin=0, xmax=4, num=30)
-generate_noise_and_fit_iterative(lr, generator=PolynomialHypothesis(M=3, variance=1), xmin=0, xmax=3, num=50)
+
 #generate_noise_and_fit_iterative(lr, generator=TrigonometricHypothesis(halfM=6, variance=1), xmin=0, xmax=3*math.pi, num=30)
 input()
 

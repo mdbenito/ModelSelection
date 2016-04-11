@@ -138,7 +138,7 @@ def generate_noise_and_fit_iterative(regression, generator, xmin=0.0, xmax=3.0, 
         pl.draw()
         updateProbabilitiesPlot(ax2, regression)
         pl.draw()
-        time.sleep(.5)
+        time.sleep(.3)
 
 
 def generate_noise_and_fit(regression, generator, xmin=0.0, xmax=1.0, num=10):
@@ -189,11 +189,11 @@ def generate_noise_and_fit(regression, generator, xmin=0.0, xmax=1.0, num=10):
 ##############################################################################
 
 hc = HypothesisCollection()
-hc.append(PolynomialHypothesis(M=2, variance=3))
-hc.append(PolynomialHypothesis(M=3, variance=3))
-hc.append(PolynomialHypothesis(M=4, variance=3))
-hc.append(TrigonometricHypothesis(halfM=6, variance=2))
-hc.append(TrigonometricHypothesis(halfM=10, variance=2))
+hc.append(PolynomialHypothesis(M=2, variance=16))
+hc.append(PolynomialHypothesis(M=3, variance=16))
+hc.append(PolynomialHypothesis(M=4, variance=16))
+hc.append(PolynomialHypothesis(M=8, variance=16))
+hc.append(TrigonometricHypothesis(halfM=10, variance=16))
 
 obsNoiseSigma = 0.2 #try 0.2 for Polynomials
 lr = LinearRegression(hc, obsNoiseSigma)
@@ -201,7 +201,7 @@ lr = LinearRegression(hc, obsNoiseSigma)
 #select_points_and_fit(lr, num=2)
 #generate_noise_and_fit(lr, generator=PolynomialHypothesis(M=3, variance=1), xmin=0, xmax=3, num=50)
 #generate_noise_and_fit_iterative(lr, generator=PolynomialHypothesis(M=4, variance=0.2), xmin=0, xmax=4, num=30)
-generate_noise_and_fit_iterative(lr, generator=PolynomialHypothesis(M=3, variance=1), xmin=0, xmax=3, num=50)
+generate_noise_and_fit_iterative(lr, generator=PolynomialHypothesis(M=3, variance=4, noiseVariance=obsNoiseSigma**2), xmin=0, xmax=3, num=50)
 #generate_noise_and_fit_iterative(lr, generator=TrigonometricHypothesis(halfM=6, variance=1), xmin=0, xmax=3*math.pi, num=30)
 input()
 
