@@ -1,4 +1,4 @@
-<TeXmacs|1.99.2>
+<TeXmacs|1.99.5>
 
 <style|<tuple|beamer|reddish>>
 
@@ -205,18 +205,6 @@
         Update completed in 98 milliseconds.
       </folded-io>
 
-      <\input>
-        \<gtr\>\<gtr\>\<gtr\>\ 
-      <|input>
-        \;
-      </input>
-
-      <\input>
-        \<gtr\>\<gtr\>\<gtr\>\ 
-      <|input>
-        \;
-      </input>
-
       \;
     </session>
   </hidden>|<\hidden>
@@ -284,9 +272,3 @@
     <associate|input-vpadding|0.1fn>
   </collection>
 </initial>
-
-<\references>
-  <\collection>
-    <associate|eq:modelselec|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
-  </collection>
-</references>

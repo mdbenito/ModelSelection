@@ -411,7 +411,7 @@
   <with|ornament-shape|rounded|ornament-color|pastel red|<\ornamented>
     <\warning*>
       Formulas <eqref|eq:model-update> and <eqref|eq:independence> are wrong!
-      For a intuitive example on why this is so, see section
+      For an intuitive example on why this is so, see section
       <reference|sec:modelselec>.
     </warning*>
   </ornamented>>
