@@ -46,7 +46,7 @@ def getProbabilitiesPlot(regression):
     x = range(len(regression.probHyp[0]))
     for i, prob in enumerate(regression.probHyp):
         pl.plot(x, prob, label=str(regression.hypotheses[i]))
-    pl.legend(title='p(H_k)', loc=2)
+    pl.legend(title='$p(H_k)$', loc=2)
     return pl.gcf()
 
 
@@ -54,4 +54,4 @@ def updateProbabilitiesPlot(ax, regression):
     x = range(len(regression.probHyp[0]))
     for i, prob in enumerate(regression.probHyp):
         ax.plot(x, prob, label=str(regression.hypotheses[i]))
-    ax.legend(title='p(H_k)', loc=2)
+    ax.legend(title='$p(H_k)$', loc=2)
