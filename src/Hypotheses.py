@@ -106,7 +106,7 @@ class PolynomialHypothesis(Hypothesis):
         f = lambda x: [x ** j for j in range(0, self._M)]
         if np.isscalar(data):
             return np.array(f(data)).reshape((1, self._M))
-        return np.array(map(f, data))   # has shape(len(data), self._M)
+        return np.array(list(map(f, data)))   # has shape(len(data), self._M)
 
 
 class TrigonometricHypothesis(Hypothesis):
@@ -122,8 +122,8 @@ class TrigonometricHypothesis(Hypothesis):
         return "Trig%d" % (self._M-1)
 
     def evaluate(self, data):
-        cos = lambda x: [math.cos(np.pi * j * x) for j in range(0, self._M/2)]
-        sin = lambda x: [math.sin(np.pi * j * x) for j in range(0, self._M/2)]
+        cos = lambda x: [math.cos(np.pi * j * x) for j in range(0, int(self._M/2))]
+        sin = lambda x: [math.sin(np.pi * j * x) for j in range(0, int(self._M/2))]
         if np.isscalar(data):
             return np.concatenate((cos(data), sin(data))).reshape((1, self._M))
         return np.array([np.concatenate((cos(p), sin(p))) for p in data])

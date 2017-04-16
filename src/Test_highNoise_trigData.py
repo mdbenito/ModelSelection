@@ -1,3 +1,4 @@
+from __future__ import print_function 
 from datetime import datetime
 from ModelSelection import LinearRegression
 from Hypotheses import *
@@ -40,7 +41,7 @@ def select_points_and_fit(regression, num=10):
         regression.update(p[0], p[1])
     dt = datetime.now() - dt
     msec = (dt.days * 24 * 3600 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-    print "Update completed in %d milliseconds." % msec
+    print("Update completed in %d milliseconds." % msec)
 
     wmap = [param.mean for param in regression.parameter]
 
@@ -77,7 +78,7 @@ def select_points_and_fit_interactive(regression):
         regression.update(p[0], p[1])
         dt = datetime.now() - dt
         msec = (dt.days * 24 * 3600 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-        print "Update completed in %d milliseconds." % msec
+        print("Update completed in %d milliseconds." % msec)
 
         wmap = [param.mean for param in regression.parameter]
         ax1.cla()
@@ -125,7 +126,7 @@ def generate_noise_and_fit_iterative(regression, generator, xmin=0.0, xmax=3.0, 
 
         #dt = datetime.now() - dt
         #msec = (dt.days * 24 * 3600 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-        #print "Update completed in %d milliseconds." % msec
+        #print("Update completed in %d milliseconds." % msec)
 
         wmap = [param.mean for param in regression.parameter]
 
@@ -169,7 +170,7 @@ def generate_noise_and_fit(regression, generator, xmin=0.0, xmax=1.0, num=10):
 
     dt = datetime.now() - dt
     msec = (dt.days * 24 * 3600 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-    print "Update completed in %d milliseconds." % msec
+    print("Update completed in %d milliseconds." % msec)
 
     wmap = [param.mean for param in regression.parameter]
 
