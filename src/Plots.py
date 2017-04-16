@@ -26,6 +26,15 @@ def getMAPFitPlot(inputVec, hypotheses, wmaps, deltaH):
 
 
 def updateMAPFitPlot(ax, inputVec, hypotheses, wmaps, deltaH):
+    """ Plot the MAP estimates
+
+    Arguments
+    ---------
+        ax: matplotlib axes
+        inputVec: x locations
+        hypotheses: list of the H_k
+        wmaps: list of MAP estimates of weights (from the p(w|data, H_k))
+    """
     for j, (h, w) in enumerate(zip(hypotheses, wmaps)):
         temp = np.reshape(w, (len(w), 1))
         xMax = np.max(inputVec)
