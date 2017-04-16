@@ -203,12 +203,12 @@ class DiagonalGaussianRV(RandomVariable):
             raise TypeError("Scalars should be passed as 1x1 numpy.ndarrays")
 
         # Evaluation at each coordinate of a data point
-        norm_const = 1.0 / (math.sqrt(2 * np.pi) * self._stddev)
-        l = lambda p, m: norm_const * math.pow(math.e, -0.5 * ((p - m) ** 2) / self._variance)
+        norm_const = 1.0 / (np.sqrt(2 * np.pi) * self._stddev)
+        l = lambda p, m: norm_const * np.exp(-0.5 * ((p - m) ** 2) / self._variance)
 
         # Because the covariance matrix is diagonal, evaluation at a point is the product of the
         # one dimensional evaluations at each coordinate
-        lm = lambda P: np.prod(map(l, P, self.mean))
+        lm = lambda P: np.prod(l(P, self._mean))
 
         if data.shape == self.mean.shape:   # We must evaluate at just one point (FIXME!)
             return np.array([lm(data)])
